@@ -12,7 +12,7 @@ import lxml.etree
 from fdsys.errors import *
 from lib.xml_annotator import XMLAnnotator
 from lib.regex import Regex
-from lib.logging import initialize_logfile
+from lib.logging import initialize_logfile, get_stack_trace
 
 MONTHS = [datetime.date(2010, x, 1).strftime('%B') for x in range(1,13)]
 
@@ -943,7 +943,8 @@ def do_parse(parser, logfile):
     except Exception, e:
         today = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         logfile.write('%s: Error processing file %s\n' % (today, parser.filepath))
-        logfile.write('\t%s' % e)
+        logfile.write('\t%s\n' % e)
+        logfile.write(get_stack_trace())
         logfile.flush()
 
 
