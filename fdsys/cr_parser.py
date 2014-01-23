@@ -941,6 +941,8 @@ def do_parse(parser, logfile):
             parser.validate()
             parser.save()
     except Exception, e:
+        print 'flag status:', parser.error_flag
+        print 'Error processing file: %s: %s' % (parser.filepath, e)
         today = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
         logfile.write('%s: Error processing file %s\n' % (today, parser.filepath))
         logfile.write('\t%s\n' % e)
