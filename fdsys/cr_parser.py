@@ -985,25 +985,20 @@ def parse_directory(path, **kwargs):
         # we don't process the daily digest or front matter.
         if file.find('FrontMatter') != -1 or file.find('PgD') != -1:
             continue
-############# not working but something like this
-        # doesn't make text versions of 
+        # Makes text versions for the parser 
         elif file.endswith('.htm'):
-            print file
             old_file = os.path.join(path, file)
             content = open(old_file, 'r').read()
-            # should eliminate extra title and leave expected space at the top 
+            # eliminates extra title and leaves expected space at the top 
             content = re.sub(r'<title>.+?</title>', '', content)
-            # need to  eliminate particular blank lines, shoud sill get the tags out if expected line breaks aren't there. 
+            # need to  eliminate particular blank lines, should sill get the tags out if expected line breaks aren't there. 
             extras = ['<html>\n','<html>', '</html>', '<head>\n', '</head>\n', '<head>', '</head>', '<body><pre>\n', '<pre>', '</pre>', '<body>','</body>', ]
             for tag in extras:
                 content = content.replace(tag, '')
             new_name = file[:-3] + 'txt'
             new_path = os.path.join(path, new_name)
             text_doc = open(new_path, 'w') 
-            print text_doc
             text_doc = text_doc.write(content)
-            print text_doc
-            #text_doc.close()
             file = new_name
 
         if not file.endswith('.txt'):

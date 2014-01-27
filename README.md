@@ -28,13 +28,14 @@ If you'd like to submit a patch that accepts html, that would be great!
 
 ### Options
 
-- `-id`, `--indir`: Input directory to parse. All .txt files in the dir will be processed.
+- `-id`, `--indir`: Input directory to parse. The.htm files in the dir will be processed. Front matter and other procedural text will not be processed.
 - `-od`, `--outdir`: Output directory for parsed files. Defaults to __parsed in the input directory.
 - `-l`, `--logdir`: Directory for logs to be written to. Defaults to __log in the input directory.
 - '--interactive': Interactive mode: Step through files and choose which to parse.
 - A positional argument can be provided with a single file to process, rather than iterating through a directory, but if `-id` is provided it will take precedence. Interactive mode is disabled when parsing a single file.
 
 ### Examples
+Find .htm files of the congressional record from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC)
 
 ```
 $ ./parser.py -h
