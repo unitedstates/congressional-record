@@ -172,6 +172,17 @@ class CRParser(object):
 
         # Remove internal page numbers and timestamps
         content = open(abspath).read()
+
+        # the scraper expects the first line of a file to be blank
+
+        first_line = content.split("\n")
+        first_line = first_line[0]
+        if first_line.isspace() or first_line == '':
+            pass
+        else:
+            content = '\n' + content
+
+
         content = re.sub(r'\n?\n?\[\[Page.*?\]\]\n?', ' ', content)
         #content = re.sub(r'\n\n +\{time\} +\d+\n', '', content)
         self.is_bullet = False
@@ -969,12 +980,35 @@ def parse_single(infile, **kwargs):
 def parse_directory(path, **kwargs):
     logfile = initialize_logfile(kwargs['logdir'])
     for file in os.listdir(path):
+        print file
+        print path
         # we don't process the daily digest or front matter.
         if file.find('FrontMatter') != -1 or file.find('PgD') != -1:
             continue
-        # likewise, we only parse text files.
+############# not working but something like this
+        # doesn't make text versions of 
+        elif file.endswith('.htm'):
+            print file
+            old_file = os.path.join(path, file)
+            content = open(old_file, 'r').read()
+            # should eliminate extra title and leave expected space at the top 
+            content = re.sub(r'<title>.+?</title>', '', content)
+            # need to  eliminate particular blank lines, shoud sill get the tags out if expected line breaks aren't there. 
+            extras = ['<html>\n','<html>', '</html>', '<head>\n', '</head>\n', '<head>', '</head>', '<body><pre>\n', '<pre>', '</pre>', '<body>','</body>', ]
+            for tag in extras:
+                content = content.replace(tag, '')
+            new_name = file[:-3] + 'txt'
+            new_path = os.path.join(path, new_name)
+            text_doc = open(new_path, 'w') 
+            print text_doc
+            text_doc = text_doc.write(content)
+            print text_doc
+            #text_doc.close()
+            file = new_name
+
         if not file.endswith('.txt'):
             continue
+
         if kwargs.get('interactive', False):
             resp = raw_input("process file %s? (y/n/q) " % file)
             if resp == 'n':
