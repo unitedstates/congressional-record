@@ -1038,7 +1038,8 @@ def scraped_files(day):
     except:
         message = "No record retrieved for " + day
         print message
-        return message
+        return None
+
     # create a file to put the contents in, then write contents and open zipfile
     zip_file = "download.zip"
     download = open(zip_file, 'w')
@@ -1050,8 +1051,9 @@ def scraped_files(day):
     if not os.path.exists("source"):
         os.mkdir("source")
 
-    if not os.path.exists("source/" + day):
-        os.mkdir("source/" + day)
+    locaion = "source/" + day
+    if not os.path.exists(locaion):
+        os.mkdir(locaion)
 
     for record in files.namelist():
         if record.endswith('htm') or record.endswith('xml'):
@@ -1064,11 +1066,8 @@ def scraped_files(day):
             os.rename(extracted_path, destination)
 
     os.remove(zip_file)
-    folder = "source/"+ day
-    return folder
+    return locaion
 
-    # extract the .htm folder and mods file
-    #.write(zip.read())
 
 
 

@@ -60,6 +60,8 @@ optional arguments:
                         An output directory for logs
   --interactive         Step through files and decide whether or not to parse
                         each one
+  -fffm, --FindFileForMe DATE
+                        Choose a date (yyyy-mm-dd) to download and parse record. Files will be saved to the source folder.
 
 $ ./parser.py -id ~/Projects/CR/CREC-2014-01-21/txt
 flag status: False

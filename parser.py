@@ -38,8 +38,11 @@ if __name__ == '__main__':
     # Scrapes files and creates a directory
     if args.findfileforme:
         day = args.findfileforme
-        args.indir = scraped_files(day)
-    print "Made it through"
+        file_path = scraped_files(day)
+        if file_path is None:
+            exit(1)
+        args.indir = file_path
+
 
     # Deal with directory case:
     if args.indir:
