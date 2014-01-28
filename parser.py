@@ -15,7 +15,7 @@ from xml.sax.saxutils import escape, unescape
 
 import lxml.etree
 
-from fdsys.cr_parser import CRParser, parse_directory, parse_single
+from fdsys.cr_parser import CRParser, parse_directory, parse_single, scraped_files
 
 
 if __name__ == '__main__':
@@ -30,7 +30,16 @@ if __name__ == '__main__':
                         help='An output directory for logs')
     parser.add_argument('--interactive', dest='interactive', action='store_true',
                         help='Step through files and decide whether or not to parse each one')
+    parser.add_argument('-fffm', '--findfileforme', type=str, 
+                        help='Choose a day (yyyy-mm-dd) to download and parse record.')
+
     args = parser.parse_args()
+    
+    # Scrapes files and creates a directory
+    if args.findfileforme:
+        day = args.findfileforme
+        args.indir = scraped_files(day)
+    print "Made it through"
 
     # Deal with directory case:
     if args.indir:
@@ -47,6 +56,7 @@ if __name__ == '__main__':
         if not args.outdir:
             args.outdir = os.path.realpath(os.path.join(os.path.dirname(args.infile), '__parsed'))
         parse_single(args.infile, logdir=args.logdir, outdir=args.outdir)
+
     else:
         parser.print_help()
         raise 'Either an infile argument or the --indir flag is required!'

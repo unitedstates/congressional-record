@@ -4,6 +4,7 @@ import os
 import sys
 import argparse
 import urllib2
+import zipfile
 from cStringIO import StringIO
 from xml.sax.saxutils import escape, unescape
 
@@ -1025,4 +1026,52 @@ def parse_directory(path, **kwargs):
         do_parse(parser, logfile)
 
     return kwargs['outdir']
+
+# simplified scraper for a given day, moved parser functionality to parse_directory
+def scraped_files(day):
+    # expecting day in yyyy-mm-dd format
+    year = day[:4]
+    url = "http://www.gpo.gov/fdsys/pkg/CREC-" + day + ".zip"
+    try:
+        print "Downloading url ", url
+        contents = urllib2.urlopen(url).read()
+    except:
+        message = "No record retrieved for " + day
+        print message
+        return message
+    # create a file to put the contents in, then write contents and open zipfile
+    zip_file = "download.zip"
+    download = open(zip_file, 'w')
+    print "Writing file ", zip_file
+    download.write(contents)
+    download.close()
+    files =zipfile.ZipFile(zip_file, 'r')
+
+    if not os.path.exists("source"):
+        os.mkdir("source")
+
+    if not os.path.exists("source/" + day):
+        os.mkdir("source/" + day)
+
+    for record in files.namelist():
+        if record.endswith('htm') or record.endswith('xml'):
+            print "Processing ", record
+            extracted_path = files.extract(record)
+            #moving to source dir after extraction
+            base_name = os.path.basename(extracted_path)
+            destination = "source/"+ day + "/" + base_name
+            print "from ", extracted_path, " to ", destination
+            os.rename(extracted_path, destination)
+
+    os.remove(zip_file)
+    folder = "source/"+ day
+    return folder
+
+    # extract the .htm folder and mods file
+    #.write(zip.read())
+
+
+
+
+
 
