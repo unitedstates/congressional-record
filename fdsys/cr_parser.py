@@ -1054,23 +1054,33 @@ def scraped_files(day):
     if not os.path.exists("source"):
         os.mkdir("source")
 
-    locaion = "source/" + day
-    if not os.path.exists(locaion):
-        os.mkdir(locaion)
+    location = "source/" + year
+    if not os.path.exists(location):
+        os.mkdir(location)
 
     for record in zip_file.namelist():
     # for record in files.namelist():
         if record.endswith('htm') or record.endswith('xml'):
             print "Processing ", record
-            extracted_path = zip_file.extract(record) 
-            #extracted_path = files.extract(record)
-            #moving to source dir after extraction
-            base_name = os.path.basename(extracted_path)
-            destination = "source/"+ day + "/" + base_name
-            print "from ", extracted_path, " to ", destination
-            os.rename(extracted_path, destination)
+            zip_file.extract(record, location)
 
-    return locaion
+            #moving to source dir after extraction
+            
+            # extracted_path = zip_file.extract(record) 
+            ## extracted_path = files.extract(record)
+            # base_name = os.path.basename(extracted_path)
+            # destination = "source/"+ day + "/" + base_name
+            # print "from ", extracted_path, " to ", destination
+            # os.rename(extracted_path, destination)
+
+    #moving to source dir after extraction 
+    folder = "CREC-" + day
+    for filename in os.listdir(os.path.join(location, folder, "html")):
+        file_path = os.path.join(location, folder, "html", filename)
+        dest_path = os.path.join(location, folder, filename)
+        os.rename(file_path, dest_path)
+    os.rmdir(os.path.join(location, folder, "html"))
+    return location
 
 
 
