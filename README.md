@@ -36,7 +36,9 @@ If you'd like to submit a patch that accepts html, that would be great!
 
 ### Examples
 
-Find .htm files of the congressional record from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). When you find the day you are interested in, click on it and choose the "More" link. Then, download the Zip file. 
+Use --FindFileForMe with a day in yyyy-mm-dd format to extract records for that day.
+
+Alternatively, find .htm files of the congressional record from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). When you find the day you are interested in, click on it and choose the "More" link. Then, download the Zip file. 
 
 ```
 $ ./parser.py -h
