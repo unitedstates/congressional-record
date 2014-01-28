@@ -5,6 +5,7 @@ import sys
 import argparse
 import urllib2
 import zipfile
+# import tempfile
 from cStringIO import StringIO
 from xml.sax.saxutils import escape, unescape
 
@@ -1041,12 +1042,14 @@ def scraped_files(day):
         return None
 
     # create a file to put the contents in, then write contents and open zipfile
-    zip_file = "download.zip"
-    download = open(zip_file, 'w')
-    print "Writing file ", zip_file
-    download.write(contents)
-    download.close()
-    files =zipfile.ZipFile(zip_file, 'r')
+    # zip_file = "download.zip"
+    # download = open(zip_file, 'w')
+    # print "Writing file ", zip_file
+    # download.write(contents)
+    # download.close()
+    # files = zipfile.ZipFile(zip_file, 'r')
+
+    zip_file = zipfile.ZipFile(StringIO(contents))
 
     if not os.path.exists("source"):
         os.mkdir("source")
@@ -1055,17 +1058,18 @@ def scraped_files(day):
     if not os.path.exists(locaion):
         os.mkdir(locaion)
 
-    for record in files.namelist():
+    for record in zip_file.namelist():
+    # for record in files.namelist():
         if record.endswith('htm') or record.endswith('xml'):
             print "Processing ", record
-            extracted_path = files.extract(record)
+            extracted_path = zip_file.extract(record) 
+            #extracted_path = files.extract(record)
             #moving to source dir after extraction
             base_name = os.path.basename(extracted_path)
             destination = "source/"+ day + "/" + base_name
             print "from ", extracted_path, " to ", destination
             os.rename(extracted_path, destination)
 
-    os.remove(zip_file)
     return locaion
 
 
