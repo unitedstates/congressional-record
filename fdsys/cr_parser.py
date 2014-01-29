@@ -1064,7 +1064,7 @@ def scraped_files(day):
             print "Processing ", record
             zip_file.extract(record, location)
 
-            #moving to source dir after extraction
+
             
             # extracted_path = zip_file.extract(record) 
             ## extracted_path = files.extract(record)
@@ -1080,7 +1080,9 @@ def scraped_files(day):
         dest_path = os.path.join(location, folder, filename)
         os.rename(file_path, dest_path)
     os.rmdir(os.path.join(location, folder, "html"))
-    return location
+    
+    file_path = os.path.join(location, folder)
+    return file_path
 
 
 
