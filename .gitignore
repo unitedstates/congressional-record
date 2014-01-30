@@ -1,2 +1,4 @@
 *.pyc
+source 
+test_output
 .DS_Store

@@ -1063,8 +1063,6 @@ def scraped_files(day):
         if record.endswith('htm') or record.endswith('xml'):
             print "Processing ", record
             zip_file.extract(record, location)
-
-
             
             # extracted_path = zip_file.extract(record) 
             ## extracted_path = files.extract(record)

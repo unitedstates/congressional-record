@@ -1,1 +1,3 @@
-lxml
+ipython==1.1.0
+lxml==3.3.0beta5
+wsgiref==0.1.2
