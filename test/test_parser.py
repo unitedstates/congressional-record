@@ -5,6 +5,21 @@ import re
 
 from fdsys import cr_parser 
 
+# simple files to test basic boiler plate parsing
+def bolier_house_content():
+	house_content = cr_parser.parse_to_string("test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgH1433-2.txt", logdir="test/test_output/trash", outdir="test/test_output")
+	return str(house_content)
+
+def bolier_senate_content():	
+	senate_content = cr_parser.parse_to_string("test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgS493-2.txt", logdir="test/test_output/trash", outdir="test/test_output")
+	return str(senate_content)
+
+bolier_house_content = bolier_house_content()
+bolier_senate_content = bolier_senate_content()
+
+
+
+
 class test_results(unittest.TestCase):
 
 	# the parser is supposed to ignore front matter
@@ -68,7 +83,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaker, 1)
 		self.assertEqual(speaking, 3)
 
-	def test_acting_protemp(slef):
+	def test_acting_protemp(self):
 		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgS189-5.txt", logdir="test/test_output/trash", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="The ACTING PRESIDENT pro tempore">', content))
@@ -91,10 +106,55 @@ class test_results(unittest.TestCase):
 		content = str(content)
 		speaker = len(re.findall("<recorder>", content))
 		
-		self.assertEqual(speaker, 1)
-		
+		self.assertEqual(speaker, 1)	
 
-		# I still need to test Chair, Chairman, Clerk, The Cheif Justice and The Vice President. Also, I haven't found a Miss. but I don't think it is likely)
+	# I still need to test Chair, Chairman, Clerk, The Chief Justice and The Vice President. Also, I haven't found a Miss. but I don't think it is likely)
+
+	# boiler plate 
+	def test_volume(self):
+		self.assertTrue("<volume>160</volume>" in bolier_house_content)
+		self.assertTrue("<volume>160</volume>" in bolier_senate_content)
+
+	def test_number(self):
+		self.assertTrue("<number>16</number>" in bolier_house_content)
+		self.assertTrue("<number>16</number>" in bolier_senate_content)
+
+	def test_weekday(self):
+		self.assertTrue("<weekday>Tuesday</weekday>" in bolier_house_content)
+		self.assertTrue("<weekday>Tuesday</weekday>" in bolier_senate_content)
+
+	def test_month(self):
+		self.assertTrue("<month>January</month>" in bolier_house_content)
+		self.assertTrue("<month>January</month>" in bolier_senate_content)
+
+	def test_day(self): 
+		self.assertTrue("<day>28</day>" in bolier_house_content)
+		self.assertTrue("<day>28</day>" in bolier_senate_content)
+	
+	def test_year(self):
+		self.assertTrue("<year>2014</year>" in bolier_house_content)
+		self.assertTrue("<year>2014</year>" in bolier_senate_content)
+
+	def test_chamber(self):
+		extention_content = cr_parser.parse_to_string('test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgE123-4.txt', logdir="test/test_output/trash", outdir="test/test_output")
+		extention_content = str(extention_content)
+
+		self.assertTrue("<chamber>Extensions</chamber>" in extention_content)
+		self.assertTrue("<chamber>House</chamber>" in bolier_house_content)
+		self.assertTrue("<chamber>Senate</chamber>" in bolier_senate_content)
+
+	def test_pages(self):
+		self.assertTrue("<pages>H1433</pages>" in bolier_house_content)
+		self.assertTrue("<pages>S493</pages>" in bolier_senate_content)
+
+	def test_congress(self):
+		self.assertTrue("<congress>113</congress>" in bolier_house_content)
+		self.assertTrue("<congress>113</congress>" in bolier_senate_content)
+	
+	def test_session(self):
+		self.assertTrue("<session>2</session>" in bolier_house_content)
+		self.assertTrue("<session>2</session>" in bolier_senate_content)
+
 
 		
 		
