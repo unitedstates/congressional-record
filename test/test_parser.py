@@ -13,7 +13,7 @@ class test_results(unittest.TestCase):
 		# make sure test_files/front_matter/__parsed doesn't exist with a sample from the House and Senate
 		self.assertTrue(not os.path.exists('test/test_output/__parsed'))
 
-	# identifying speakers, a Mr., Ms., Mrs. 
+	# identifying speakers 
 	def test_mr(self):
 		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE49-2.txt", logdir="test/test_output/trash", outdir="test/test_output")
 		content = str(content)
@@ -94,8 +94,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaker, 1)
 		
 
-
-		#(still need to test Chair, I haven't found a Miss.)
+		# I still need to test Chair, Chairman, Clerk, The Cheif Justice and The Vice President. Also, I haven't found a Miss. but I don't think it is likely)
 
 		
 		
