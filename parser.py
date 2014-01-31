@@ -43,7 +43,6 @@ if __name__ == '__main__':
             exit(1)
         args.indir = file_path
 
-
     # Deal with directory case:
     if args.indir:
         if not args.logdir:
@@ -52,6 +51,7 @@ if __name__ == '__main__':
             args.outdir = os.path.realpath(os.path.join(args.indir, '__parsed'))
         parse_directory(args.indir, interactive=args.interactive,
                         logdir=args.logdir, outdir=args.outdir)
+    
     # Deal with single file case:
     elif args.infile:
         if not args.logdir:

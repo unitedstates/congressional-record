@@ -6,14 +6,14 @@ A parser for the Congressional Record.
 
 ## Supported sources
 
-Currently only the GPO HTML packages are supported. Urls look like this:
+Currently only the GPO HTML packages are supported. 
 
+Find files by date or download them from FDsys.
+
+Urls look like this:
 <http://www.gpo.gov/fdsys/pkg/CREC-2014-01-21.zip>
+Download your own files and find `html` folder containing the pages of the day's record.
 
-Inside this zip is an `html` folder containing the pages of the day's record.
-Currently, it's expected that you'll convert those HTML files to plain text, using
-only the content between `<pre></pre>` tags before feeding them to this script.
-If you'd like to submit a patch that accepts html, that would be great!
 
 ## Requirements
 

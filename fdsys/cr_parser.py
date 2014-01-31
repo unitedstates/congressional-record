@@ -5,7 +5,7 @@ import sys
 import argparse
 import urllib2
 import zipfile
-# import tempfile
+import tempfile
 from cStringIO import StringIO
 from xml.sax.saxutils import escape, unescape
 
@@ -944,6 +944,15 @@ class CRParser(object):
         fp.write(''.join(self.xml))
         fp.close()
         print "saved file %s to disk" % saveas
+    
+
+#added for testing
+def parse_to_string(infile, **kwargs):
+    parser = CRParser(infile, **kwargs)
+    parser.parse()
+    parser.validate()
+    return parser.xml
+
 
 
 def do_parse(parser, logfile):
