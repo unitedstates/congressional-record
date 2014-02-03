@@ -4,8 +4,9 @@ import zipfile
 from cStringIO import StringIO
 
 
-def find_fdsys(day):
+def find_fdsys(day, **kwargs):
     # expecting day in yyyy-mm-dd format
+    force = kwargs.get('force', False)
     year = day[:4]
     location = "source/" + year
     folder = "CREC-" + day
@@ -14,8 +15,30 @@ def find_fdsys(day):
     
     # looks to see if the file has already been downloaded
     if os.path.exists(file_path):
-        # uses files that have already been downloaded 
-        return file_path
+        if force == False:
+            # uses files that have already been downloaded 
+            return file_path
+        else:
+            # removes files from the last run
+            # delete previous txt and htm files
+            for f in os.listdir(file_path):
+                file_location = os.path.join(file_path, f)
+                if os.path.isfile(file_location): 
+                    os.remove(file_location)
+            # delete previous log
+            log_path = os.path.join(file_path, "__log")
+            if os.path.exists(log_path):
+                print os.listdir(log_path)
+                for f in os.listdir(log_path):
+                    file_location = os.path.join(log_path, f)
+                    os.remove(file_location)
+            # delete previous parsed results
+            parsed_path = os.path.join(file_path, "__parsed")
+            if os.path.exists(parsed_path):
+                for f in os.listdir(parsed_path):
+                    file_location = os.path.join(parsed_path, f)
+                    if os.path.isfile(file_location):
+                        os.remove(file_location)
     
     try:
         print "Downloading url ", url

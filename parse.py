@@ -34,6 +34,8 @@ if __name__ == '__main__':
                         help='An output directory for logs')
     parser.add_argument('--interactive', dest='interactive', action='store_true',
                         help='Step through files and decide whether or not to parse each one')
+    parser.add_argument('--force', dest='force', action='store_true',
+                        help='Force documents to be downloaded')
     
 
     args = parser.parse_args()
@@ -41,7 +43,7 @@ if __name__ == '__main__':
     # Scrapes files and creates a directory from FDsys if no file exists in source folder
     if args.findfiles:
         day = args.findfiles
-        file_path = find_fdsys(day)
+        file_path = find_fdsys(day, force=args.force)
         if file_path is None:
             exit(1)
         args.indir = file_path
