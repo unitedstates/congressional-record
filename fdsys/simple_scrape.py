@@ -40,10 +40,11 @@ def find_fdsys(day):
 
     #moving to source dir after extraction 
     for filename in os.listdir(os.path.join(location, folder, "html")):
-        file_path = os.path.join(location, folder, "html", filename)
+        file_from = os.path.join(location, folder, "html", filename)
         dest_path = os.path.join(location, folder, filename)
-        os.rename(file_path, dest_path)
+        os.rename(file_from, dest_path)
     # clean up empty folder
     os.rmdir(os.path.join(location, folder, "html"))
+
     
     return file_path

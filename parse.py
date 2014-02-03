@@ -10,7 +10,6 @@ import os
 import sys
 import argparse
 import urllib2
-from cStringIO import StringIO
 from xml.sax.saxutils import escape, unescape
 
 import lxml.etree
@@ -66,4 +65,4 @@ if __name__ == '__main__':
 
     else:
         parser.print_help()
-        raise 'Either an infile argument or the --indir flag is required!'
+        raise 'Either a date (YYY-MM-DD), --infile argument or the --indir flag is required!'
