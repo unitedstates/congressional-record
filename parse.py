@@ -42,14 +42,42 @@ if __name__ == '__main__':
     
     # Scrapes files and creates a directory from FDsys if no file exists in source folder
     if args.findfiles:
-        day = args.findfiles
-        file_path = find_fdsys(day, force=args.force)
-        if file_path is None:
-            exit(1)
-        args.indir = file_path
+        days = args.findfiles
+        date_range = days.split('/')
+        no_record = []
+        if len(date_range) == 1:
+            dates = date_range 
+        else:
+           dates = []
+           begin_date = date_range[0]
+           end_date = date_range[1]
+           begin = datetime.datetime.strptime(begin_date.strip(), "%Y-%m-%d").date()
+           end = datetime.datetime.strptime(end_date.strip(), "%Y-%m-%d").date()
+           d = begin
+           while d <= end:
+                day = datetime.datetime.strftime(d, "%Y-%m-%d")
+                dates.append(day)
+                d += datetime.timedelta(days=1)
+
+        for day in dates:
+            file_path = find_fdsys(day, force=args.force)
+            # did not return records
+            if file_path is None:
+                no_record.append(day)
+            else:
+                args.indir = file_path
+                if not args.logdir:
+                    args.logdir = os.path.realpath(os.path.join(args.indir, '__log'))
+                if not args.outdir:
+                    args.outdir = os.path.realpath(os.path.join(args.indir, '__parsed'))
+                parse_directory(args.indir, interactive=args.interactive,
+                                logdir=args.logdir, outdir=args.outdir)
+        
+        if len(no_record) > 0:
+            print "No results were found for the following day/s: %s " %(no_record)
 
     # Deal with directory case:
-    if args.indir:
+    elif args.indir:
         if not args.logdir:
             args.logdir = os.path.realpath(os.path.join(args.indir, '__log'))
         if not args.outdir:
