@@ -14,7 +14,7 @@ from xml.sax.saxutils import escape, unescape
 
 import lxml.etree
 
-from fdsys.cr_parse import CRParser, parse_directory, parse_single
+from fdsys.cr_parser import CRParser, parse_directory, parse_single
 from fdsys.simple_scrape import find_fdsys
 
 
