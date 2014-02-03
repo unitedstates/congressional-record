@@ -1,4 +1,8 @@
 import os
+import urllib2
+import zipfile
+from cStringIO import StringIO
+
 
 def find_fdsys(day):
     # expecting day in yyyy-mm-dd format
@@ -17,7 +21,7 @@ def find_fdsys(day):
         print "Downloading url ", url
         contents = urllib2.urlopen(url).read()
     except:
-        message = "No record retrieved for " + day
+        message = "No record retrieved for %s. Attempted to download records from :%s " %(day, url)
         print message
         return None
 
