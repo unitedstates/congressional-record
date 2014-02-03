@@ -36,9 +36,30 @@ Download your own files and find `html` folder containing the pages of the day's
 
 ### Examples
 
-Use parse.py and the day 
+Use parse.py and a date in (yyyy-mm-dd) format
 
-Alternatively, find .htm files of the congressional record from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). When you find the day you are interested in, click on it and choose the "More" link. Then, download the Zip file. 
+The output shortened in the following example. The parsed records would appear in the folder named /congressional-record/source/2014/CREC-2014-01-27/__parsed/
+
+```
+$ ./parse.py 2014-01-30 
+Downloading url  http://www.gpo.gov/fdsys/pkg/CREC-2014-01-27.zip
+Processing  CREC-2014-01-27/html/CREC-2014-01-27-pt1-PgD73-2.htm
+Processing  CREC-2014-01-27/html/CREC-2014-01-27-pt1-PgD73.htm
+Processing  CREC-2014-01-27/html/CREC-2014-01-27-pt1-PgD74-2.htm
+ ...
+ CREC-2014-01-27-pt1-PgE115-2.htm
+source/2014/CREC-2014-01-27
+flag status: False
+saved file /Users/lindsayyoung/Dropbox/Projects/congressional-record/source/2014/CREC-2014-01-27/__parsed/CREC-2014-01-27-pt1-PgE115-2.xml to disk
+CREC-2014-01-27-pt1-PgE115-3.htm
+source/2014/CREC-2014-01-27
+flag status: False
+saved file /Users/lindsayyoung/Dropbox/Projects/congressional-record/source/2014/CREC-2014-01-27/__parsed/CREC-2014-01-27-pt1-PgE115-3.xml to disk
+ ... 
+
+```
+
+Alternatively, find .htm files of the congressional record from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). When you find the day you are interested in, click on it and choose the "More" link. Then, download the Zip file and use the -id command to point to the htm files. 
 
 ```
 $ ./parser.py -h
