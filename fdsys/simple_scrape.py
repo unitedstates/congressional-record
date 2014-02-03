@@ -10,6 +10,7 @@ def find_fdsys(day):
     
     # looks to see if the file has already been downloaded
     if os.path.exists(file_path):
+        # uses files that have already been downloaded 
         return file_path
     
     try:
