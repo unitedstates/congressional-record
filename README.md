@@ -36,7 +36,7 @@ Download your own files and find `html` folder containing the pages of the day's
 
 ### Examples
 
-Use parse.py and a date in (yyyy-mm-dd) format
+Use parse.py and a date in yyyy-mm-dd format or look for a date range with the beginning date directly followed by a slash and the end date yyyy-mm-dd/yyyy-mm-dd.
 
 The output shortened in the following example. The parsed records would appear in the folder named /congressional-record/source/2014/CREC-2014-01-27/__parsed/
 
@@ -70,7 +70,9 @@ usage: parser.py [-h] [-id INDIR] [-od OUTDIR] [-l LOGDIR] [--interactive] [-f F
 Parse arguments for the Congressional Record Parser
 
 positional arguments:
-  findfiles             Choose a date (yyyy-mm-dd) to download and parse record. 
+  findfiles             Choose a date (yyyy-mm-dd) to download and parse record.
+                        Or, use a date range start_date/end_date in (yyyy-mm-dd)
+                        format. 
                         Files will be saved to the source folder. If the records
                         already exist in the source folder, existing download will
                         be parsed again.
