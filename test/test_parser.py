@@ -7,30 +7,28 @@ from fdsys import cr_parser
 
 # simple files to test basic boiler plate parsing
 def bolier_house_content():
-	house_content = cr_parser.parse_to_string("test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgH1433-2.txt", logdir="test/test_output/trash", outdir="test/test_output")
+	house_content = cr_parser.parse_to_string("test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgH1433-2.txt", logdir="test/test_output", outdir="test/test_output")
 	return str(house_content)
 
 def bolier_senate_content():	
-	senate_content = cr_parser.parse_to_string("test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgS493-2.txt", logdir="test/test_output/trash", outdir="test/test_output")
+	senate_content = cr_parser.parse_to_string("test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgS493-2.txt", logdir="test/test_output", outdir="test/test_output")
 	return str(senate_content)
 
 bolier_house_content = bolier_house_content()
 bolier_senate_content = bolier_senate_content()
 
 
-
-
 class test_results(unittest.TestCase):
 	# Travis doesn't like this test
 	# # the parser is supposed to ignore front matter
 	# def test_ignore_files(self):
-	# 	cr_parser.parse_directory("test/test_files/front_matter", logdir="test/test_output/trash", outdir="test/test_output")
+	# 	cr_parser.parse_directory("test/test_files/front_matter", logdir="test/test_output", outdir="test/test_output")
 	# 	# make sure test_files/front_matter/__parsed doesn't exist with a sample from the House and Senate
 	# 	self.assertTrue(not os.path.exists('test/test_output/__parsed'))
 
 	# identifying speakers 
 	def test_mr(self):
-		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE49-2.txt", logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE49-2.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="Mr. POE of Texas">', content))
 		speaking = len(re.findall('<speaking name="Mr. POE of Texas">', content))
@@ -39,7 +37,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaking, 8)
 
 	def test_ms(self):
-		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE50-3.txt", logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE50-3.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="Ms. CASTOR of Florida">', content))
 		speaking = len(re.findall('<speaking name="Ms. CASTOR of Florida">', content))
@@ -48,7 +46,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaking, 5)
 
 	def test_mrs(self):
-		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE53.txt", logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE53.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="Mrs. BUSTOS">', content))
 		speaking = len(re.findall('<speaking name="Mrs. BUSTOS">', content))
@@ -57,7 +55,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaking, 4)
 	
 	def test_with_state(self):
-		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE53-4.txt", logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE53-4.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="Ms. SEWELL of Alabama">', content))
 		speaking = len(re.findall('<speaking name="Ms. SEWELL of Alabama">', content))
@@ -66,7 +64,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaking, 7)
 	
 	def test_speaker(self):
-		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgH225-5.txt", logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgH225-5.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="The SPEAKER">', content))
 		speaking = len(re.findall('<speaking name="The SPEAKER">', content))
@@ -75,7 +73,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaking, 1)
 
 	def test_protempore(self):
-		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgH251-2.txt", logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgH251-2.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="The SPEAKER pro tempore">', content))
 		speaking = len(re.findall('<speaking name="The SPEAKER pro tempore">', content))
@@ -84,7 +82,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaking, 3)
 
 	def test_acting_protemp(self):
-		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgS189-5.txt", logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgS189-5.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="The ACTING PRESIDENT pro tempore">', content))
 		speaking = len(re.findall('<speaking name="The ACTING PRESIDENT pro tempore">', content))
@@ -93,7 +91,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaking, 1)
 
 	def test_presiding(self):
-		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgS226-5.txt", logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgS226-5.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="The PRESIDING OFFICER">', content))
 		speaking = len(re.findall('<speaking name="The PRESIDING OFFICER">', content))
@@ -102,7 +100,7 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaking, 3)
 
 	def test_recorder(self):
-		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgH225-7.txt", logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgH225-7.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall("<recorder>", content))
 		
@@ -136,7 +134,7 @@ class test_results(unittest.TestCase):
 		self.assertTrue("<year>2014</year>" in bolier_senate_content)
 
 	def test_chamber(self):
-		extention_content = cr_parser.parse_to_string('test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgE123-4.txt', logdir="test/test_output/trash", outdir="test/test_output")
+		extention_content = cr_parser.parse_to_string('test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgE123-4.txt', logdir="test/test_output", outdir="test/test_output")
 		extention_content = str(extention_content)
 
 		self.assertTrue("<chamber>Extensions</chamber>" in extention_content)
@@ -158,7 +156,7 @@ class test_results(unittest.TestCase):
 
 	# Common tags
 	def test_block_quote(self):
-		content = cr_parser.parse_to_string('test/test_files/common_tags/CREC-2013-01-23-pt1-PgE58-3.txt', logdir="test/test_output/trash", outdir="test/test_output")
+		content = cr_parser.parse_to_string('test/test_files/common_tags/CREC-2013-01-23-pt1-PgE58-3.txt', logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 
 		self.assertTrue('<speaking quote="true" speaker="Mr. SABLAN">' in content)
