@@ -1037,60 +1037,6 @@ def parse_directory(path, **kwargs):
 
     return kwargs['outdir']
 
-# simplified scraper for a given day, moved parser functionality to parse_directory
-def scraped_files(day):
-    # expecting day in yyyy-mm-dd format
-    year = day[:4]
-    url = "http://www.gpo.gov/fdsys/pkg/CREC-" + day + ".zip"
-    try:
-        print "Downloading url ", url
-        contents = urllib2.urlopen(url).read()
-    except:
-        message = "No record retrieved for " + day
-        print message
-        return None
-
-    # create a file to put the contents in, then write contents and open zipfile
-    # zip_file = "download.zip"
-    # download = open(zip_file, 'w')
-    # print "Writing file ", zip_file
-    # download.write(contents)
-    # download.close()
-    # files = zipfile.ZipFile(zip_file, 'r')
-
-    zip_file = zipfile.ZipFile(StringIO(contents))
-
-    if not os.path.exists("source"):
-        os.mkdir("source")
-
-    location = "source/" + year
-    if not os.path.exists(location):
-        os.mkdir(location)
-
-    for record in zip_file.namelist():
-    # for record in files.namelist():
-        if record.endswith('htm') or record.endswith('xml'):
-            print "Processing ", record
-            zip_file.extract(record, location)
-            
-            # extracted_path = zip_file.extract(record) 
-            ## extracted_path = files.extract(record)
-            # base_name = os.path.basename(extracted_path)
-            # destination = "source/"+ day + "/" + base_name
-            # print "from ", extracted_path, " to ", destination
-            # os.rename(extracted_path, destination)
-
-    #moving to source dir after extraction 
-    folder = "CREC-" + day
-    for filename in os.listdir(os.path.join(location, folder, "html")):
-        file_path = os.path.join(location, folder, "html", filename)
-        dest_path = os.path.join(location, folder, filename)
-        os.rename(file_path, dest_path)
-    os.rmdir(os.path.join(location, folder, "html"))
-    
-    file_path = os.path.join(location, folder)
-    return file_path
-
 
 
 

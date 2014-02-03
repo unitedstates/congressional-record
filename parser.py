@@ -15,12 +15,16 @@ from xml.sax.saxutils import escape, unescape
 
 import lxml.etree
 
-from fdsys.cr_parser import CRParser, parse_directory, parse_single, scraped_files
+from fdsys.cr_parser import CRParser, parse_directory, parse_single
+from fdsys.simple_scrape import find_fdsys
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Parse arguments for the Congressional Record Parser")
-    parser.add_argument('infile', type=str, nargs='?',
+    
+    parser.add_argument('findfile', type=str, nargs='?',
+                        help='Choose a day (yyyy-mm-dd) to download and parse record.')
+    parser.add_argument('-f', '--infile', dest='infile', action='store',
                         help='The file to parse')
     parser.add_argument('-id', '--indir', dest='indir', action='store',
                         help='An entire directory to traverse and parse, can replace infile')
@@ -30,15 +34,14 @@ if __name__ == '__main__':
                         help='An output directory for logs')
     parser.add_argument('--interactive', dest='interactive', action='store_true',
                         help='Step through files and decide whether or not to parse each one')
-    parser.add_argument('-fffm', '--findfileforme', type=str, 
-                        help='Choose a day (yyyy-mm-dd) to download and parse record.')
+    
 
     args = parser.parse_args()
     
-    # Scrapes files and creates a directory
-    if args.findfileforme:
-        day = args.findfileforme
-        file_path = scraped_files(day)
+    # Scrapes files and creates a directory from FDsys if no file exists in source folder
+    if args.findfile:
+        day = args.findfile
+        file_path = find_fdsys(day)
         if file_path is None:
             exit(1)
         args.indir = file_path
