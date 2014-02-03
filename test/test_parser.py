@@ -156,5 +156,11 @@ class test_results(unittest.TestCase):
 		self.assertTrue("<session>2</session>" in bolier_senate_content)
 
 
-		
+	# Common tags
+	def test_block_quote(self):
+		content = cr_parser.parse_to_string('test/test_files/common_tags/CREC-2013-01-23-pt1-PgE58-3.txt', logdir="test/test_output/trash", outdir="test/test_output")
+		content = str(content)
+
+		self.assertTrue('<speaking quote="true" speaker="Mr. SABLAN">' in content)
+
 		
