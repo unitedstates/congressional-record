@@ -24,35 +24,39 @@ Download your own files and find `html` folder containing the pages of the day's
 
 (Make sure the x-bit is set on parser.py)
 
-`./parser.py`
+`./parse.py`
 
 ### Options
-
-- `-id`, `--indir`: Input directory to parse. The.htm files in the dir will be processed. Front matter and other procedural text will not be processed.
+- A positional argument can be provided with a single date to process in YYYY-MM-DD format. It will look in the Source file to see if it has been downloaded, if not it will download the file from fdsys.
+- '-f', '--infile': Input a singe file to process. If `-id` is provided it will take precedence. Interactive mode is disabled when parsing a single file.
+- `-id`, `--indir`: Input directory to parse. Front matter and other procedural text will not be processed.
 - `-od`, `--outdir`: Output directory for parsed files. Defaults to __parsed in the input directory.
 - `-l`, `--logdir`: Directory for logs to be written to. Defaults to __log in the input directory.
 - '--interactive': Interactive mode: Step through files and choose which to parse.
-- A positional argument can be provided with a single file to process, rather than iterating through a directory, but if `-id` is provided it will take precedence. Interactive mode is disabled when parsing a single file.
 
 ### Examples
 
-Use --FindFileForMe with a day in yyyy-mm-dd format to extract records for that day.
+Use parse.py and the day 
 
 Alternatively, find .htm files of the congressional record from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). When you find the day you are interested in, click on it and choose the "More" link. Then, download the Zip file. 
 
 ```
 $ ./parser.py -h
 
-usage: parser.py [-h] [-id INDIR] [-od OUTDIR] [-l LOGDIR] [--interactive]
-                 [infile]
+usage: parser.py [-h] [-id INDIR] [-od OUTDIR] [-l LOGDIR] [--interactive] [-f FILE]
+                 [findfiles]
 
 Parse arguments for the Congressional Record Parser
 
 positional arguments:
-  infile                The file to parse
+  findfiles             Choose a date (yyyy-mm-dd) to download and parse record. 
+                        Files will be saved to the source folder. If the records
+                        already exist in the source folder, existing download will
+                        be parsed again.
 
 optional arguments:
   -h, --help            show this help message and exit
+  -f, --infile          gives a particular file to parse
   -id INDIR, --indir INDIR
                         An entire directory to traverse and parse, can replace
                         infile
@@ -62,8 +66,6 @@ optional arguments:
                         An output directory for logs
   --interactive         Step through files and decide whether or not to parse
                         each one
-  -fffm, --FindFileForMe DATE
-                        Choose a date (yyyy-mm-dd) to download and parse record. Files will be saved to the source folder.
 
 $ ./parser.py -id ~/Projects/CR/CREC-2014-01-21/txt
 flag status: False

@@ -22,8 +22,9 @@ from fdsys.simple_scrape import find_fdsys
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Parse arguments for the Congressional Record Parser")
     
-    parser.add_argument('findfile', type=str, nargs='?',
+    parser.add_argument('findfiles', type=str, nargs='?',
                         help='Choose a day (yyyy-mm-dd) to download and parse record.')
+    
     parser.add_argument('-f', '--infile', dest='infile', action='store',
                         help='The file to parse')
     parser.add_argument('-id', '--indir', dest='indir', action='store',
@@ -39,8 +40,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     # Scrapes files and creates a directory from FDsys if no file exists in source folder
-    if args.findfile:
-        day = args.findfile
+    if args.findfiles:
+        day = args.findfiles
         file_path = find_fdsys(day)
         if file_path is None:
             exit(1)
