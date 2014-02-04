@@ -106,7 +106,21 @@ class test_results(unittest.TestCase):
 		
 		self.assertEqual(speaker, 1)	
 
-	# I still need to test Chair, Chairman, Clerk, The Chief Justice and The Vice President. Also, I haven't found a Miss. but I don't think it is likely)
+	def test_excutive(self):
+		content = cr_parser.parse_to_string("test/test_files/SOTU/CREC-2014-01-28-pt1-PgH1473-5.txt", logdir="test/test_output", outdir="test/test_output")
+		content = str(content)
+		vpspeaker = len(re.findall('<speaker name="The VICE PRESIDENT"', content))
+		vpspeaking = len(re.findall('<speaking name="The VICE PRESIDENT"', content))
+		speaker = len(re.findall('<speaker name="The PRESIDENT"', content))
+		speaking = len(re.findall('<speaking name="The PRESIDENT"', content))
+		
+		self.assertEqual(vpspeaker, 1)
+		# the VP count is off
+		# self.assertEqual(vpspeaking, 22)
+		self.assertEqual(speaker, 1)
+		self.assertEqual(speaking, 105)
+
+	# I still need to test Chair, Chairman, Clerk and The Chief Justice. Also, I haven't found a Miss. but I don't think it is likely)
 
 	# boiler plate 
 	def test_volume(self):

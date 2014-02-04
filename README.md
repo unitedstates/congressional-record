@@ -14,6 +14,8 @@ Urls look like this:
 <http://www.gpo.gov/fdsys/pkg/CREC-2014-01-21.zip>
 Download your own files and find `html` folder containing the pages of the day's record.
 
+Be aware that there is a usage limit on the FDsys download per day. If you exceed the limit, your ip will be blocked from downloading temporary. 
+
 
 ## Requirements
 

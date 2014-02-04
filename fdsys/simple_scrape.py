@@ -47,7 +47,7 @@ def find_fdsys(day, **kwargs):
         message = "No record retrieved for %s. Attempted to download records from :%s " %(day, url)
         print message
         return None
-
+    print type(contents), "TYPE________________________"
     zip_file = zipfile.ZipFile(StringIO(contents))
 
     if not os.path.exists("source"):
