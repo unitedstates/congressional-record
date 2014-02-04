@@ -1,6 +1,6 @@
 # Congressional Record
 
-A parser for the Congressional Record.
+A parser for the Congressional Record. 
 
 ---
 
@@ -8,13 +8,14 @@ A parser for the Congressional Record.
 
 Currently only the GPO HTML packages are supported. 
 
-Find files by date or download them from FDsys.
+Find files by date or download them from FDsys. 
 
 Urls look like this:
 <http://www.gpo.gov/fdsys/pkg/CREC-2014-01-21.zip>
 Download your own files and find `html` folder containing the pages of the day's record.
 
-Be aware that there is a usage limit on the FDsys download per day. If you exceed the limit, your ip will be blocked from downloading temporary. 
+
+Be aware that there is a usage limit on the FDsys download per day. If you exceed the limit, your ip will be blocked from downloading for a period of time. 
 
 
 ## Requirements
@@ -40,7 +41,7 @@ Be aware that there is a usage limit on the FDsys download per day. If you excee
 
 Use parse.py and a date in yyyy-mm-dd format or look for a date range with the beginning date directly followed by a slash and the end date yyyy-mm-dd/yyyy-mm-dd.
 
-The output shortened in the following example. The parsed records would appear in the folder named /congressional-record/source/2014/CREC-2014-01-27/__parsed/
+The output shortened in the following example. In this example, he parsed xml records would appear in the folder named /congressional-record/source/2014/CREC-2014-01-27/__parsed/
 
 ```
 $ ./parse.py 2014-01-30 
@@ -52,11 +53,11 @@ Processing  CREC-2014-01-27/html/CREC-2014-01-27-pt1-PgD74-2.htm
  CREC-2014-01-27-pt1-PgE115-2.htm
 source/2014/CREC-2014-01-27
 flag status: False
-saved file /Users/lindsayyoung/Dropbox/Projects/congressional-record/source/2014/CREC-2014-01-27/__parsed/CREC-2014-01-27-pt1-PgE115-2.xml to disk
+saved file congressional-record/source/2014/CREC-2014-01-27/__parsed/CREC-2014-01-27-pt1-PgE115-2.xml to disk
 CREC-2014-01-27-pt1-PgE115-3.htm
 source/2014/CREC-2014-01-27
 flag status: False
-saved file /Users/lindsayyoung/Dropbox/Projects/congressional-record/source/2014/CREC-2014-01-27/__parsed/CREC-2014-01-27-pt1-PgE115-3.xml to disk
+saved file congressional-record/source/2014/CREC-2014-01-27/__parsed/CREC-2014-01-27-pt1-PgE115-3.xml to disk
  ... 
 
 ```
