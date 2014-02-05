@@ -7,14 +7,25 @@ from cStringIO import StringIO
 def find_fdsys(day, **kwargs):
     # expecting day in yyyy-mm-dd format
     force = kwargs.get('force', False)
+    outdir = kwargs.get('outdir')
+
     year = day[:4]
-    location = "source/" + year
+    here = os.path.abspath(__file__)
+    directory = os.path.dirname(here) + '/..'
+
+    location = "output/" + year
     folder = "CREC-" + day
     url = "http://www.gpo.gov/fdsys/pkg/CREC-" + day + ".zip"
-    file_path = os.path.join(location, folder)
+    
+    if outdir: 
+        file_path = outdir
+    else:
+        file_path = os.path.join(directory, location, folder)
+
     
     # looks to see if the file has already been downloaded
-    if os.path.exists(file_path):
+    doc_path = os.path.join(file_path, "__text")
+    if os.path.exists(doc_path):
         if force == False:
             # uses files that have already been downloaded 
             return file_path
@@ -22,7 +33,7 @@ def find_fdsys(day, **kwargs):
             # removes files from the last run
             # delete previous txt and htm files
             for f in os.listdir(file_path):
-                file_location = os.path.join(file_path, f)
+                file_location = os.path.join(file_path, "__text", f)
                 if os.path.isfile(file_location): 
                     os.remove(file_location)
             # delete previous log
@@ -50,24 +61,28 @@ def find_fdsys(day, **kwargs):
     
     zip_file = zipfile.ZipFile(StringIO(contents))
 
-    if not os.path.exists("source"):
-        os.mkdir("source")
+    if not os.path.exists("output"):
+        os.mkdir("output")
 
     if not os.path.exists(location):
         os.mkdir(location)
 
     for record in zip_file.namelist():
-        if record.endswith('htm') or record.endswith('xml'):
-            print "Processing ", record
+        if record.endswith('htm') or record == 'mods.xml':
             zip_file.extract(record, location)
+    print "processed zip", '\n'
 
-    #moving to source dir after extraction 
+    files = os.path.join(file_path, "__text")
+    os.mkdir(files)
+
     for filename in os.listdir(os.path.join(location, folder, "html")):
-        file_from = os.path.join(location, folder, "html", filename)
-        dest_path = os.path.join(location, folder, filename)
+        file_from = os.path.join(file_path, "html", filename)
+        dest_path = os.path.join(file_path, "__text", filename)
         os.rename(file_from, dest_path)
     # clean up empty folder
-    os.rmdir(os.path.join(location, folder, "html"))
+    os.rmdir(os.path.join(file_path, "html"))
 
-    
-    return file_path
+    doc_path = os.path.join(file_path, "__text")
+    print doc_path, "doc_path", '\n'
+    return doc_path
+

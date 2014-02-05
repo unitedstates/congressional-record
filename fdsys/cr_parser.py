@@ -954,7 +954,6 @@ def parse_to_string(infile, **kwargs):
     return parser.xml
 
 
-
 def do_parse(parser, logfile):
     try:
         parser.parse()
@@ -1011,6 +1010,7 @@ def parse_directory(path, **kwargs):
             text_doc = open(new_path, 'w') 
             text_doc = text_doc.write(content)
             file = new_name
+            os.remove(old_file)
 
         if not file.endswith('.txt'):
             continue
@@ -1034,6 +1034,8 @@ def parse_directory(path, **kwargs):
             pass
         parser = CRParser(abspath, **kwargs)
         do_parse(parser, logfile)
+
+        
 
     return kwargs['outdir']
 

@@ -30,12 +30,19 @@ Be aware that there is a usage limit on the FDsys download per day. If you excee
 `./parse.py`
 
 ### Options
-- A positional argument can be provided with a single date to process in YYYY-MM-DD format. It will look in the Source file to see if it has been downloaded, if not it will download the file from fdsys.
+- A positional argument for dates. This can be a single date, a list
+  of dates or a range of dates. Records will be  Make sure dates are in
+  YYYY-MM-DD format. Date ranges should be given as start date then end 
+  date YYYY-MM-DD/YYYY-MM-DD. For several specific days, write out the 
+  dates in the correct format with a space between each date.
+  The parser will look for a previous file to see if it has been downloaded, 
+  if not, it will download the file from fdsys.
 - '-f', '--infile': Input a singe file to process. If `-id` is provided it will take precedence. Interactive mode is disabled when parsing a single file.
 - `-id`, `--indir`: Input directory to parse. Front matter and other procedural text will not be processed.
 - `-od`, `--outdir`: Output directory for parsed files. Defaults to __parsed in the input directory.
 - `-l`, `--logdir`: Directory for logs to be written to. Defaults to __log in the input directory.
 - '--interactive': Interactive mode: Step through files and choose which to parse.
+- '--ntf', '-no_text_files': Remove the text version of the documents after parsing.
 
 ### Examples
 
