@@ -104,10 +104,11 @@ if __name__ == '__main__':
         parse_directory(args.indir, interactive=args.interactive,
                         logdir=args.logdir, outdir=args.outdir)
         if args.notext:
-            doc_path = args.indir
             for filename in os.listdir(doc_path):
                 if filename.endswith('.txt') or filename.endswith('.xml') or filename.endswith('.htm'):
-                    os.remove(filename)
+                    file_path = os.path.join(doc_path, filename)
+                    os.remove(file_path)
+            os.rmdir(doc_path)
     
     # Deal with single file case:
     elif args.infile:

@@ -7,50 +7,62 @@ from cStringIO import StringIO
 def find_fdsys(day, **kwargs):
     # expecting day in yyyy-mm-dd format
     force = kwargs.get('force', False)
+
+    # establish output directory, can be user provided, defaults to /output
+    # if user provided, expected to be absolute
     outdir = kwargs.get('outdir')
 
+    # if defaulting to /output, ensure it's an absolute path so it can be run from wherever
+    if not outdir:
+        this_filename = os.path.abspath(__file__)
+        this_parent_dir = os.path.dirname(this_filename) + '/..'
+        outdir = os.path.join(this_parent_dir, "output")
+
+    if not os.path.exists(outdir):
+        os.mkdir(outdir)
+
+    # make sure the year dir is made
     year = day[:4]
-    here = os.path.abspath(__file__)
-    directory = os.path.dirname(here) + '/..'
+    outdir_year = outdir + "/" + year
+    if not os.path.exists(outdir_year):
+        os.mkdir(outdir_year)
 
-    location = "output/" + year
-    folder = "CREC-" + day
-    url = "http://www.gpo.gov/fdsys/pkg/CREC-" + day + ".zip"
-    
-    if outdir: 
-        file_path = outdir
-    else:
-        file_path = os.path.join(directory, location, folder)
+    # establish path to folder that day's output will live in
+    crecfolder = "CREC-" + day
+    outdir_year_crecfolder = os.path.join(outdir_year, crecfolder)
 
-    
+
     # looks to see if the file has already been downloaded
-    doc_path = os.path.join(file_path, "__text")
-    if os.path.exists(doc_path):
-        if force == False:
-            # uses files that have already been downloaded 
-            return file_path
-        else:
-            # removes files from the last run
-            # delete previous txt and htm files
-            for f in os.listdir(file_path):
-                file_location = os.path.join(file_path, "__text", f)
-                if os.path.isfile(file_location): 
+    outdir_year_crecfolder_text = os.path.join(outdir_year_crecfolder, "__text")
+
+    if os.path.exists(outdir_year_crecfolder_text) and not force:
+        print "\n Downloading from cache \n"
+        return outdir_year_crecfolder_text
+
+
+    if os.path.exists(outdir_year_crecfolder_text):
+        # removes files from the last run
+        # delete previous txt and htm files
+        for f in os.listdir(outdir_year_crecfolder):
+            file_location = os.path.join(outdir_year_crecfolder_text, f)
+            if os.path.isfile(file_location): 
+                os.remove(file_location)
+        # delete previous log
+        log_path = os.path.join(outdir_year_crecfolder, "__log")
+        if os.path.exists(log_path):
+            print os.listdir(log_path)
+            for f in os.listdir(log_path):
+                file_location = os.path.join(log_path, f)
+                os.remove(file_location)
+        # delete previous parsed results
+        parsed_path = os.path.join(outdir_year_crecfolder, "__parsed")
+        if os.path.exists(parsed_path):
+            for f in os.listdir(parsed_path):
+                file_location = os.path.join(parsed_path, f)
+                if os.path.isfile(file_location):
                     os.remove(file_location)
-            # delete previous log
-            log_path = os.path.join(file_path, "__log")
-            if os.path.exists(log_path):
-                print os.listdir(log_path)
-                for f in os.listdir(log_path):
-                    file_location = os.path.join(log_path, f)
-                    os.remove(file_location)
-            # delete previous parsed results
-            parsed_path = os.path.join(file_path, "__parsed")
-            if os.path.exists(parsed_path):
-                for f in os.listdir(parsed_path):
-                    file_location = os.path.join(parsed_path, f)
-                    if os.path.isfile(file_location):
-                        os.remove(file_location)
     
+    url = "http://www.gpo.gov/fdsys/pkg/CREC-" + day + ".zip"
     try:
         print "Downloading url ", url
         contents = urllib2.urlopen(url).read()
@@ -58,31 +70,25 @@ def find_fdsys(day, **kwargs):
         message = "No record retrieved for %s. Attempted to download records from :%s " %(day, url)
         print message
         return None
-    
+
     zip_file = zipfile.ZipFile(StringIO(contents))
-
-    if not os.path.exists("output"):
-        os.mkdir("output")
-
-    if not os.path.exists(location):
-        os.mkdir(location)
-
     for record in zip_file.namelist():
         if record.endswith('htm') or record == 'mods.xml':
-            zip_file.extract(record, location)
+            zip_file.extract(record, outdir_year)
     print "processed zip", '\n'
 
-    files = os.path.join(file_path, "__text")
+    files = os.path.join(outdir_year_crecfolder_text)
     os.mkdir(files)
 
-    for filename in os.listdir(os.path.join(location, folder, "html")):
-        file_from = os.path.join(file_path, "html", filename)
-        dest_path = os.path.join(file_path, "__text", filename)
+    # this works for standard download but not 
+    for filename in os.listdir(os.path.join(outdir_year_crecfolder, "html")):
+        file_from = os.path.join(outdir_year_crecfolder, "html", filename)
+        dest_path = os.path.join(outdir_year_crecfolder_text, filename)
         os.rename(file_from, dest_path)
     # clean up empty folder
-    os.rmdir(os.path.join(file_path, "html"))
+    os.rmdir(os.path.join(outdir_year_crecfolder, "html"))
 
-    doc_path = os.path.join(file_path, "__text")
+    doc_path = os.path.join(outdir_year_crecfolder_text)
     print doc_path, "doc_path", '\n'
     return doc_path
 
