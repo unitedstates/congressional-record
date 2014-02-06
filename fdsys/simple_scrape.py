@@ -76,19 +76,21 @@ def find_fdsys(day, **kwargs):
         if record.endswith('htm') or record == 'mods.xml':
             zip_file.extract(record, outdir_year)
     print "processed zip", '\n'
-
-    files = os.path.join(outdir_year_crecfolder_text)
-    os.mkdir(files)
+    
+    if not os.path.exists(outdir_year_crecfolder_text):
+        os.mkdir(outdir_year_crecfolder_text)
 
     # this works for standard download but not 
     for filename in os.listdir(os.path.join(outdir_year_crecfolder, "html")):
+        print filename
         file_from = os.path.join(outdir_year_crecfolder, "html", filename)
+        print "from- ", file_from
         dest_path = os.path.join(outdir_year_crecfolder_text, filename)
+        print "to- ", dest_path
         os.rename(file_from, dest_path)
     # clean up empty folder
     os.rmdir(os.path.join(outdir_year_crecfolder, "html"))
 
-    doc_path = os.path.join(outdir_year_crecfolder_text)
-    print doc_path, "doc_path", '\n'
-    return doc_path
+    print outdir_year_crecfolder_text, "doc_path", '\n'
+    return outdir_year_crecfolder_text
 

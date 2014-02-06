@@ -73,16 +73,15 @@ if __name__ == '__main__':
 
         for day in dates:
             doc_path = find_fdsys(day, force=args.force, outdir=args.outdir)
-
             # did not return records
             if doc_path is None:
                 no_record.append(day)
+            
             else:
                 file_path = os.path.dirname(doc_path)
                 if not args.logdir:
                     args.logdir = os.path.realpath(os.path.join(file_path, '__log'))
-                if not args.outdir:
-                    args.outdir = os.path.realpath(os.path.join(file_path, '__parsed'))
+                args.outdir = os.path.realpath(os.path.join(file_path, '__parsed'))
                 parse_directory(doc_path, interactive=args.interactive,
                                 logdir=args.logdir, outdir=args.outdir)
             if args.notext:
