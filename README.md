@@ -1,19 +1,18 @@
 # Congressional Record
 
-A parser for the Congressional Record. 
+This tool uses the Sunlight Foundation's [Capitol Words](https://github.com/sunlightlabs/Capitol-Words) parser to markup the Congressional record in xml. 
 
 ---
 
 ## Supported sources
 
+Find files by date or download them from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). 
+
 Currently only the GPO HTML packages are supported. 
 
-Find files by date or download them from FDsys. 
-
-Urls look like this:
+FDsys urls look like this:
 <http://www.gpo.gov/fdsys/pkg/CREC-2014-01-21.zip>
 Download your own files and find `html` folder containing the pages of the day's record.
-
 
 Be aware that there is a usage limit on the FDsys download per day. If you exceed the limit, your ip will be blocked from downloading for a period of time. 
 
