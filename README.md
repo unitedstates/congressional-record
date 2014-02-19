@@ -24,8 +24,6 @@ Be aware that there is a usage limit on the FDsys download per day. If you excee
 
 ## Usage
 
-(Make sure the x-bit is set on parser.py)
-
 `./parse.py`
 
 ### Options
