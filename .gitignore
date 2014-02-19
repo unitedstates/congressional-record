@@ -1,3 +1,4 @@
 *.pyc
 source 
 .DS_Store
+output
