@@ -1,26 +1,26 @@
 # Congressional Record
 
-This tool uses the Sunlight Foundation's [Capitol Words](https://github.com/sunlightlabs/Capitol-Words) parser to markup the Congressional record in XML. 
+This tool uses the Sunlight Foundation's [Capitol Words](https://github.com/sunlightlabs/Capitol-Words) parser to mark up the Congressional record in XML. 
 
 ---
 
 ## Supported sources
 
-Find files by date or download them from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). 
+Find files by date, or download them from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). 
 
 Currently only the GPO HTML packages are supported. 
 
-FDsys urls look like this:
-<http://www.gpo.gov/fdsys/pkg/CREC-2014-01-21.zip>
-Download your own files and find `html` folder containing the pages of the day's record.
+FDsys URLs look like this: `http://www.gpo.gov/fdsys/pkg/CREC-2014-01-21.zip`
 
-Be aware that there is a usage limit on the FDsys download per day. If you exceed the limit, your ip will be blocked from downloading for a period of time. 
+Download your own files and find the `html` folder containing the pages of the day's record.
+
+Be aware that there is a usage limit on FDsys downloads per day. If you exceed the limit, your IP will be blocked from downloading for a period of time. 
 
 
 ## Requirements
 
 - lxml
-- python 2.x
+- Python 2.x
 
 ## Usage
 
