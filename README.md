@@ -1,6 +1,6 @@
 # Congressional Record
 
-This tool uses the Sunlight Foundation's [Capitol Words](https://github.com/sunlightlabs/Capitol-Words) parser to markup the Congressional record in xml. 
+This tool uses the Sunlight Foundation's [Capitol Words](https://github.com/sunlightlabs/Capitol-Words) parser to markup the Congressional record in XML. 
 
 ---
 
@@ -23,8 +23,6 @@ Be aware that there is a usage limit on the FDsys download per day. If you excee
 - python 2.x
 
 ## Usage
-
-(Make sure the x-bit is set on parser.py)
 
 `./parsecr.py`
 
@@ -71,7 +69,7 @@ saved file congressional-record/source/2014/CREC-2014-01-27/__parsed/CREC-2014-0
 Alternatively, find .htm files of the congressional record from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). When you find the day you are interested in, click on it and choose the "More" link. Then, download the Zip file and use the -id command to point to the htm files. 
 
 ```
-$ ./parser.py -h
+$ ./parsecr.py -h
 
 usage: parsecr.py [-h] [-f INFILE] [-id INDIR] [-od OUTDIR] [-l LOGDIR]
                 [--interactive] [--force] [--ntf]
