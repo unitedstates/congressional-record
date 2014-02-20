@@ -25,7 +25,7 @@ if __name__ == '__main__':
                         help='A positional argument for dates. This can be a single date, a list \
                         of dates or a range of dates. Records will be  Make sure dates are in \
                         YYYY-MM-DD format. Date ranges should be given as start date then end \
-                        date YYYY-MM-DD/YYYY-MM-DD. For several specific days, write out the \
+                        date YYYY-MM-DD:YYYY-MM-DD. For several specific days, write out the \
                         dates in the correct format with a space between each date.\n\
                         The parser will look for a previous file to see if it has been downloaded, \
                         if not, it will download the file from fdsys.')
@@ -54,7 +54,7 @@ if __name__ == '__main__':
         days = args.days
         no_record = []
         if len(days) == 1:
-            date_range = days[0].split('/')
+            date_range = days[0].split(':')
             if len(date_range) == 1:
                 dates = date_range 
             else:

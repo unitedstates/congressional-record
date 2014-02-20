@@ -32,7 +32,7 @@ Be aware that there is a usage limit on the FDsys download per day. If you excee
 - A positional argument for dates. This can be a single date, a list
   of dates or a range of dates. Records will be  Make sure dates are in
   YYYY-MM-DD format. Date ranges should be given as start date then end 
-  date YYYY-MM-DD/YYYY-MM-DD. For several specific days, write out the 
+  date YYYY-MM-DD:YYYY-MM-DD. For several specific days, write out the 
   dates in the correct format with a space between each date.
   The parser will look for a previous file to see if it has been downloaded, 
   if not, it will download the file from fdsys.
@@ -41,11 +41,11 @@ Be aware that there is a usage limit on the FDsys download per day. If you excee
 - `-od`, `--outdir`: Output directory for parsed files. Defaults to __parsed in the input directory.
 - `-l`, `--logdir`: Directory for logs to be written to. Defaults to __log in the input directory.
 - '--interactive': Interactive mode: Step through files and choose which to parse.
-- '--ntf', '-no_text_files': Remove the text version of the documents after parsing.
+
 
 ### Examples
 
-Use parse.py and a date in yyyy-mm-dd format or look for a date range with the beginning date directly followed by a slash and the end date yyyy-mm-dd/yyyy-mm-dd.
+Use parse.py and a date in YYYY-MM-DD format or look for a date range with the beginning date directly followed by a slash and the end date YYYY-MM-DD:YYYY-MM-DD.
 
 The output shortened in the following example. In this example, he parsed xml records would appear in the folder named /congressional-record/source/2014/CREC-2014-01-27/__parsed/
 
@@ -73,22 +73,27 @@ Alternatively, find .htm files of the congressional record from [FDsys](http://w
 ```
 $ ./parser.py -h
 
-usage: parser.py [-h] [-id INDIR] [-od OUTDIR] [-l LOGDIR] [--interactive] [-f FILE]
-                 [findfiles]
+usage: parse.py [-h] [-f INFILE] [-id INDIR] [-od OUTDIR] [-l LOGDIR]
+                [--interactive] [--force] [--ntf]
+                [days [days ...]]
 
 Parse arguments for the Congressional Record Parser
 
 positional arguments:
-  findfiles             Choose a date (yyyy-mm-dd) to download and parse record.
-                        Or, use a date range start_date/end_date in (yyyy-mm-dd)
-                        format. 
-                        Files will be saved to the source folder. If the records
-                        already exist in the source folder, existing download will
-                        be parsed again.
+  days                  A positional argument for dates. This can be a single
+                        date, a list of dates or a range of dates. Records
+                        will be Make sure dates are in YYYY-MM-DD format. Date
+                        ranges should be given as start date then end date
+                        YYYY-MM-DD:YYYY-MM-DD. For several specific days,
+                        write out the dates in the correct format with a space
+                        between each date. The parser will look for a previous
+                        file to see if it has been downloaded, if not, it will
+                        download the file from fdsys.
 
 optional arguments:
   -h, --help            show this help message and exit
-  -f, --infile          gives a particular file to parse
+  -f INFILE, --infile INFILE
+                        Parse a single txt or htm file.
   -id INDIR, --indir INDIR
                         An entire directory to traverse and parse, can replace
                         infile
@@ -98,6 +103,9 @@ optional arguments:
                         An output directory for logs
   --interactive         Step through files and decide whether or not to parse
                         each one
+  --force               Force documents to be downloaded id the txt files
+                        already exist.
+
 
 $ ./parser.py -id ~/Projects/CR/CREC-2014-01-21/txt
 flag status: False
