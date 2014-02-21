@@ -18,7 +18,7 @@ Be aware that there is a usage limit on FDsys downloads per day. If you exceed t
 ## Requirements
 
 - lxml
-- Python 2.x
+- Python 2.7.x
 
 ## Usage
 
