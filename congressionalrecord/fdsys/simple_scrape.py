@@ -11,17 +11,15 @@ def find_fdsys(day, **kwargs):
     # establish output directory, can be user provided, defaults to /output
     # if user provided, expected to be absolute
     outdir = kwargs.get('outdir')
-
-    # if defaulting to /output, ensure it's an absolute path so it can be run from wherever
     if not outdir:
-        outdir = os.path.join(os.getcwd(), "output")
+        raise ValueError('output directory is required')
 
     if not os.path.exists(outdir):
         os.mkdir(outdir)
 
     # make sure the year dir is made
     year = day[:4]
-    outdir_year = outdir + "/" + year
+    outdir_year = os.path.join(outdir, year)
     if not os.path.exists(outdir_year):
         os.mkdir(outdir_year)
 
