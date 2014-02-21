@@ -3,14 +3,14 @@ import unittest
 import os
 import re
 
-from fdsys import cr_parser 
+from congressionalrecord.fdsys import cr_parser
 
 # simple files to test basic boiler plate parsing
 def bolier_house_content():
 	house_content = cr_parser.parse_to_string("test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgH1433-2.txt", logdir="test/test_output", outdir="test/test_output")
 	return str(house_content)
 
-def bolier_senate_content():	
+def bolier_senate_content():
 	senate_content = cr_parser.parse_to_string("test/test_files/boiler_plate/CREC-2014-01-28-pt1-PgS493-2.txt", logdir="test/test_output", outdir="test/test_output")
 	return str(senate_content)
 
@@ -26,13 +26,13 @@ class test_results(unittest.TestCase):
 	# 	# make sure test_files/front_matter/__parsed doesn't exist with a sample from the House and Senate
 	# 	self.assertTrue(not os.path.exists('test/test_output/__parsed'))
 
-	# identifying speakers 
+	# identifying speakers
 	def test_mr(self):
 		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE49-2.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="Mr. POE of Texas">', content))
 		speaking = len(re.findall('<speaking name="Mr. POE of Texas">', content))
-		
+
 		self.assertEqual(speaker, 1)
 		self.assertEqual(speaking, 8)
 
@@ -41,7 +41,7 @@ class test_results(unittest.TestCase):
 		content = str(content)
 		speaker = len(re.findall('<speaker name="Ms. CASTOR of Florida">', content))
 		speaking = len(re.findall('<speaking name="Ms. CASTOR of Florida">', content))
-		
+
 		self.assertEqual(speaker, 1)
 		self.assertEqual(speaking, 5)
 
@@ -53,22 +53,22 @@ class test_results(unittest.TestCase):
 
 		self.assertEqual(speaker, 1)
 		self.assertEqual(speaking, 4)
-	
+
 	def test_with_state(self):
 		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgE53-4.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="Ms. SEWELL of Alabama">', content))
 		speaking = len(re.findall('<speaking name="Ms. SEWELL of Alabama">', content))
-		
+
 		self.assertEqual(speaker, 1)
 		self.assertEqual(speaking, 7)
-	
+
 	def test_speaker(self):
 		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgH225-5.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall('<speaker name="The SPEAKER">', content))
 		speaking = len(re.findall('<speaking name="The SPEAKER">', content))
-		
+
 		self.assertEqual(speaker, 1)
 		self.assertEqual(speaking, 1)
 
@@ -95,7 +95,7 @@ class test_results(unittest.TestCase):
 		content = str(content)
 		speaker = len(re.findall('<speaker name="The PRESIDING OFFICER">', content))
 		speaking = len(re.findall('<speaking name="The PRESIDING OFFICER">', content))
-		
+
 		self.assertEqual(speaker, 2)
 		self.assertEqual(speaking, 3)
 
@@ -103,8 +103,8 @@ class test_results(unittest.TestCase):
 		content = cr_parser.parse_to_string("test/test_files/names/CREC-2013-01-23-pt1-PgH225-7.txt", logdir="test/test_output", outdir="test/test_output")
 		content = str(content)
 		speaker = len(re.findall("<recorder>", content))
-		
-		self.assertEqual(speaker, 1)	
+
+		self.assertEqual(speaker, 1)
 
 	def test_excutive(self):
 		content = cr_parser.parse_to_string("test/test_files/SOTU/CREC-2014-01-28-pt1-PgH1473-5.txt", logdir="test/test_output", outdir="test/test_output")
@@ -113,7 +113,7 @@ class test_results(unittest.TestCase):
 		vpspeaking = len(re.findall('<speaking name="The VICE PRESIDENT"', content))
 		speaker = len(re.findall('<speaker name="The PRESIDENT"', content))
 		speaking = len(re.findall('<speaking name="The PRESIDENT"', content))
-		
+
 		self.assertEqual(vpspeaker, 1)
 		# the VP count is off
 		# self.assertEqual(vpspeaking, 22)
@@ -122,7 +122,7 @@ class test_results(unittest.TestCase):
 
 	# I still need to test Chair, Chairman, Clerk and The Chief Justice. Also, I haven't found a Miss. but I don't think it is likely)
 
-	# boiler plate 
+	# boiler plate
 	def test_volume(self):
 		self.assertTrue("<volume>160</volume>" in bolier_house_content)
 		self.assertTrue("<volume>160</volume>" in bolier_senate_content)
@@ -139,10 +139,10 @@ class test_results(unittest.TestCase):
 		self.assertTrue("<month>January</month>" in bolier_house_content)
 		self.assertTrue("<month>January</month>" in bolier_senate_content)
 
-	def test_day(self): 
+	def test_day(self):
 		self.assertTrue("<day>28</day>" in bolier_house_content)
 		self.assertTrue("<day>28</day>" in bolier_senate_content)
-	
+
 	def test_year(self):
 		self.assertTrue("<year>2014</year>" in bolier_house_content)
 		self.assertTrue("<year>2014</year>" in bolier_senate_content)
@@ -162,7 +162,7 @@ class test_results(unittest.TestCase):
 	def test_congress(self):
 		self.assertTrue("<congress>113</congress>" in bolier_house_content)
 		self.assertTrue("<congress>113</congress>" in bolier_senate_content)
-	
+
 	def test_session(self):
 		self.assertTrue("<session>2</session>" in bolier_house_content)
 		self.assertTrue("<session>2</session>" in bolier_senate_content)
@@ -175,4 +175,4 @@ class test_results(unittest.TestCase):
 
 		self.assertTrue('<speaking quote="true" speaker="Mr. SABLAN">' in content)
 
-		
+

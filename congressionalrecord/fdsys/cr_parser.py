@@ -11,10 +11,10 @@ from xml.sax.saxutils import escape, unescape
 
 import lxml.etree
 
-from fdsys.errors import *
-from lib.xml_annotator import XMLAnnotator
-from lib.regex import Regex
-from lib.logging import initialize_logfile, get_stack_trace
+from .errors import *
+from congressionalrecord.lib.xml_annotator import XMLAnnotator
+from congressionalrecord.lib.regex import Regex
+from congressionalrecord.lib.logging import initialize_logfile, get_stack_trace
 
 MONTHS = [datetime.date(2010, x, 1).strftime('%B') for x in range(1,13)]
 
@@ -944,7 +944,7 @@ class CRParser(object):
         fp.write(''.join(self.xml))
         fp.close()
         print "saved file %s to disk" % saveas
-    
+
 
 #added for testing
 def parse_to_string(infile, **kwargs):
@@ -995,19 +995,19 @@ def parse_directory(path, **kwargs):
         # we don't process the daily digest or front matter.
         if file.find('FrontMatter') != -1 or file.find('PgD') != -1:
             continue
-        # Makes text versions for the parser 
+        # Makes text versions for the parser
         elif file.endswith('.htm'):
             old_file = os.path.join(path, file)
             content = open(old_file, 'r').read()
-            # eliminates extra title and leaves expected space at the top 
+            # eliminates extra title and leaves expected space at the top
             content = re.sub(r'<title>.+?</title>', '', content)
-            # need to  eliminate particular blank lines, should sill get the tags out if expected line breaks aren't there. 
+            # need to  eliminate particular blank lines, should sill get the tags out if expected line breaks aren't there.
             extras = ['<html>\n','<html>', '</html>', '<head>\n', '</head>\n', '<head>', '</head>', '<body><pre>\n', '<pre>', '</pre>', '<body>','</body>', ]
             for tag in extras:
                 content = content.replace(tag, '')
             new_name = file[:-3] + 'txt'
             new_path = os.path.join(path, new_name)
-            text_doc = open(new_path, 'w') 
+            text_doc = open(new_path, 'w')
             text_doc = text_doc.write(content)
             file = new_name
             os.remove(old_file)
@@ -1035,7 +1035,7 @@ def parse_directory(path, **kwargs):
         parser = CRParser(abspath, **kwargs)
         do_parse(parser, logfile)
 
-        
+
 
     return kwargs['outdir']
 

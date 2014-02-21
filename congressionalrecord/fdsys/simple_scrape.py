@@ -11,19 +11,15 @@ def find_fdsys(day, **kwargs):
     # establish output directory, can be user provided, defaults to /output
     # if user provided, expected to be absolute
     outdir = kwargs.get('outdir')
-
-    # if defaulting to /output, ensure it's an absolute path so it can be run from wherever
     if not outdir:
-        this_filename = os.path.abspath(__file__)
-        this_parent_dir = os.path.dirname(this_filename) + '/..'
-        outdir = os.path.join(this_parent_dir, "output")
+        raise ValueError('output directory is required')
 
     if not os.path.exists(outdir):
         os.mkdir(outdir)
 
     # make sure the year dir is made
     year = day[:4]
-    outdir_year = outdir + "/" + year
+    outdir_year = os.path.join(outdir, year)
     if not os.path.exists(outdir_year):
         os.mkdir(outdir_year)
 
@@ -45,7 +41,7 @@ def find_fdsys(day, **kwargs):
         # delete previous txt and htm files
         for f in os.listdir(outdir_year_crecfolder):
             file_location = os.path.join(outdir_year_crecfolder_text, f)
-            if os.path.isfile(file_location): 
+            if os.path.isfile(file_location):
                 os.remove(file_location)
         # delete previous log
         log_path = os.path.join(outdir_year_crecfolder, "__log")
@@ -61,7 +57,7 @@ def find_fdsys(day, **kwargs):
                 file_location = os.path.join(parsed_path, f)
                 if os.path.isfile(file_location):
                     os.remove(file_location)
-    
+
     url = "http://www.gpo.gov/fdsys/pkg/CREC-" + day + ".zip"
     try:
         print "Downloading url ", url
@@ -76,11 +72,11 @@ def find_fdsys(day, **kwargs):
         if record.endswith('htm') or record == 'mods.xml':
             zip_file.extract(record, outdir_year)
     print "processed zip", '\n'
-    
+
     if not os.path.exists(outdir_year_crecfolder_text):
         os.mkdir(outdir_year_crecfolder_text)
 
-    # this works for standard download but not 
+    # this works for standard download but not
     for filename in os.listdir(os.path.join(outdir_year_crecfolder, "html")):
         print filename
         file_from = os.path.join(outdir_year_crecfolder, "html", filename)
