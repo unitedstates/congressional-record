@@ -1,4 +1,4 @@
-from lib.regex import Regex
+from .regex import Regex
 
 class XMLAnnotator(object):
     def __init__(self, string):

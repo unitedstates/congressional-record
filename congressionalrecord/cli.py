@@ -14,13 +14,16 @@ from xml.sax.saxutils import escape, unescape
 
 import lxml.etree
 
-from fdsys.cr_parser import CRParser, parse_directory, parse_single
-from fdsys.simple_scrape import find_fdsys
+from .fdsys.cr_parser import CRParser, parse_directory, parse_single
+from .fdsys.simple_scrape import find_fdsys
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Parse arguments for the Congressional Record Parser")
-    
+def main():
+
+    parser = argparse.ArgumentParser(
+        prog="parsecr",
+        description="Parse arguments for the Congressional Record Parser")
+
     parser.add_argument('days', type=str, nargs='*',
                         help='A positional argument for dates. This can be a single date, a list \
                         of dates or a range of dates. Records will be  Make sure dates are in \
@@ -29,7 +32,7 @@ if __name__ == '__main__':
                         dates in the correct format with a space between each date.\n\
                         The parser will look for a previous file to see if it has been downloaded, \
                         if not, it will download the file from fdsys.')
-    
+
     parser.add_argument('-f', '--infile', dest='infile', action='store',
                         help='Parse a single txt or htm file.')
     parser.add_argument('-id', '--indir', dest='indir', action='store',
@@ -45,10 +48,10 @@ if __name__ == '__main__':
     parser.add_argument('--ntf', '-no_text_files', dest='notext', action='store_true',
                         help='Remove the text version of the documents.(The .htm version is automatically removed)\
                         EVERYING in the indir folder will be removed.')
-    
+
 
     args = parser.parse_args()
-    
+
     # Scrapes files and creates a directory from FDsys if no file exists in source folder
     if args.days:
         days = args.days
@@ -56,7 +59,7 @@ if __name__ == '__main__':
         if len(days) == 1:
             date_range = days[0].split(':')
             if len(date_range) == 1:
-                dates = date_range 
+                dates = date_range
             else:
                dates = []
                begin_date = date_range[0]
@@ -76,7 +79,7 @@ if __name__ == '__main__':
             # did not return records
             if doc_path is None:
                 no_record.append(day)
-            
+
             else:
                 file_path = os.path.dirname(doc_path)
                 if not args.logdir:
@@ -90,7 +93,7 @@ if __name__ == '__main__':
                         file_path = os.path.join(doc_path, filename)
                         os.remove(file_path)
                 os.rmdir(doc_path)
-        
+
         if len(no_record) > 0:
             print "No results were found for the following day/s: %s " %(no_record)
 
@@ -108,7 +111,7 @@ if __name__ == '__main__':
                     file_path = os.path.join(doc_path, filename)
                     os.remove(file_path)
             os.rmdir(doc_path)
-    
+
     # Deal with single file case:
     elif args.infile:
         if not args.logdir:
@@ -121,5 +124,9 @@ if __name__ == '__main__':
             os.remove(args.infile)
 
     else:
-        parser.print_help()
-        raise 'Either a date (YYY-MM-DD), --infile argument or the --indir flag is required!'
+        msg = 'Either a date (YYY-MM-DD), --infile argument or the --indir flag is required!'
+        parser.error(msg)
+
+
+if __name__ == '__main__':
+    main()

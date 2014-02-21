@@ -22,7 +22,7 @@ Be aware that there is a usage limit on FDsys downloads per day. If you exceed t
 
 ## Usage
 
-`./parsecr.py [YYYY-MM-DD]`
+`parsecr [YYYY-MM-DD]`
 
 ### Options
 - A positional argument for dates, in `YYYY-MM-DD` format. This can be a single date, a list of dates, or a range of dates. Date ranges should be given as start date, then end date, e.g. `YYYY-MM-DD:YYYY-MM-DD`. For several specific days, put a space between each date. The parser will look for a previous file to see if it has been downloaded. If not, it will download the file from FDsys.
@@ -38,7 +38,7 @@ Be aware that there is a usage limit on FDsys downloads per day. If you exceed t
 In this example, the parsed XML records would appear in a folder named `congressional-record/source/2014/CREC-2014-01-27/__parsed/`. The output is shortened:
 
 ```
-$ ./parsecr.py 2014-01-30 
+$ parsecr 2014-01-30 
 Downloading url  http://www.gpo.gov/fdsys/pkg/CREC-2014-01-27.zip
 Processing  CREC-2014-01-27/html/CREC-2014-01-27-pt1-PgD73-2.htm
 Processing  CREC-2014-01-27/html/CREC-2014-01-27-pt1-PgD73.htm
@@ -59,11 +59,11 @@ saved file congressional-record/source/2014/CREC-2014-01-27/__parsed/CREC-2014-0
 Alternatively, find .htm files of the Congressional Record from [FDsys](http://www.gpo.gov/fdsys/browse/collection.action?collectionCode=CREC). When you find the day you are interested in, click on it and choose the "More" link. Then, download the zip file and use the `-id` flag to point to the htm files. 
 
 ```
-$ ./parsecr.py -h
+$ parsecr -h
 
-usage: parsecr.py [-h] [-f INFILE] [-id INDIR] [-od OUTDIR] [-l LOGDIR]
-                [--interactive] [--force] [--ntf]
-                [days [days ...]]
+usage: parsecr [-h] [-f INFILE] [-id INDIR] [-od OUTDIR] [-l LOGDIR]
+               [--interactive] [--force] [--ntf]
+               [days [days ...]]
 
 Parse arguments for the Congressional Record Parser
 
