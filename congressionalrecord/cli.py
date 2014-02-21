@@ -18,7 +18,21 @@ from .fdsys.cr_parser import CRParser, parse_directory, parse_single
 from .fdsys.simple_scrape import find_fdsys
 
 
+def daterange(start, end, date_format=None):
+    delta = end - start
+    for i in range(abs(delta.days) + 1):
+        date = start + datetime.timedelta(days=i)
+        if date_format:
+            date = datetime.datetime.strftime(date, date_format)
+        yield date
+
+def parsedate(s):
+    return datetime.datetime.strptime(s.strip(), "%Y-%m-%d")
+
+
 def main():
+
+    default_outdir = os.path.join(os.getcwd(), 'output')
 
     parser = argparse.ArgumentParser(
         prog="parsecr",
@@ -54,28 +68,28 @@ def main():
 
     # Scrapes files and creates a directory from FDsys if no file exists in source folder
     if args.days:
-        days = args.days
+
+        if not args.outdir:
+            args.outdir = default_outdir
+
         no_record = []
-        if len(days) == 1:
-            date_range = days[0].split(':')
-            if len(date_range) == 1:
-                dates = date_range
+        dates = []
+
+        for date_arg in args.days:
+            if ':' in date_arg:
+                start_end = date_arg.split(':')
+                if len(start_end) == 1:
+                    dates.append(date_range)
+                else:
+                    begin = parsedate(start_end[0])
+                    end = parsedate(start_end[1])
+                    dates.extend(daterange(begin, end, "%Y-%m-%d"))
             else:
-               dates = []
-               begin_date = date_range[0]
-               end_date = date_range[1]
-               begin = datetime.datetime.strptime(begin_date.strip(), "%Y-%m-%d").date()
-               end = datetime.datetime.strptime(end_date.strip(), "%Y-%m-%d").date()
-               d = begin
-               while d <= end:
-                    day = datetime.datetime.strftime(d, "%Y-%m-%d")
-                    dates.append(day)
-                    d += datetime.timedelta(days=1)
-        else:
-            dates = days
+                dates.append(date_arg)
 
         for day in dates:
             doc_path = find_fdsys(day, force=args.force, outdir=args.outdir)
+
             # did not return records
             if doc_path is None:
                 no_record.append(day)
@@ -84,9 +98,9 @@ def main():
                 file_path = os.path.dirname(doc_path)
                 if not args.logdir:
                     args.logdir = os.path.realpath(os.path.join(file_path, '__log'))
-                args.outdir = os.path.realpath(os.path.join(file_path, '__parsed'))
+                parsed_path = os.path.realpath(os.path.join(file_path, '__parsed'))
                 parse_directory(doc_path, interactive=args.interactive,
-                                logdir=args.logdir, outdir=args.outdir)
+                                logdir=args.logdir, outdir=parsed_path)
             if args.notext:
                 for filename in os.listdir(doc_path):
                     if filename.endswith('.txt') or filename.endswith('.xml') or filename.endswith('.htm'):
