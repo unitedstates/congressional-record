@@ -1,9 +1,10 @@
 from setuptools import setup, find_packages
+from congressionalrecord import __version__
 
 setup(
     name='congressionalrecord',
-    version='0.1',
-    description='Parses the U.S. Congressional Record from FDsys.',
+    version=__version__,
+    description='Parse the U.S. Congressional Record from FDsys.',
     url='https://github.com/unitedstates/congressional-record',
     author='Lindsay Young',
     author_email='lyoung@sunlightfoundation.com',
