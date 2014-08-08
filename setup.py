@@ -11,7 +11,7 @@ setup(
     license='BSD3',
     packages=find_packages(),
     install_requires=[
-        'lxml==3.3.0beta5',
+        'lxml==3.3.5',
     ],
     entry_points={
         'console_scripts': ['parsecr = congressionalrecord.cli:main']},
