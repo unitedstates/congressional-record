@@ -104,3 +104,7 @@ flag status: False
 saved file /Users/dan/Projects/CR/CREC-2014-01-21/txt/__parsed/CREC-2014-01-21-pt1-PgE109-4.xml to disk
 ...
 ```
+
+## Want to run from source without installing?
+
+Run `python -m "congressionalrecord.cli"` from the root of the repository instead of the `parsecr` command, passing arguments as usual.
