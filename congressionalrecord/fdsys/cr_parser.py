@@ -39,13 +39,13 @@ class CRParser(object):
     re_underscore =         r'\s+_+\s+'
     re_underscore_sep =     r'\s{33}_{6}$'
     # a new speaker might either be a legislator's name, or a reference to the role of president of presiding officer.
-    re_newspeaker =         r'^(<bullet> |  )(?P<name>(%s|(((Mr)|(Ms)|(Mrs))\. [-A-Za-z ]+( of [A-Z][a-z]+)?))|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.'
+    re_newspeaker =         r'^(<bullet> |  )(?P<name>(%s|(((Mr)|(Ms)|(Mrs)|(Miss))\. [-A-Z\'a-z\' ]+( of [A-Z][a-z]+)?))|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.'
 
     # whatever follows the statement of a new speaker marks someone starting to
     # speak. if it's a new paragraph and there's already a current_speaker,
     # then this re is also used to insert the <speaking> tag.
 #    re_speaking =           r'^(<bullet> |  )((((Mr)|(Ms)|(Mrs))\. [A-Za-z \-]+(of [A-Z][a-z]+)?)|((The (ACTING )?(PRESIDENT|SPEAKER)( pro tempore)?)|(The PRESIDING OFFICER))( \([A-Za-z.\- ]+\))?)\.'
-    re_speaking =           r'^(<bullet> |  )((((((Mr)|(Ms)|(Mrs))\. [A-Za-z \-]+(of [A-Z][a-z]+)?)|((The (VICE |Acting |ACTING )?(PRESIDENT|SPEAKER)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK))( \([A-Za-z.\- ]+\))?))\. )?(?P<start>.)'
+    re_speaking =           r'^(<bullet> |  )((((((Mr)|(Ms)|(Mrs)|(Miss))\. [A-Z\'a-z\' \-]+(of [A-Z][a-z]+)?)|((The (VICE |Acting |ACTING )?(PRESIDENT|SPEAKER)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK))( \([A-Za-z.\- ]+\))?))\. )?(?P<start>.)'
     re_startshortquote =    r'``'
     re_endshortquote =      r"''"
     re_billheading =        r'\s+SEC.[A-Z_0-9. \-()\[\]]+'
