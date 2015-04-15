@@ -1,5 +1,7 @@
 from setuptools import setup, find_packages
+
 from congressionalrecord import __version__
+
 
 setup(
     name='congressionalrecord',

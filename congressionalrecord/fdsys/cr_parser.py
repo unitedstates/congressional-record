@@ -2,161 +2,157 @@ import re
 import datetime
 import os
 import sys
-import argparse
 import urllib2
-import zipfile
-import tempfile
 from cStringIO import StringIO
-from xml.sax.saxutils import escape, unescape
+from xml.sax.saxutils import escape
 
 import lxml.etree
 
 from .errors import *
 from congressionalrecord.lib.xml_annotator import XMLAnnotator
-from congressionalrecord.lib.regex import Regex
 from congressionalrecord.lib.logging import initialize_logfile, get_stack_trace
 
-MONTHS = [datetime.date(2010, x, 1).strftime('%B') for x in range(1,13)]
+
+MONTHS = [datetime.date(2010, x, 1).strftime('%B') for x in range(1, 13)]
 
 
 class CRParser(object):
     ''' Parser functionality and regular expressions common to all
     congressional record documents'''
 
-    re_volume =             r'(?<=Volume )\d+'
-    re_number =             r'(?<=Number )\d+'
-    re_weekday =            r'Number \d+ \((?P<weekday>[A-Za-z]+)'
-    re_month =              r'\([A-Za-z]+, (?P<month>[a-zA-Z]+)'
-    re_day =                r'\([A-Za-z]+, [A-Za-z]+ (?P<day>\d{1,2})'
-    re_year =               r'\([A-Za-z]+, [A-Za-z]+ \d{1,2}, (?P<year>\d{4})'
-    re_chamber =            r'(?<=\[)[A-Za-z]+'
-    re_pages =              r'Pages? (?P<pages>[\w\-]+)'
-    re_title_start =        r'\S+'
-    re_title =              r'\s+(?P<title>(\S ?)+)'
-    re_title_end =          r'.+'
-    re_newpage =            r'\[\[Page \w+\]\]'
-    re_timestamp =          r'{time}\s\d{4}'
-    re_underscore =         r'\s+_+\s+'
-    re_underscore_sep =     r'\s{33}_{6}$'
+    re_volume = r'(?<=Volume )\d+'
+    re_number = r'(?<=Number )\d+'
+    re_weekday = r'Number \d+ \((?P<weekday>[A-Za-z]+)'
+    re_month = r'\([A-Za-z]+, (?P<month>[a-zA-Z]+)'
+    re_day = r'\([A-Za-z]+, [A-Za-z]+ (?P<day>\d{1,2})'
+    re_year = r'\([A-Za-z]+, [A-Za-z]+ \d{1,2}, (?P<year>\d{4})'
+    re_chamber = r'(?<=\[)[A-Za-z]+'
+    re_pages = r'Pages? (?P<pages>[\w\-]+)'
+    re_title_start = r'\S+'
+    re_title = r'\s+(?P<title>(\S ?)+)'
+    re_title_end = r'.+'
+    re_newpage = r'\[\[Page \w+\]\]'
+    re_timestamp = r'{time}\s\d{4}'
+    re_underscore = r'\s+_+\s+'
+    re_underscore_sep = r'\s{33}_{6}$'
     # a new speaker might either be a legislator's name, or a reference to the role of president of presiding officer.
-    re_newspeaker =         r'^(<bullet> |  )(?P<name>(%s|(((Mr)|(Ms)|(Mrs))\. [-A-Z\'a-z\']+( of [A-Z][a-z]+)?|((Miss) [-A-Z\'a-z\']+)( of [A-Z][a-z]+)?))|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.'
+    re_newspeaker = r'^(<bullet> |  )(?P<name>(%s|(((Mr)|(Ms)|(Mrs))\. [-A-Z\'a-z\']+( of [A-Z][a-z]+)?|((Miss) [-A-Z\'a-z\']+)( of [A-Z][a-z]+)?))|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.'
 
     # whatever follows the statement of a new speaker marks someone starting to
     # speak. if it's a new paragraph and there's already a current_speaker,
     # then this re is also used to insert the <speaking> tag.
-#    re_speaking =           r'^(<bullet> |  )((((Mr)|(Ms)|(Mrs))\. [A-Za-z \-]+(of [A-Z][a-z]+)?)|((The (ACTING )?(PRESIDENT|SPEAKER)( pro tempore)?)|(The PRESIDING OFFICER))( \([A-Za-z.\- ]+\))?)\.'
-    re_speaking =           r'^(<bullet> |  )((((((Mr)|(Ms)|(Mrs))\. [A-Z\'a-z\']+( of [A-Z][a-z]+)?|((Miss) [-A-Z\'a-z\']+)(of [A-Z][a-z]+)?)|((The (VICE |Acting |ACTING )?(PRESIDENT|SPEAKER)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK))( \([A-Za-z.\- ]+\))?))\. )?(?P<start>.)'
-    re_startshortquote =    r'``'
-    re_endshortquote =      r"''"
-    re_billheading =        r'\s+SEC.[A-Z_0-9. \-()\[\]]+'
-    re_longquotestart =     r' {7}(?P<start>.)'
-    re_longquotebody =      r' {5}(?P<start>.)'
-    re_endofline =          r'$'
-    re_startofline =        r'^'
-    re_alltext =            r"^\s+(?P<text>\S([\S ])+)"
-    re_rollcall =           r'\[Roll(call)?( Vote)? No. \d+.*\]'
-    re_allcaps =            r'^[^a-z]+$'
-    re_billdescription =    r'^\s+The bill \('
-    re_date =               r'^(Sun|Mon|Tues|Wednes|Thurs|Fri|Satur)day,\s(%s)\s\d\d?,\s\d{4}$' % '|'.join(MONTHS)
+    # re_speaking =           r'^(<bullet> |  )((((Mr)|(Ms)|(Mrs))\. [A-Za-z \-]+(of [A-Z][a-z]+)?)|((The (ACTING )?(PRESIDENT|SPEAKER)( pro tempore)?)|(The PRESIDING OFFICER))( \([A-Za-z.\- ]+\))?)\.'
+    re_speaking = r'^(<bullet> |  )((((((Mr)|(Ms)|(Mrs))\. [A-Z\'a-z\']+( of [A-Z][a-z]+)?|((Miss) [-A-Z\'a-z\']+)(of [A-Z][a-z]+)?)|((The (VICE |Acting |ACTING )?(PRESIDENT|SPEAKER)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK))( \([A-Za-z.\- ]+\))?))\. )?(?P<start>.)'
+    re_startshortquote = r'``'
+    re_endshortquote = r"''"
+    re_billheading = r'\s+SEC.[A-Z_0-9. \-()\[\]]+'
+    re_longquotestart = r' {7}(?P<start>.)'
+    re_longquotebody = r' {5}(?P<start>.)'
+    re_endofline = r'$'
+    re_startofline = r'^'
+    re_alltext = r"^\s+(?P<text>\S([\S ])+)"
+    re_rollcall = r'\[Roll(call)?( Vote)? No. \d+.*\]'
+    re_allcaps = r'^[^a-z]+$'
+    re_billdescription = r'^\s+The bill \('
+    re_date = r'^(Sun|Mon|Tues|Wednes|Thurs|Fri|Satur)day,\s(%s)\s\d\d?,\s\d{4}$' % '|'.join(MONTHS)
 
-    re_recorderstart =      (r'^\s+(?P<start>'
-                             + r'(The (assistant )?legislative clerk read as follows)'
-                             + r'|(The nomination considered and confirmed is as follows)'
-                             + r'|(The (assistant )?legislative clerk)'
-                             + r'|(The nomination was confirmed)'
-                             + r'|(There being no objection, )'
-                             + r'|(The resolution .*?was agreed to.)'
-                             + r'|(The preamble was agreed to.)'
-                             + r'|(The resolution .*?reads as follows)'
-                             + r'|(The assistant editor .*?proceeded to call the roll)'
-                             + r'|(The bill clerk proceeded to call the roll.)'
-                             + r'|(The bill clerk called the roll.)'
-                             + r'|(The motion was agreed to.)'
-                             #+ r'|(The Clerk read the resolution, as follows:)'
-                             + r'|(The Clerk read (the resolution, )as follows:)'
-                             + r'|(The resolution(, with its preamble,)? reads as follows:)'
-                             + r'|(The amend(ment|ed).*?(is)? as follows:)'
-                             + r'|(Amendment No\. \d+.*?is as follows:)'
-                             + r'|(The yeas and nays resulted.*?, as follows:)'
-                             + r'|(The yeas and nays were ordered)'
-                             + r'|(The result was announced.*?, as follows:)'
-                             + r'|(The .*?editor of the Daily Digest)'
-                             + r'|(The (assistant )?bill clerk read as follows:)'
-                             + r'|(The .*?read as follows:)'
-                             + r'|(The text of the.*?is as follows)'
-                             + r'|(amended( to read)? as follows:)'
-                             + r'|(The material (previously )?referred to (by.*?)?is as follows:)'
-                             + r'|(There was no objection)'
-                             + r'|(The amendment.*?was agreed to)'
-                             + r'|(The motion to table was .*)'
-                             + r'|(The question was taken(;|.))'
-                             + r'|(The following bills and joint resolutions were introduced.*)'
-                             + r'|(The vote was taken by electronic device)'
-                             + r'|(A recorded vote was ordered)'
-                             #+ r'|()'
-                            + r').*')
+    re_recorderstart = (r'^\s+(?P<start>'
+                        + r'(The (assistant )?legislative clerk read as follows)'
+                        + r'|(The nomination considered and confirmed is as follows)'
+                        + r'|(The (assistant )?legislative clerk)'
+                        + r'|(The nomination was confirmed)'
+                        + r'|(There being no objection, )'
+                        + r'|(The resolution .*?was agreed to.)'
+                        + r'|(The preamble was agreed to.)'
+                        + r'|(The resolution .*?reads as follows)'
+                        + r'|(The assistant editor .*?proceeded to call the roll)'
+                        + r'|(The bill clerk proceeded to call the roll.)'
+                        + r'|(The bill clerk called the roll.)'
+                        + r'|(The motion was agreed to.)'
+                        # + r'|(The Clerk read the resolution, as follows:)'
+                        + r'|(The Clerk read (the resolution, )as follows:)'
+                        + r'|(The resolution(, with its preamble,)? reads as follows:)'
+                        + r'|(The amend(ment|ed).*?(is)? as follows:)'
+                        + r'|(Amendment No\. \d+.*?is as follows:)'
+                        + r'|(The yeas and nays resulted.*?, as follows:)'
+                        + r'|(The yeas and nays were ordered)'
+                        + r'|(The result was announced.*?, as follows:)'
+                        + r'|(The .*?editor of the Daily Digest)'
+                        + r'|(The (assistant )?bill clerk read as follows:)'
+                        + r'|(The .*?read as follows:)'
+                        + r'|(The text of the.*?is as follows)'
+                        + r'|(amended( to read)? as follows:)'
+                        + r'|(The material (previously )?referred to (by.*?)?is as follows:)'
+                        + r'|(There was no objection)'
+                        + r'|(The amendment.*?was agreed to)'
+                        + r'|(The motion to table was .*)'
+                        + r'|(The question was taken(;|.))'
+                        + r'|(The following bills and joint resolutions were introduced.*)'
+                        + r'|(The vote was taken by electronic device)'
+                        + r'|(A recorded vote was ordered)'
+                        # + r'|()'
+                        + r').*')
 
     # anchored at the end of the line
-    re_recorderend =        (r'('
-                            + r'(read as follows:)'
-                            + r'|(the Record, as follows:)'
-                            + r'|(ordered to lie on the table; as follows:)'
-                            + r'|(resolutions as follows:)'
-                            + r')$')
+    re_recorderend = (r'('
+                      + r'(read as follows:)'
+                      + r'|(the Record, as follows:)'
+                      + r'|(ordered to lie on the table; as follows:)'
+                      + r'|(resolutions as follows:)'
+                      + r')$')
 
 
     # sometimes the recorder says something that is not unique to them but
     # which, in the right context, we take to indicate a recorder comment.
-    re_recorder_fuzzy =     (r'^\s+(?P<start>'
-                             + r'(Pending:)'
-                             + r'|(By M(r|s|rs)\. .* \(for .*)'
-                             #+ r'|()'
-                            + r').*')
+    re_recorder_fuzzy = (r'^\s+(?P<start>'
+                         + r'(Pending:)'
+                         + r'|(By M(r|s|rs)\. .* \(for .*)'
+                         # + r'|()'
+                         + r').*')
 
-
-    LINE_MAX_LENGTH =           71
-    LONGQUOTE_INDENT =          5
-    NEW_PARA_INDENT =           2
-    LONGQUOTE_NEW_PARA_INDENT = [6,7]
+    LINE_MAX_LENGTH = 71
+    LONGQUOTE_INDENT = 5
+    NEW_PARA_INDENT = 2
+    LONGQUOTE_NEW_PARA_INDENT = [6, 7]
 
     # documents with special titles need to be parsed differently than the
     # topic documents, either because they follow a different format or because
     # we derive special information from them. in many cases these special
     # titles are matched as prefixes, not just full text match.
     special_titles = {
-        "senate" : "" ,
-        "Senate" : "" ,
-        "prayer" : "",
-        "PLEDGE OF ALLEGIANCE" : "",
-        "APPOINTMENT OF ACTING PRESIDENT PRO TEMPORE" : "",
-        "RECOGNITION OF THE MAJORITY LEADER" : "",
-        "SCHEDULE" : "",
-        "RESERVATION OF LEADER TIME" : "",
-        "MORNING BUSINESS" : "",
-        "MESSAGE FROM THE HOUSE" : "",
-        "MESSAGES FROM THE HOUSE" : "",
-        "MEASURES REFERRED" : "",
-        "EXECUTIVE AND OTHER COMMUNICATIONS" : "",
-        "SUBMITTED RESOLUTIONS" : "",
-        "SENATE RESOLUTION" : "",
-        "SUBMISSION OF CONCURRENT AND SENATE RESOLUTIONS" : "",
-        "ADDITIONAL COSPONSORS" : "",
-        "ADDITIONAL STATEMENTS" : "",
-        "REPORTS OF COMMITTEES" : "",
-        "INTRODUCTION OF BILLS AND JOINT RESOLUTIONS" : "",
-        "ADDITIONAL COSPONSORS" : "",
-        "INTRODUCTION OF BILLS AND JOINT RESOLUTIONS" : "",
-        "STATEMENTS ON INTRODUCED BILLS AND JOINT RESOLUTIONS" : "",
-        "AUTHORITY FOR COMMITTEES TO MEET" : "",
-        "DISCHARGED NOMINATION" : "",
-        "CONFIRMATIONS" : "",
-        "AMENDMENTS SUBMITTED AND PROPOSED" : "",
-        "TEXT OF AMENDMENTS" : "",
-        "MEASURES PLACED ON THE CALENDAR" : "",
-        "EXECUTIVE CALENDAR" : "",
-        "NOTICES OF HEARINGS" : "",
-        "REPORTS OF COMMITTEES DURING ADJOURNMENT" : "",
-        "MEASURES DISCHARGED" : "",
+        "senate": "",
+        "Senate": "",
+        "prayer": "",
+        "PLEDGE OF ALLEGIANCE": "",
+        "APPOINTMENT OF ACTING PRESIDENT PRO TEMPORE": "",
+        "RECOGNITION OF THE MAJORITY LEADER": "",
+        "SCHEDULE": "",
+        "RESERVATION OF LEADER TIME": "",
+        "MORNING BUSINESS": "",
+        "MESSAGE FROM THE HOUSE": "",
+        "MESSAGES FROM THE HOUSE": "",
+        "MEASURES REFERRED": "",
+        "EXECUTIVE AND OTHER COMMUNICATIONS": "",
+        "SUBMITTED RESOLUTIONS": "",
+        "SENATE RESOLUTION": "",
+        "SUBMISSION OF CONCURRENT AND SENATE RESOLUTIONS": "",
+        "ADDITIONAL COSPONSORS": "",
+        "ADDITIONAL STATEMENTS": "",
+        "REPORTS OF COMMITTEES": "",
+        "INTRODUCTION OF BILLS AND JOINT RESOLUTIONS": "",
+        "ADDITIONAL COSPONSORS": "",
+        "INTRODUCTION OF BILLS AND JOINT RESOLUTIONS": "",
+        "STATEMENTS ON INTRODUCED BILLS AND JOINT RESOLUTIONS": "",
+        "AUTHORITY FOR COMMITTEES TO MEET": "",
+        "DISCHARGED NOMINATION": "",
+        "CONFIRMATIONS": "",
+        "AMENDMENTS SUBMITTED AND PROPOSED": "",
+        "TEXT OF AMENDMENTS": "",
+        "MEASURES PLACED ON THE CALENDAR": "",
+        "EXECUTIVE CALENDAR": "",
+        "NOTICES OF HEARINGS": "",
+        "REPORTS OF COMMITTEES DURING ADJOURNMENT": "",
+        "MEASURES DISCHARGED": "",
         "REPORTS OF COMMITTEES ON PUBLIC BILLS AND RESOLUTIONS": "",
         "INTRODUCTION OF BILLS AND JOINT RESOLUTIONS": "",
     }
@@ -169,7 +165,7 @@ class CRParser(object):
         self.filepath = abspath
         self.filedir, self.filename = os.path.split(self.filepath)
         self.outdir = kwargs['outdir']
-        #fp = open(abspath)
+        # fp = open(abspath)
         #self.rawlines = fp.readlines()
 
         # Remove internal page numbers and timestamps
@@ -183,7 +179,6 @@ class CRParser(object):
             pass
         else:
             content = '\n' + content
-
 
         content = re.sub(r'\n?\n?\[\[Page.*?\]\]\n?', ' ', content)
         #content = re.sub(r'\n\n +\{time\} +\d+\n', '', content)
@@ -227,7 +222,7 @@ class CRParser(object):
     def parse(self):
         ''' parses a raw senate document and returns the same document marked
         up with XML '''
-        #self.get_metadata()
+        # self.get_metadata()
         self.markup_preamble()
 
     def download_mods_file(self):
@@ -282,7 +277,7 @@ class CRParser(object):
             data = member.attrib
             data.update({'name': member.xpath('name')[0].text, })
             self.members.append(data)
-        #print '|'.join([x['name'].replace('.', '\.') for x in self.members])
+        # print '|'.join([x['name'].replace('.', '\.') for x in self.members])
         #print self.re_newspeaker
         ## re_newspeaker does not have any format strings in it...
         # self.re_newspeaker = self.re_newspeaker % '|'.join([x['name'].replace('.', '\.') for x in self.members])
@@ -307,7 +302,7 @@ class CRParser(object):
         annotator.register_tag(self.re_day, '<day>', group='day')
         annotator.register_tag(self.re_year, '<year>', group='year')
         xml_line = annotator.apply()
-        #print xml_line
+        # print xml_line
         self.xml.append(xml_line)
         if self.is_bullet:
             self.xml.append('<bullet>1</bullet>\n')
@@ -319,7 +314,7 @@ class CRParser(object):
         annotator = XMLAnnotator(theline)
         annotator.register_tag(self.re_chamber, '<chamber>')
         xml_line = annotator.apply()
-        #print xml_line
+        # print xml_line
         self.xml.append(xml_line)
         self.markup_pages()
 
@@ -329,7 +324,7 @@ class CRParser(object):
         annotator = XMLAnnotator(theline)
         annotator.register_tag(self.re_pages, '<pages>', group='pages')
         xml_line = annotator.apply()
-        #print xml_line
+        # print xml_line
         self.xml.append(xml_line)
         self.xml.append('<congress>%s</congress>\n' % self.congress)
         self.xml.append('<session>%s</session>\n' % self.session)
@@ -339,10 +334,10 @@ class CRParser(object):
         ''' strip unwanted parts of documents-- page transitions and spacers.'''
         newpage = re.match(self.re_newpage, theline)
         if newpage:
-            theline = theline[:newpage.start()]+theline[newpage.end():]
+            theline = theline[:newpage.start()] + theline[newpage.end():]
         underscore = re.match(self.re_underscore, theline)
         if underscore:
-            theline = theline[:underscore.start()]+theline[underscore.end():]
+            theline = theline[:underscore.start()] + theline[underscore.end():]
         # note: dont strip whitespace when cleaning the lines because
         # whitespace is often the only indicator of the line's purpose or
         # function.
@@ -350,11 +345,11 @@ class CRParser(object):
 
     def get_line(self, offset=0, **kwargs):
         raw = kwargs.get('raw', False)
-        if self.currentline+offset > len(self.rawlines)-1 or self.currentline+offset < 0:
+        if self.currentline + offset > len(self.rawlines) - 1 or self.currentline + offset < 0:
             return None
         if raw:
-            return self.rawlines[self.currentline+offset]
-        return self.clean_line(self.rawlines[self.currentline+offset])
+            return self.rawlines[self.currentline + offset]
+        return self.clean_line(self.rawlines[self.currentline + offset])
 
     def is_special_title(self, title):
         title = title.strip()
@@ -395,24 +390,24 @@ class CRParser(object):
             # a regular old title
             annotator = XMLAnnotator(theline)
             annotator.register_tag_open(self.re_title_start, '<document_title>')
-            self.currentline +=1
+            self.currentline += 1
             theline = self.get_line()
 
             # check if the title finished on the sameline it started on:
             if not theline.strip():
                 annotator.register_tag_close(self.re_title_end, '</document_title>')
                 xml_line = annotator.apply()
-                #print xml_line
+                # print xml_line
                 self.xml.append(xml_line)
 
             else:
                 # either way we need to apply the tags to the title start.
                 xml_line = annotator.apply()
-                #print xml_line
+                # print xml_line
                 self.xml.append(xml_line)
                 # now find the title end
                 while theline.strip():
-                    self.currentline +=1
+                    self.currentline += 1
                     theline = self.get_line()
                 # once we hit an empty line, we know the end of the *previous* line
                 # is the end of the title.
@@ -442,7 +437,7 @@ class CRParser(object):
             self.rawlines[self.currentline] = self.rawlines[self.currentline].replace('<bullet>', ' ')
             # now start at the end of the document and walk up the doc, to find
             # the closing bullet tag.
-            ix = len(self.rawlines)-1
+            ix = len(self.rawlines) - 1
             while True:
                 if self.rawlines[ix].find('<bullet>') >= 0:
                     self.rawlines[ix] = self.rawlines[ix].replace('<bullet>', '')
@@ -488,14 +483,18 @@ class CRParser(object):
                 # will only match on first line of the roll call
                 annotator.register_tag_open(self.re_rollcall, '<recorder>')
             elif self.new_paragraph:
-                annotator.register_tag_open(self.re_longquotestart, '<speaking quote="true" speaker="%s">' % self.current_speaker, group='start')
+                annotator.register_tag_open(self.re_longquotestart,
+                                            '<speaking quote="true" speaker="%s">' % self.current_speaker,
+                                            group='start')
                 if self.recorder:
                     annotator.register_tag_open(self.re_startofline, '<recorder>')
-                    #annotator.register_tag_open(self.re_recorderstart, '<recorder>', 'start')
+                    # annotator.register_tag_open(self.re_recorderstart, '<recorder>', 'start')
                     #annotator.register_tag_open(self.re_recorder_fuzzy, '<recorder>', 'start')
                 annotator.register_tag(self.re_newspeaker, '<speaker name="%s">' % self.current_speaker, group='name')
                 if self.return_from_quote_interjection(theline):
-                    annotator.register_tag_open(self.re_longquotebody, '<speaking quote="true" speaker="%s">' % self.current_speaker, group='start')
+                    annotator.register_tag_open(self.re_longquotebody,
+                                                '<speaking quote="true" speaker="%s">' % self.current_speaker,
+                                                group='start')
                 if not self.recorder and not self.inlongquote:
                     # check the current speaker-- if it's the recorder, then
                     # even though this isn't a "known" recorder sentence,
@@ -505,10 +504,11 @@ class CRParser(object):
                         annotator.register_tag_open(self.re_speaking, '<recorder>', group='start')
                         self.recorder = True
                     else:
-                        annotator.register_tag_open(self.re_speaking, '<speaking name="%s">' % self.current_speaker, group='start')
+                        annotator.register_tag_open(self.re_speaking, '<speaking name="%s">' % self.current_speaker,
+                                                    group='start')
 
             if not self.intitle and not self.inlongquote and not self.inrollcall:
-                #annotator.register_tag_open(self.re_startshortquote, '<quote speaker="%s">' % self.current_speaker)
+                # annotator.register_tag_open(self.re_startshortquote, '<quote speaker="%s">' % self.current_speaker)
                 pass
 
             # note: the endquote tag needs to be registered BEFORE the end
@@ -518,7 +518,7 @@ class CRParser(object):
             # will do for now.
             if not self.inlongquote and not self.intitle and not self.inrollcall:
                 if self.inquote:
-                    #annotator.register_tag_close(self.re_endshortquote, '</speaking>')
+                    # annotator.register_tag_close(self.re_endshortquote, '</speaking>')
                     pass
 
             if self.paragraph_ends():
@@ -532,19 +532,19 @@ class CRParser(object):
                         annotator.register_tag_close(self.re_endofline, '</speaking>')
                 elif self.intitle:
                     pass
-                #  this specific set of states usually means we're somewhere
+                # this specific set of states usually means we're somewhere
                 #  unrecognized, and can without these caveats can end up with
                 #  stray </speaking> tags.
                 elif (self.current_speaker == 'recorder' and not (self.inlongquote or
-                                                                  self.inrollcall or
-                                                                  self.recorder or
-                                                                  self.inquote or
-                                                                  self.intitle)):
+                                                                      self.inrollcall or
+                                                                      self.recorder or
+                                                                      self.inquote or
+                                                                      self.intitle)):
                     print "UNRECOGNIZED STATE (but that's ok): %s" % theline
                 else:
                     annotator.register_tag_close(self.re_endofline, '</speaking>')
 
-            #if (self.current_speaker == 'recorder' and self.inlongquote == False and self.inrollcall == False
+            # if (self.current_speaker == 'recorder' and self.inlongquote == False and self.inrollcall == False
             #    and self.recorder == False and self.inquote == False and self.intitle == False):
             #    print "UNRECOGNIZED STATE (but that's ok): %s" % theline
             #    annotator.register_tag(self.re_alltext, '<unknown>', group='text')
@@ -557,7 +557,7 @@ class CRParser(object):
             self.postprocess_state(theline)
 
             # get the next line and do it all again
-            self.currentline +=1
+            self.currentline += 1
             theline = self.get_line()
             while theline is not None and not theline.strip():
                 self.currentline += 1
@@ -596,9 +596,9 @@ class CRParser(object):
                 tagname = taginfo[0]
                 if re.search(re_opentag, tagname):
                     active.append(taginfo)
-                    #print active
+                    # print active
                 elif re.search(re_closetag, tagname):
-                    #print 'line: %s' % self.xml[taginfo[3]].strip('\n')
+                    # print 'line: %s' % self.xml[taginfo[3]].strip('\n')
                     #print 'comparing %s and %s' % (active[-1][0], tagname)
                     if len(active) and self.matching_tags(active[-1][0], tagname):
                         del active[-1]
@@ -635,7 +635,7 @@ class CRParser(object):
             # replace will replace *all* occurences
             start = orphan[1]
             end = orphan[2]
-            self.xml[linenum] = theline[:start]+theline[end:]
+            self.xml[linenum] = theline[:start] + theline[end:]
 
         '''
         print '\nAfter Validation:\n'
@@ -676,7 +676,7 @@ class CRParser(object):
             self.intitle = False
 
             # if there's a new speaker, we don't want to
-            #if re.search(self.re_newspeaker, theline):
+            # if re.search(self.re_newspeaker, theline):
             #    self.newspeaker = True
 
             # in the case of a long quote, we don't change the current speaker.
@@ -729,7 +729,7 @@ class CRParser(object):
             self.inquote = True
 
         # debugging..
-        #print 'in title? %s' % self.intitle
+        # print 'in title? %s' % self.intitle
         #print 'new paragraph? %s' % self.new_paragraph
         '''
         if self.current_speaker:
@@ -753,8 +753,8 @@ class CRParser(object):
             return
 
         if (not self.recorder and not self.inlongquote
-                and not self.intitle and not self.current_speaker):
-            #return
+            and not self.intitle and not self.current_speaker):
+            # return
             # this is a wierd state we shouldn't be in
             #print ''.join(self.rawlines)
             objdata = self.__dict__
@@ -803,7 +803,7 @@ class CRParser(object):
         empty = ""
 
         if (self.spaces_indented(theline) == self.LONGQUOTE_INDENT and
-                line_above == empty and two_lines_above.endswith('--')):
+                    line_above == empty and two_lines_above.endswith('--')):
             return True
         else:
             return False
@@ -840,7 +840,7 @@ class CRParser(object):
             return True
         # this strange case arises sometimes when legislators interject a
         # comment into the middle of something they are quoting/reading.
-        local_offset = self.currentline+offset
+        local_offset = self.currentline + offset
         line_above = self.rawlines[local_offset - 1].strip()
         first_line_on_page = re.search(self.re_newpage, self.rawlines[local_offset - 2])
         empty = ""
@@ -854,17 +854,17 @@ class CRParser(object):
         if not theline.strip():
             return False
         left_align = re.search('\S', theline).start()
-        right_align = (self.LINE_MAX_LENGTH - len(theline.strip()))/2
+        right_align = (self.LINE_MAX_LENGTH - len(theline.strip())) / 2
         # if the left and right align are the same (modulo off-by-one for
         # even-length titles) then we consider it centered, and therefore a
         # title.
-        if left_align in [right_align-1, right_align, right_align+1]:
+        if left_align in [right_align - 1, right_align, right_align + 1]:
             return True
         else:
             return False
 
     def is_title(self, theline, offset=0):
-        #self.current_line +offset must be the index for theline
+        # self.current_line +offset must be the index for theline
         local_offset = self.currentline + offset
         if not self.rawlines[local_offset] == theline:
             message = 'current line and index are not aligned'
@@ -910,9 +910,9 @@ class CRParser(object):
         # this basically accounts for letter headers. note that the line
         # lengths include a character for the \n newline character.
         if (empty(line_above) and
-            (empty(line_below) or self.spaces_indented(line_below) in self.LONGQUOTE_NEW_PARA_INDENT
-             or self.spaces_indented(line_below) == self.LONGQUOTE_INDENT) and
-            (len(theline) == 67 or len(theline) == 66 or len(theline) == 63)):
+                (empty(line_below) or self.spaces_indented(line_below) in self.LONGQUOTE_NEW_PARA_INDENT
+                 or self.spaces_indented(line_below) == self.LONGQUOTE_INDENT) and
+                (len(theline) == 67 or len(theline) == 66 or len(theline) == 63)):
             return True
         # bill headers eg like  SEC. _03. SENSE OF CONGRESS.
         if re.search(self.re_billheading, theline):
@@ -946,7 +946,7 @@ class CRParser(object):
         print "saved file %s to disk" % saveas
 
 
-#added for testing
+# added for testing
 def parse_to_string(infile, **kwargs):
     parser = CRParser(infile, **kwargs)
     parser.parse()
@@ -1002,7 +1002,8 @@ def parse_directory(path, **kwargs):
             # eliminates extra title and leaves expected space at the top
             content = re.sub(r'<title>.+?</title>', '', content)
             # need to  eliminate particular blank lines, should sill get the tags out if expected line breaks aren't there.
-            extras = ['<html>\n','<html>', '</html>', '<head>\n', '</head>\n', '<head>', '</head>', '<body><pre>\n', '<pre>', '</pre>', '<body>','</body>', ]
+            extras = ['<html>\n', '<html>', '</html>', '<head>\n', '</head>\n', '<head>', '</head>', '<body><pre>\n',
+                      '<pre>', '</pre>', '<body>', '</body>', ]
             for tag in extras:
                 content = content.replace(tag, '')
             new_name = file[:-3] + 'txt'
@@ -1034,8 +1035,6 @@ def parse_directory(path, **kwargs):
             pass
         parser = CRParser(abspath, **kwargs)
         do_parse(parser, logfile)
-
-
 
     return kwargs['outdir']
 

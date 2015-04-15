@@ -1,5 +1,6 @@
 from .regex import Regex
 
+
 class XMLAnnotator(object):
     def __init__(self, string):
         self.regx = Regex(string)
