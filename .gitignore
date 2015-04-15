@@ -4,3 +4,6 @@ source
 output
 changelog
 .idea
+build/
+congressionalrecord.egg-info/
+dist/

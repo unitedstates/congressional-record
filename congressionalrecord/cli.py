@@ -131,7 +131,7 @@ def main():
             os.remove(args.infile)
 
     else:
-        msg = 'Either a date (YYY-MM-DD), --infile argument or the --indir flag is required!'
+        msg = 'Either a date (YYYY-MM-DD), --infile argument or the --indir flag is required!'
         parser.error(msg)
 
 
