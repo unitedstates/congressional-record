@@ -627,6 +627,10 @@ class CRParser(object):
             print 'Orphaned Tags:\n'
         for orphan in orphans:
             print orphan, self.xml[orphan[3]]
+            # Capture orphans in a file, that sounds wrong, but we need it.
+            f = open('orphans.txt', 'a+')
+            print >> f, self.xml[orphan[3]]
+            f.close()
 
         for orphan in orphans:
             linenum = orphan[3]
