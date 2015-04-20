@@ -4,17 +4,11 @@
    outputs the text marked up with xml
 '''
 
-import re
 import datetime
 import os
-import sys
 import argparse
-import urllib2
-from xml.sax.saxutils import escape, unescape
 
-import lxml.etree
-
-from .fdsys.cr_parser import CRParser, parse_directory, parse_single
+from .fdsys.cr_parser import parse_directory, parse_single
 from .fdsys.simple_scrape import find_fdsys
 
 
@@ -26,12 +20,12 @@ def daterange(start, end, date_format=None):
             date = datetime.datetime.strftime(date, date_format)
         yield date
 
+
 def parsedate(s):
     return datetime.datetime.strptime(s.strip(), "%Y-%m-%d")
 
 
 def main():
-
     default_outdir = os.path.join(os.getcwd(), 'output')
 
     parser = argparse.ArgumentParser(
@@ -62,7 +56,6 @@ def main():
     parser.add_argument('--ntf', '-no_text_files', dest='notext', action='store_true',
                         help='Remove the text version of the documents.(The .htm version is automatically removed)\
                         EVERYING in the indir folder will be removed.')
-
 
     args = parser.parse_args()
 
@@ -109,7 +102,7 @@ def main():
                 os.rmdir(doc_path)
 
         if len(no_record) > 0:
-            print "No results were found for the following day/s: %s " %(no_record)
+            print "No results were found for the following day/s: %s " % (no_record)
 
     # Deal with directory case:
     elif args.indir:
@@ -138,7 +131,7 @@ def main():
             os.remove(args.infile)
 
     else:
-        msg = 'Either a date (YYY-MM-DD), --infile argument or the --indir flag is required!'
+        msg = 'Either a date (YYYY-MM-DD), --infile argument or the --indir flag is required!'
         parser.error(msg)
 
 

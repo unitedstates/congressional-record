@@ -35,7 +35,6 @@ def find_fdsys(day, **kwargs):
         print "\n Downloading from cache \n"
         return outdir_year_crecfolder_text
 
-
     if os.path.exists(outdir_year_crecfolder_text):
         # removes files from the last run
         # delete previous txt and htm files
@@ -63,7 +62,7 @@ def find_fdsys(day, **kwargs):
         print "Downloading url ", url
         contents = urllib2.urlopen(url).read()
     except:
-        message = "No record retrieved for %s. Attempted to download records from :%s " %(day, url)
+        message = "No record retrieved for %s. Attempted to download records from :%s " % (day, url)
         print message
         return None
 

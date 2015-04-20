@@ -1,7 +1,7 @@
 import re
 
-class Regex(object):
 
+class Regex(object):
     def __init__(self, string):
         self.string = string
         # a list of tuples containing (regex_string, xml_opening_tag)
@@ -54,7 +54,7 @@ class Regex(object):
                 indexes[end].append(tag)
 
         if len(indexes):
-            #print indexes
+            # print indexes
 
             # we need to split the string into substrings between each pair of
             # (sorted) indices, eg. at index_n and index_n+1. a substring is
@@ -62,9 +62,9 @@ class Regex(object):
             # index, and from the last split index to the end of the string.
             l = indexes.keys()
             l.sort()
-            first_substring = [(0,l[0])]
+            first_substring = [(0, l[0])]
             last_substring = [(l[-1], len(self.string))]
-            pairs = first_substring + [(l[i], l[i+1]) for i in xrange(len(l)-1)] + last_substring
+            pairs = first_substring + [(l[i], l[i + 1]) for i in xrange(len(l) - 1)] + last_substring
 
             output = []
             # make sure we don't duplicate any insertions.
