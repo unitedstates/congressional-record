@@ -120,6 +120,24 @@ class test_results(unittest.TestCase):
 		self.assertEqual(speaker, 1)
 		self.assertEqual(speaking, 105)
 
+	# Speakers with spaces in their names
+	def test_whitespace(self):
+		content = cr_parser.parse_to_string("test/test_files/whitespace/CREC-2013-10-16-pt1-PgE1522-2.txt", logdir="test/test_output", outdir="test/test_output")
+		content = str(content)
+		speaker = len(re.findall('<speaker name="Ms. WASSERMAN SCHULTZ">', content))
+		speaking = len(re.findall('<speaking name="Ms. WASSERMAN SCHULTZ">', content))
+		self.assertEqual(speaker, 1)
+		self.assertEqual(speaking, 5)
+
+	# Speakers with middle initials in their names
+	def test_middle_initials(self):
+		content = cr_parser.parse_to_string("test/test_files/middle_initials/CREC-2011-05-05-pt1-PgE817-2.txt", logdir="test/test_output", outdir="test/test_output")
+		content = str(content)
+		speaker = len(re.findall('<speaker name="Mr. DANIEL E. LUNGREN of California">', content))
+		speaking = len(re.findall('<speaking name="Mr. DANIEL E. LUNGREN of California">', content))
+		self.assertEqual(speaker, 1)
+		self.assertEqual(speaking, 5)
+
 	# I still need to test Chair, Chairman, Clerk and The Chief Justice. Also, I haven't found a Miss. but I don't think it is likely)
 
 	# boiler plate
