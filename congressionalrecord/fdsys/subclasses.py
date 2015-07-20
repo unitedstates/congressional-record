@@ -1,12 +1,7 @@
 import re
 
 class crItem(object):
-    item = { 'kind':'Unknown',
-             'speaker':'Unknown',
-             'text':None,
-             'turn':-1
-           }
-
+    
     def is_break(self,line):
         for pat in self.parent.item_breakers:
             if re.match(pat,line):
@@ -20,8 +15,7 @@ class crItem(object):
     def item_builder(self):
         parent = self.parent
         if parent.lines_remaining == False:
-            self.item = False
-            return False
+            raise Exception, "Reached end of document."
         item_types = parent.item_types
         content = [parent.cur_line]
         # What is this line
@@ -51,6 +45,12 @@ class crItem(object):
                     
             
     def __init__(self,parent):
+        self.item = { 'kind':'Unknown',
+             'speaker':'Unknown',
+             'text':None,
+             'turn':-1
+           }
+
         self.parent = parent
         self.item_builder()
         # self.item['text'] = self.find_items(contentiter)
