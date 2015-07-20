@@ -336,7 +336,7 @@ class ParseCRFile(object):
         """
         self.the_text = self.read_htm_file()
         self.write_header()
-        # self.write_page()
+        self.write_page()
         
 
     def __init__(self, abspath, cr_dir, **kwargs):
