@@ -91,7 +91,7 @@ class ParseCRFile(object):
     re_clerk = r'^\s+(?P<start>The Clerk (read|designated))'
     re_allcaps = r'^ \s*(?!([_=]+|-{3,}))(?P<title>([A-Z]+[^a-z]+))$'
     re_linebreak = r'\s+([_=]+|-{3,})\s*'
-    re_newpage =   r'\s+\[\[Page \w+\]\]'
+    re_newpage =   r'\s*\[\[Page \w+\]\]'
     re_timestamp = r'\s+\{time\}\s+\d{4}'
 
     """
@@ -160,23 +160,6 @@ class ParseCRFile(object):
                         'speaker':'None',
                         'break_flow':True}
                     }
-                      
-
-    # Some metadata
-    crdoc = {}
-    crdoc['header'] = False
-    crdoc['content'] = []
-    crdoc['titles'] = {}
-    crdoc['items'] = []
-    num_titles = 0
-    speakers = []
-    doc_ref = ''
-    doc_time = -1
-    doc_start_time = -1
-    doc_stop_time = -1
-    doc_duration = -1
-    doc_chamber = 'Unspecified'
-    doc_related_bills = []
     
     # Metadata-making functions
     def title_id(self):
@@ -332,13 +315,18 @@ class ParseCRFile(object):
         title = self.get_title()
         if title:
             the_content = { 'title_id': tid, 'title': title, 'items': []}
-            while self.lines_remaining:
+            while True:
                 # while not re.match(self.re_allcaps,self.cur_line):
-                new_item = crItem(self)
-                new_item.item['turn'] = turn
-                the_content['items'].append(new_item.item)
-                turn += 1
-                self.crdoc['items'].append(the_content)
+                try:
+                    item = crItem(self).item
+                    item['turn'] = turn
+                    turn += 1
+                    the_content['items'].append(item)
+                except Exception, e:
+                    print '{0}'.format(e)
+                    break
+                
+            self.crdoc['content'].append(the_content)
 
         print 'Stopped. The last line is: {0}'.format(self.cur_line)
 
@@ -352,6 +340,21 @@ class ParseCRFile(object):
         
 
     def __init__(self, abspath, cr_dir, **kwargs):
+
+        # Some metadata
+        self.crdoc = {}
+        self.crdoc['header'] = False
+        self.crdoc['content'] = []
+        self.num_titles = 0
+        self.speakers = []
+        self.doc_ref = ''
+        self.doc_time = -1
+        self.doc_start_time = -1
+        self.doc_stop_time = -1
+        self.doc_duration = -1
+        self.doc_chamber = 'Unspecified'
+        self.doc_related_bills = []
+        
         # file data
         self.filepath = abspath
         self.filedir, self.filename = os.path.split(self.filepath)
