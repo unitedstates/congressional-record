@@ -1,0 +1,373 @@
+from bs4 import BeautifulSoup
+from io import StringIO, BytesIO
+import os
+from datetime import datetime
+import re
+import xml.etree.cElementTree as ET
+from subclasses import crItem
+    
+class ParseCRDir(object):
+    
+    def gen_dir_metadata(self):
+        ''' Load up all metadata for this directory
+         from the mods file.'''
+        with open(self.mods_path,'r') as mods_file:
+            self.mods = BeautifulSoup(mods_file)
+        
+    def __init__(self, abspath, **kwargs):
+        
+        # dir data
+        self.cr_dir = abspath
+        self.mods_path = os.path.join(self.cr_dir,'mods.xml')
+        self.html_path = os.path.join(self.cr_dir,'html')
+        self.gen_dir_metadata()
+    
+class ParseCRFile(object):
+    # Some regex
+    re_time = r'^CREC-(?P<year>[0-9]{4})-(?P<month>[0-9]{2})-(?P<day>[0-9]{2})-.*'
+    re_vol = r' Congressional Record Vol. (?P<vol>[0-9]+), No. (?P<num>[0-9]+)$'
+    re_vol_file =   r'^\[Congressional Record Volume (?P<vol>[0-9]+), Number (?P<num>[0-9]+)'\
+                    + r' \((?P<wkday>[A-Za-z]+), (?P<month>[A-Za-z]+) (?P<day>[0-9]+), (?P<year>[0-9]{4})\)\]'
+    re_chamber =  r'\[(?P<chamber>[A-Za-z]+)\]'
+    re_pages =  r'\[Page[s]? (?P<pages>[\w\-]+)\]'
+    re_trail = r'From the Congressional Record Online'\
+      + r' through the Government Publishing Office \[www.gpo.gov\]$'
+    re_rollcall =       r'\[Roll(call)?( Vote)? No. \d+.*\]'
+    re_recorderstart =  (r'^\s+(?P<start>'
+                        + r'(The (assistant )?legislative clerk read as follows)'
+                        + r'|(The nomination considered and confirmed is as follows)'
+                        + r'|(The (assistant )?legislative clerk)'
+                        + r'|(The nomination was confirmed)'
+                        + r'|(There being no objection, )'
+                        + r'|(The resolution .*?was agreed to.)'
+                        + r'|(The preamble was agreed to.)'
+                        + r'|(The resolution .*?reads as follows)'
+                        + r'|(The assistant editor .*?proceeded to call the roll)'
+                        + r'|(The bill clerk proceeded to call the roll.)'
+                        + r'|(The bill clerk called the roll.)'
+                        + r'|(The motion was agreed to.)'
+                        #+ r'|(The Clerk read the resolution, as follows:)'
+                        + r'|(The Clerk read (the resolution, )as follows:)'
+                        + r'|(The resolution(, with its preamble,)? reads as follows:)'
+                        + r'|(The amend(ment|ed).*?(is)? as follows:)'
+                        + r'|(Amendment No\. \d+.*?is as follows:)'
+                        + r'|(The yeas and nays resulted.*?, as follows:)'
+                        + r'|(The yeas and nays were ordered)'
+                        + r'|(The result was announced.*?, as follows:)'
+                        + r'|(The .*?editor of the Daily Digest)'
+                        + r'|(The (assistant )?bill clerk read as follows:)'
+                        + r'|(The .*?read as follows:)'
+                        + r'|(The text of the.*?is as follows)'
+                        + r'|(amended( to read)? as follows:)'
+                        + r'|(The material (previously )?referred to (by.*?)?is as follows:)'
+                        + r'|(There was no objection)'
+                        + r'|(The amendment.*?was agreed to)'
+                        + r'|(The motion to table was .*)'
+                        + r'|(The question was taken(;|.))'
+                        + r'|(The following bills and joint resolutions were introduced.*)'
+                        + r'|(The vote was taken by electronic device)'
+                        + r'|(A recorded vote was ordered)'
+                        #+ r'|()'
+                        + r').*')
+    # anchored at the end of the line
+    re_recorderend =    (r'('
+                        + r'(read as follows:)'
+                        + r'|(the Record, as follows:)'
+                        + r'|(ordered to lie on the table; as follows:)'
+                        + r'|(resolutions as follows:)'
+                        + r')$')
+    # sometimes the recorder says something that is not unique to them but
+    # which, in the right context, we take to indicate a recorder comment.
+    re_recorder_fuzzy = (r'^\s+(?P<start>'
+                        + r'(Pending:)'
+                        + r'|(By M(r|s|rs)\. .* \(for .*)'
+                        #+ r'|()'
+                        + r').*')
+    # NCJ's broader version below, tested on one day of the record.
+    # works, honest
+    re_recorder_ncj = (r'^\s+(?P<start>'
+                       + r'(Pending:)'
+                       + r'|(By M(r|rs|s|iss)[\.]? [a-zA-Z]+))')
+    re_clerk = r'^\s+(?P<start>The Clerk (read|designated))'
+    re_allcaps = r'^ \s*(?!([_=]+|-{3,}))(?P<title>([A-Z]+[^a-z]+))$'
+    re_linebreak = r'\s+([_=]+|-{3,})\s*'
+    re_newpage =   r'\s+\[\[Page \w+\]\]'
+    re_timestamp = r'\s+\{time\}\s+\d{4}'
+
+    """
+    This is a dict of line cases.
+    In previous versions, these relations were called
+    explicitly multiple times in multiple places.
+
+    This way is more extensible and easier to track cases.
+
+    Usage:
+    If break_flow == True: <interrupt current item>
+    If speaker_re == True: speaker = re.match(line,
+                                     <pattern from patterns>).
+                                     .group(<speaker_group>)
+    else: speaker = <speaker>
+
+    """
+    item_types = { 'speech':
+                   {'patterns':['Mr. BOEHNER'],
+                    'speaker_re':True,
+                    'speaker_group':'name',
+                    'break_flow':True
+                    },
+                    'recorder':
+                    {'patterns':[re_recorderstart,
+                                 re_recorderend,
+                                 re_recorder_ncj],
+                    'speaker_re':False,
+                    'speaker':'The RECORDER',
+                    'break_flow':True
+                    },
+                    'clerk':
+                    {'patterns':[re_clerk],
+                     'speaker_re':False,
+                     'speaker':'The Clerk',
+                     'break_flow':True
+                     },
+                     'linebreak':
+                     {'patterns':[re_linebreak],
+                      'speaker_re':False,
+                      'speaker':'None',
+                      'break_flow':False
+                      },
+                      'rollcall':
+                      {'patterns':[re_rollcall],
+                      'speaker_re':False,
+                      'speaker':'None',
+                      'break_flow':True
+                      },
+                      'metacharacters':
+                      {'patterns':[re_timestamp,
+                                   re_newpage],
+                       'speaker_re':False,
+                       'speaker':'None',
+                       'break_flow':False
+                       },
+                      'empty_line':
+                      {'patterns':[r'(^[\s]+$)'],
+                       'speaker_re':False,
+                       'speaker':'None',
+                       'break_flow':False
+                       },
+                       'title':
+                       {'patterns':[re_allcaps],
+                        'speaker_re':False,
+                        'speaker':'None',
+                        'break_flow':True}
+                    }
+                      
+
+    # Some metadata
+    crdoc = {}
+    crdoc['header'] = False
+    crdoc['content'] = []
+    crdoc['titles'] = {}
+    crdoc['items'] = []
+    num_titles = 0
+    speakers = []
+    doc_ref = ''
+    doc_time = -1
+    doc_start_time = -1
+    doc_stop_time = -1
+    doc_duration = -1
+    doc_chamber = 'Unspecified'
+    doc_related_bills = []
+    
+    # Metadata-making functions
+    def title_id(self):
+        id_num = self.num_titles
+        self.num_titles += 1
+        return id_num
+        
+    def make_re_newspeaker(self):
+        speaker_list = '|'.join([mbr['cr_name'] for mbr in self.speakers \
+        if mbr['role'] == 'SPEAKING'])
+        re_speakers = r'^(  |<bullet> )(?P<name>((' + speaker_list + ')|(((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.))'
+        return re_speakers
+    
+    def find_people(self):
+        mbrs = self.doc_ref.find_all('congmember')
+        if mbrs:
+            for mbr in mbrs:
+                self.speakers.append({ \
+                'cr_name':mbr.find('name',{'type':'parsed'}).string, \
+                'bioguideid':mbr['bioguideid'], 'chamber':mbr['chamber'], \
+                'congress':mbr['congress'], 'party':mbr['party'], \
+                'state':mbr['state'],'role':mbr['role'], \
+                'name_full':mbr.find('name',{'type':'authority-fnf'}).string \
+                })
+
+    def find_related_bills(self):
+        related_bills = self.doc_ref.find_all('bill')
+        if len(related_bills) > 0:
+            self.doc_related_bills = \
+              [bill.attrs for bill in related_bills]
+        
+    def date_from_entry(self):
+        year, month, day = re.match(self.re_time,self.access_path).group('year','month','day')
+        if self.doc_ref.time:
+            from_hr,from_min,from_sec = self.doc_ref.time['from'].split(':')
+            to_hr,to_min,to_sec = self.doc_ref.time['to'].split(':')
+            self.doc_date = datetime(int(year),int(month),int(day))
+            self.doc_start_time = datetime(int(year),int(month),int(day),\
+            int(from_hr),int(from_min),int(from_sec))
+            self.doc_stop_time = datetime(int(year),int(month),int(day),\
+            int(to_hr),int(to_min),int(to_sec))
+            self.doc_duration = self.doc_stop_time - self.doc_start_time
+    
+    # Flow control for metadata generation
+    def gen_file_metadata(self):
+        self.doc_ref = self.cr_dir.mods.find('accessid', text=self.access_path).parent
+        self.doc_title, self.cr_loc = self.doc_ref.searchtitle.string.split(';')
+        self.find_people()
+        self.find_related_bills()
+        self.date_from_entry()
+        self.chamber = self.doc_ref.granuleclass.string
+        self.cr_vol, self.cr_num = re.match(self.re_vol,self.cr_loc).group('vol','num')
+        self.re_newspeaker = self.make_re_newspeaker()
+        self.item_types['speech']['patterns'] = [self.re_newspeaker]
+
+    # That's it for metadata. Below deals with content.
+
+    def read_htm_file(self):
+        """
+        This function updates a self.cur_line
+        attribute. So now for each call to the iterator there are two
+        pointers to the next line - one for the function,
+        and one for the object.
+
+        The purpose of the attribute is to
+        give each parsing function a "starting position"
+        so that the handshake between functions is easier. Now
+        the current (or last) line is tracked in only one place
+        and the same way by all object methods.
+        """
+        self.lines_remaining = True
+        with open(self.filepath, 'r') as htm_file:
+            htm_lines = htm_file.read()
+            htm_text = BeautifulSoup(htm_lines)
+        text = htm_text.pre.text.split('\n')
+        for line in text:
+            self.cur_line = line
+            yield line
+        self.lines_remaining = False
+    
+    def get_header(self):
+        """
+        Only after I wrote this did I realize
+        how bad things can go when you call
+        next() on an iterator instead of treating
+        it as a list.
+
+        This code works, though.
+        """
+        header_in = self.the_text.next()
+        if header_in == u'':
+            header_in = self.the_text.next()
+        match = re.match(self.re_vol_file, header_in)
+        if match:
+            vol, num, wkday, month, day, year = match.group( \
+            'vol','num','wkday','month','day','year')
+        else:
+            return False
+        header_in = self.the_text.next()
+        match = re.match(self.re_chamber, header_in)
+        if match:
+            chamber = match.group('chamber')
+        else:
+            return False
+        header_in = self.the_text.next()
+        match = re.match(self.re_pages, header_in)
+        if match:
+            pages = match.group('pages')
+        else:
+            return False
+        header_in = self.the_text.next()
+        match = re.match(self.re_trail, header_in)
+        if match:
+            pass
+        else:
+            return False
+        return vol, num, wkday, month, day, year, chamber, pages
+
+    def write_header(self):
+        header = self.get_header()
+        if header:
+            self.crdoc['header'] = {'vol':header[0],'num':header[1],\
+            'wkday':header[2],'month':header[3],'day':header[4],\
+            'year':header[5],'chamber':header[6],'pages':header[7]}
+
+    def get_title(self):
+        """
+        Throw out empty lines
+        Parse consecutive title-matching strings into a title str
+        Stop on the first line that isn't empty and isn't a title
+        Return the title str if it exists.
+        """
+
+        title_str = ''
+        for line in self.the_text:
+            if line == u'':
+                pass
+            else:
+                a_match = re.match(self.re_allcaps, line)
+                if a_match:
+                    title_str = ' '.join([title_str,a_match.group('title')])
+                else:
+                    break
+
+        if len(title_str) > 0:
+            return title_str.strip()
+        else:
+            return False
+
+    def write_page(self):
+        turn = 0
+        tid = self.title_id()
+        title = self.get_title()
+        if title:
+            the_content = { 'title_id': tid, 'title': title, 'items': []}
+            while self.lines_remaining:
+                # while not re.match(self.re_allcaps,self.cur_line):
+                new_item = crItem(self)
+                new_item.item['turn'] = turn
+                the_content['items'].append(new_item.item)
+                turn += 1
+                self.crdoc['items'].append(the_content)
+
+        print 'Stopped. The last line is: {0}'.format(self.cur_line)
+
+    def parse(self):
+        """
+        Flow control for parsing content.
+        """
+        self.the_text = self.read_htm_file()
+        self.write_header()
+        # self.write_page()
+        
+
+    def __init__(self, abspath, cr_dir, **kwargs):
+        # file data
+        self.filepath = abspath
+        self.filedir, self.filename = os.path.split(self.filepath)
+        self.cr_dir = cr_dir
+        self.access_path = self.filename.split('.')[0]
+
+        # Generate all metadata including list of speakers
+        self.gen_file_metadata()
+        # Must come after speaker list generation
+        self.item_breakers = []
+        self.skip_items = []
+        for x in self.item_types.values():
+            if x['break_flow'] == True:
+                self.item_breakers.extend(x['patterns'])
+            else:
+                self.skip_items.extend(x['patterns'])
+
+        # Parse the file
+        self.parse()
