@@ -94,73 +94,6 @@ class ParseCRFile(object):
     re_newpage =   r'\s*\[\[Page \w+\]\]'
     re_timestamp = r'\s+\{time\}\s+\d{4}'
 
-    """
-    This is a dict of line cases.
-    In previous versions, these relations were called
-    explicitly multiple times in multiple places.
-
-    This way is more extensible and easier to track cases.
-
-    Usage:
-    If break_flow == True: <interrupt current item>
-    If speaker_re == True: speaker = re.match(line,
-                                     <pattern from patterns>).
-                                     .group(<speaker_group>)
-    else: speaker = <speaker>
-
-    """
-    item_types = { 'speech':
-                   {'patterns':['Mr. BOEHNER'],
-                    'speaker_re':True,
-                    'speaker_group':'name',
-                    'break_flow':True
-                    },
-                    'recorder':
-                    {'patterns':[re_recorderstart,
-                                 re_recorderend,
-                                 re_recorder_ncj],
-                    'speaker_re':False,
-                    'speaker':'The RECORDER',
-                    'break_flow':True
-                    },
-                    'clerk':
-                    {'patterns':[re_clerk],
-                     'speaker_re':False,
-                     'speaker':'The Clerk',
-                     'break_flow':True
-                     },
-                     'linebreak':
-                     {'patterns':[re_linebreak],
-                      'speaker_re':False,
-                      'speaker':'None',
-                      'break_flow':False
-                      },
-                      'rollcall':
-                      {'patterns':[re_rollcall],
-                      'speaker_re':False,
-                      'speaker':'None',
-                      'break_flow':True
-                      },
-                      'metacharacters':
-                      {'patterns':[re_timestamp,
-                                   re_newpage],
-                       'speaker_re':False,
-                       'speaker':'None',
-                       'break_flow':False
-                       },
-                      'empty_line':
-                      {'patterns':[r'(^[\s]+$)'],
-                       'speaker_re':False,
-                       'speaker':'None',
-                       'break_flow':False
-                       },
-                       'title':
-                       {'patterns':[re_allcaps],
-                        'speaker_re':False,
-                        'speaker':'None',
-                        'break_flow':True}
-                    }
-    
     # Metadata-making functions
     def title_id(self):
         id_num = self.num_titles
@@ -291,6 +224,9 @@ class ParseCRFile(object):
         Parse consecutive title-matching strings into a title str
         Stop on the first line that isn't empty and isn't a title
         Return the title str if it exists.
+
+        We pretty much assume the first title on the page applies
+        to everything below it
         """
 
         title_str = ''
@@ -337,7 +273,92 @@ class ParseCRFile(object):
         self.the_text = self.read_htm_file()
         self.write_header()
         self.write_page()
-        
+
+    def emptystr(self):
+        """
+        Returns an empty line for certain
+        edge cases, like line breaks
+        """
+        return ''
+
+    """
+    This is a dict of line cases.
+    In previous versions, these relations were called
+    explicitly multiple times in multiple places.
+
+    This way is more extensible and easier to track cases.
+
+    Usage:
+    If break_flow == True: <interrupt current item>
+    If speaker_re == True: speaker = re.match(line,
+                                     <pattern from patterns>).
+                                     .group(<speaker_group>)
+    else: speaker = <speaker>
+
+    It has to come after some of the functions because of
+    how I want to handle special cases.
+    """
+    item_types = { 'speech':
+                   {'patterns':['Mr. BOEHNER'],
+                    'speaker_re':True,
+                    'speaker_group':'name',
+                    'break_flow':True,
+                    'special_case':False
+                    },
+                    'recorder':
+                    {'patterns':[re_recorderstart,
+                                 re_recorderend,
+                                 re_recorder_ncj],
+                    'speaker_re':False,
+                    'speaker':'The RECORDER',
+                    'break_flow':True,
+                    'special_case':False
+                    },
+                    'clerk':
+                    {'patterns':[re_clerk],
+                     'speaker_re':False,
+                     'speaker':'The Clerk',
+                     'break_flow':True,
+                     'special_case':False
+                     },
+                     'linebreak':
+                     {'patterns':[re_linebreak],
+                      'speaker_re':False,
+                      'speaker':'None',
+                      'break_flow':True,
+                      'special_case':True,
+                      'condition':emptystr
+                      },
+                      'rollcall':
+                      {'patterns':[re_rollcall],
+                      'speaker_re':False,
+                      'speaker':'None',
+                      'break_flow':True,
+                      'special_case':False
+                      },
+                      'metacharacters':
+                      {'patterns':[re_timestamp,
+                                   re_newpage],
+                       'speaker_re':False,
+                       'speaker':'None',
+                       'break_flow':False,
+                       'special_case':False
+                       },
+                      'empty_line':
+                      {'patterns':[r'(^[\s]+$)'],
+                       'speaker_re':False,
+                       'speaker':'None',
+                       'break_flow':False,
+                       'special_case':False
+                       },
+                       'title':
+                       {'patterns':[re_allcaps],
+                        'speaker_re':False,
+                        'speaker':'None',
+                        'break_flow':True,
+                        'special_case':True,
+                        'condition':get_title}
+                    }
 
     def __init__(self, abspath, cr_dir, **kwargs):
 

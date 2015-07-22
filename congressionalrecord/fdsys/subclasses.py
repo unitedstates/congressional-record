@@ -24,23 +24,31 @@ class crItem(object):
                 amatch = re.match(pat,parent.cur_line)
                 if amatch:
                     self.item['kind'] = kind
+                    if params['special_case']:
+                        self.item['edge'] = True
+                        self.item['do'] = params['condition']
+                    else:
+                        self.item['edge'] = False
                     if params['speaker_re']:
                         self.item['speaker'] = amatch.group( \
                                           params['speaker_group'])
                     else:
                         self.item['speaker'] = params['speaker']
         # OK so now put everything else in with it
-        # that doesn't interrupt an item            
-        for line in parent.the_text:
-            if self.is_break(line):
-                break
-            elif self.is_skip(line):
-                pass
-            else:
-                content.append(line)
-        # The original text was split on newline, so ...
-        item_text = '\n'.join(content)
-        self.item['text'] = item_text
+        # that doesn't interrupt an item
+        if self.item['edge']:
+            content += self.item['do']()
+        else:
+            for line in parent.the_text:
+                if self.is_break(line):
+                    break
+                elif self.is_skip(line):
+                    pass
+                else:
+                    content.append(line)
+            # The original text was split on newline, so ...
+            item_text = '\n'.join(content)
+            self.item['text'] = item_text
         
                     
             
