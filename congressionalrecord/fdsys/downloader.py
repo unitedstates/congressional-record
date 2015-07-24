@@ -5,29 +5,9 @@ from time import sleep
 from zipfile import ZipFile
 from cr_parser import ParseCRDir, ParseCRFile
 import json
-from pyselasticsearch import ElasticSearch
+from pyselasticsearch import ElasticSearch, bulk_chunks
 
-class elasticSearchStack(object)
-    """
-    Accepts crdoc objects (python dicts) and stores them as a list until
-    <chunk_size> are present. Then, passes those objects to es bulk index API
-    and updates the stack.
-    """
-    def stackwatch(self,**kwargs):
-        while self.run == True:
-            if len(self.stack) > kwargs['chunk_size']:
-                output = self.stack[0:kwargs['chunk_size']]
-                es.bulk((es.index_op(doc,id=doc.pop('id')) for doc in output),
-                        index = kwargs['index'])
-                self.stack = self.stack[kwargs['chunk_size']:]
-                 
 
-    def __init__(self, chunk_size = 100,es_url = 'http://localhost:9200', **kwargs):
-        self.es_conn = ElasticSearch(es_url)
-        self.stack = []
-        self.run = True
-        
-        
 class Downloader(object):
     """
     Bulk downloads will pass objects to the tail end of a stack in a stack object.
@@ -83,19 +63,27 @@ class Downloader(object):
             with open(outpath,'w') as out_json:
                 json.dump(crfile.crdoc,out_json)
         elif do_mode == 'es':
-            assert 'es_stack' in kwargs.keys(), 'Must specify ElasticSearch stack'
-            kwargs['es_stack'].stack.append(crfile.crdoc)
+            yield crfile.crdoc
         else:
             print 'Unknown mode {0}'.format(do_mode)
             pass
 
     def __init__(self,start,parse,**kwargs):
-        # ex. es_stack = ElasticSearch stack object
+        # ex. es_url = ElasticSearch service url
+        # index = ElasticSearch index
         # outpath = output (specified by default)
         # do_mode = es (default 'pass')
         # end = ending date
-        self.bulkdownload(start,parse,**kwargs)
-            
+        print 'Downloader object ready with params:'
+        print ','.join(['='.join([key,value]) for key,value in kwargs.items()])
+        if kwargs['do_mode'] == 'es':
+            es = ElasticSearch(kwargs['url'])
+            for chunk in bulk_chunks((es.index_op(doc,id=doc.pop('id')) for doc
+                                        in self.bulkdownload(start,parse,**kwargs)),
+                                        docs_per_chunk=100):
+                es.bulk(chunk,index=kwargs['index'])
+                                                                       
+                            
         
 
 class downloadRequest(object):
