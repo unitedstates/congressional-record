@@ -3,15 +3,38 @@ import os
 from datetime import datetime,date,timedelta
 from time import sleep
 from zipfile import ZipFile
+from cr_parser import ParseCRDir, ParseCRFile
 
-def bulkdownload(start,end,**kwargs):
+def bulkdownload(start,end,extract=True,**kwargs):
     day = datetime.strptime(start,'%Y-%m-%d')
     end_day = datetime.strptime(end,'%Y-%m-%d')
     while day <= end_day:
         day_str = datetime.strftime(day,'%Y-%m-%d')
-        fdsysExtract(day_str)
+        fdsysExtract(day_str,**kwargs)
+        if extract:
+            dir_str = 'CREC-' + day_str
+            year_str = str(day.year)
+            if 'outpath' not in kwargs.keys():
+                outpath = 'output'
+            else:
+                outpath = kwargs['outpath']
+            try:
+                dir_path = os.path.join(outpath,year_str,dir_str)
+                crdir = ParseCRDir(dir_path)
+                for the_file in os.listdir(os.path.join(dir_path,'html')):
+                    parse_path = os.path.join(dir_path,'html',the_file)
+                    if '-PgD' in parse_path:
+                        print 'Digest file. Skipping {0}'.format(parse_path)
+                        break
+                    crfile = ParseCRFile(parse_path,crdir)
+                    handle_crfile(crfile)
+            except IOError, e:
+                print '{0}, skipping.'.format(e)
         day += timedelta(days=1)        
-        
+
+def handle_crfile(a_file):
+    pass
+
 class downloadRequest(object):
 
     its_today = date.strftime(date.today(),'%Y-%m-%d')

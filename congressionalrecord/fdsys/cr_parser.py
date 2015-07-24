@@ -13,7 +13,7 @@ class ParseCRDir(object):
         ''' Load up all metadata for this directory
          from the mods file.'''
         with open(self.mods_path,'r') as mods_file:
-            self.mods = BeautifulSoup(mods_file)
+            self.mods = BeautifulSoup(mods_file,"lxml")
         
     def __init__(self, abspath, **kwargs):
         
@@ -173,7 +173,7 @@ class ParseCRFile(object):
         self.lines_remaining = True
         with open(self.filepath, 'r') as htm_file:
             htm_lines = htm_file.read()
-            htm_text = BeautifulSoup(htm_lines)
+            htm_text = BeautifulSoup(htm_lines,"lxml")
         text = htm_text.pre.text.split('\n')
         for line in text:
             self.cur_line = line
@@ -264,8 +264,9 @@ class ParseCRFile(object):
             # while not re.match(self.re_allcaps,self.cur_line):
             try:
                 item = crItem(self).item
-                item['turn'] = turn
-                turn += 1
+                if item['kind'] == 'speech':
+                    item['turn'] = turn
+                    turn += 1
                 the_content['items'].append(item)
             except Exception, e:
                 print '{0}'.format(e)
@@ -387,7 +388,7 @@ class ParseCRFile(object):
         
         # file data
         self.filepath = abspath
-        self.filedir, self.filename = os.path.split(self.filepath)
+        self.filedir, self.filename = os.path.split(abspath)
         self.cr_dir = cr_dir
         self.access_path = self.filename.split('.')[0]
 
