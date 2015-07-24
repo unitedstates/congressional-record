@@ -5,7 +5,7 @@ from time import sleep
 from zipfile import ZipFile
 from cr_parser import ParseCRDir, ParseCRFile
 import json
-from pyselasticsearch import ElasticSearch, bulk_chunks
+from pyelasticsearch import ElasticSearch, bulk_chunks
 
 
 class Downloader(object):
@@ -13,12 +13,16 @@ class Downloader(object):
     Bulk downloads will pass objects to the tail end of a stack in a stack object.
     The stack object should bulk index things <chunk> at a time.
     """
-    def bulkdownload(self,start,parse=True,**kwargs):
+    def bulkdownload(self,start,**kwargs):
         day = datetime.strptime(start,'%Y-%m-%d')
         if 'end' in kwargs.keys():
             end = kwargs['end']
         else:
             end = start
+        if 'parse' in kwargs.keys():
+            parse = kwargs['parse']
+        else:
+            parse = True
         end_day = datetime.strptime(end,'%Y-%m-%d')
         while day <= end_day:
             day_str = datetime.strftime(day,'%Y-%m-%d')
@@ -39,7 +43,8 @@ class Downloader(object):
                             print 'Skipping {0}'.format(parse_path)
                         else:
                             crfile = ParseCRFile(parse_path,crdir)
-                            handle_crfile(crfile,**kwargs)
+                            the_doc = self.handle_crfile(crfile,**kwargs)
+                            yield the_doc
                 except IOError, e:
                     print '{0}, skipping.'.format(e)
             day += timedelta(days=1)
@@ -63,12 +68,12 @@ class Downloader(object):
             with open(outpath,'w') as out_json:
                 json.dump(crfile.crdoc,out_json)
         elif do_mode == 'es':
-            yield crfile.crdoc
+            return crfile.crdoc
         else:
             print 'Unknown mode {0}'.format(do_mode)
             pass
 
-    def __init__(self,start,parse,**kwargs):
+    def __init__(self,start,**kwargs):
         # ex. es_url = ElasticSearch service url
         # index = ElasticSearch index
         # outpath = output (specified by default)
@@ -77,11 +82,11 @@ class Downloader(object):
         print 'Downloader object ready with params:'
         print ','.join(['='.join([key,value]) for key,value in kwargs.items()])
         if kwargs['do_mode'] == 'es':
-            es = ElasticSearch(kwargs['url'])
+            es = ElasticSearch(kwargs['es_url'])
             for chunk in bulk_chunks((es.index_op(doc,id=doc.pop('id')) for doc
-                                        in self.bulkdownload(start,parse,**kwargs)),
+                                        in self.bulkdownload(start,**kwargs)),
                                         docs_per_chunk=100):
-                es.bulk(chunk,index=kwargs['index'])
+                es.bulk(chunk,index=kwargs['index'],doc_type='crdoc')
                                                                        
                             
         
