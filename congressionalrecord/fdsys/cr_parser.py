@@ -5,7 +5,8 @@ from datetime import datetime
 import re
 import xml.etree.cElementTree as ET
 from subclasses import crItem
-    
+
+
 class ParseCRDir(object):
     
     def gen_dir_metadata(self):
@@ -87,7 +88,8 @@ class ParseCRFile(object):
     # works, honest
     re_recorder_ncj = (r'^\s+(?P<start>'
                        + r'(Pending:)'
-                       + r'|(By M(r|rs|s|iss)[\.]? [a-zA-Z]+))')
+                       + r'|(By M(r|rs|s|iss)[\.]? [a-zA-Z]+))'
+                       )
     re_clerk = r'^\s+(?P<start>The Clerk (read|designated))'
     re_allcaps = r'^ \s*(?!([_=]+|-{3,}))(?P<title>([A-Z]+[^a-z]+))$'
     re_linebreak = r'\s+([_=]+|-{3,})\s*'
@@ -101,8 +103,8 @@ class ParseCRFile(object):
         return id_num
         
     def make_re_newspeaker(self):
-        speaker_list = '|'.join([mbr['cr_name'] for mbr in self.speakers \
-        if mbr['role'] == 'SPEAKING'])
+        speaker_list = '|'.join([mbr for mbr in self.speakers.keys() \
+        if self.speakers[mbr]['role'] == 'SPEAKING'])
         re_speakers = r'^(  |<bullet> )(?P<name>((' + speaker_list + ')|(((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.))'
         return re_speakers
     
@@ -110,13 +112,15 @@ class ParseCRFile(object):
         mbrs = self.doc_ref.find_all('congmember')
         if mbrs:
             for mbr in mbrs:
-                self.speakers.append({ \
-                'cr_name':mbr.find('name',{'type':'parsed'}).string, \
-                'bioguideid':mbr['bioguideid'], 'chamber':mbr['chamber'], \
-                'congress':mbr['congress'], 'party':mbr['party'], \
-                'state':mbr['state'],'role':mbr['role'], \
-                'name_full':mbr.find('name',{'type':'authority-fnf'}).string \
-                })
+                self.speakers[mbr.find('name',
+                                       {'type':'parsed'}).string] = \
+                                       {'bioguideid':mbr['bioguideid'],
+                                        'chamber':mbr['chamber'], \
+                                        'congress':mbr['congress'],\
+                                        'party':mbr['party'],\
+                                        'state':mbr['state'],\
+                                        'role':mbr['role'],\
+                                        'name_full':mbr.find('name',{'type':'authority-fnf'}).string}
 
     def find_related_bills(self):
         related_bills = self.doc_ref.find_all('bill')
@@ -212,6 +216,7 @@ class ParseCRFile(object):
         return vol, num, wkday, month, day, year, chamber, pages
 
     def write_header(self):
+        self.crdoc['id'] = self.access_path
         header = self.get_header()
         if header:
             self.crdoc['header'] = {'vol':header[0],'num':header[1],\
@@ -249,19 +254,20 @@ class ParseCRFile(object):
         turn = 0
         tid = self.title_id()
         title = self.get_title()
+        the_content = {'title_id': tid, 'title':'None', 'items':[]}
         if title:
-            the_content = { 'title_id': tid, 'title': title, 'items': []}
-            while True:
-                # while not re.match(self.re_allcaps,self.cur_line):
-                try:
-                    item = crItem(self).item
-                    item['turn'] = turn
-                    turn += 1
-                    the_content['items'].append(item)
-                except Exception, e:
-                    print '{0}'.format(e)
-                    break
-                
+            the_content['title'] = title
+        while True:
+            # while not re.match(self.re_allcaps,self.cur_line):
+            try:
+                item = crItem(self).item
+                item['turn'] = turn
+                turn += 1
+                the_content['items'].append(item)
+            except Exception, e:
+                print '{0}'.format(e)
+                break
+                        
             self.crdoc['content'].append(the_content)
 
         print 'Stopped. The last line is: {0}'.format(self.cur_line)
@@ -367,7 +373,7 @@ class ParseCRFile(object):
         self.crdoc['header'] = False
         self.crdoc['content'] = []
         self.num_titles = 0
-        self.speakers = []
+        self.speakers = {}
         self.doc_ref = ''
         self.doc_time = -1
         self.doc_start_time = -1
