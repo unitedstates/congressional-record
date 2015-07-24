@@ -5,45 +5,98 @@ from time import sleep
 from zipfile import ZipFile
 from cr_parser import ParseCRDir, ParseCRFile
 import json
+from pyselasticsearch import ElasticSearch
 
-def bulkdownload(start,extract=True,**kwargs):
-    day = datetime.strptime(start,'%Y-%m-%d')
-    if 'end' in kwargs.keys():
-        end = kwargs['end']
-    else:
-        end = start
-    end_day = datetime.strptime(end,'%Y-%m-%d')
-    while day <= end_day:
-        day_str = datetime.strftime(day,'%Y-%m-%d')
-        fdsysExtract(day_str,**kwargs)
-        if extract:
-            dir_str = 'CREC-' + day_str
-            year_str = str(day.year)
-            if 'outpath' not in kwargs.keys():
-                outpath = 'output'
-            else:
-                outpath = kwargs['outpath']
-            try:
-                dir_path = os.path.join(outpath,year_str,dir_str)
-                crdir = ParseCRDir(dir_path)
-                for the_file in os.listdir(os.path.join(dir_path,'html')):
-                    parse_path = os.path.join(dir_path,'html',the_file)
-                    if '-PgD' in parse_path:
-                        print 'Digest file. Skipping {0}'.format(parse_path)
-                        break
-                    crfile = ParseCRFile(parse_path,crdir)
-                    handle_crfile(crfile)
-            except IOError, e:
-                print '{0}, skipping.'.format(e)
-        day += timedelta(days=1)        
+class elasticSearchStack(object)
+    """
+    Accepts crdoc objects (python dicts) and stores them as a list until
+    <chunk_size> are present. Then, passes those objects to es bulk index API
+    and updates the stack.
+    """
+    def stackwatch(self,**kwargs):
+        while self.run == True:
+            if len(self.stack) > kwargs['chunk_size']:
+                output = self.stack[0:kwargs['chunk_size']]
+                es.bulk((es.index_op(doc,id=doc.pop('id')) for doc in output),
+                        index = kwargs['index'])
+                self.stack = self.stack[kwargs['chunk_size']:]
+                 
 
-def handle_crfile(crfile,do_json=True):
-    if do_json:
-        outpath = ''.join([crfile.filepath.split('.')[0],'.json'])
-        with open(outpath,'w') as out_json:
-            json.dump(crfile.crdoc,out_json)
-    else:
-        pass
+    def __init__(self, chunk_size = 100,es_url = 'http://localhost:9200', **kwargs):
+        self.es_conn = ElasticSearch(es_url)
+        self.stack = []
+        self.run = True
+        
+        
+class Downloader(object):
+    """
+    Bulk downloads will pass objects to the tail end of a stack in a stack object.
+    The stack object should bulk index things <chunk> at a time.
+    """
+    def bulkdownload(self,start,parse=True,**kwargs):
+        day = datetime.strptime(start,'%Y-%m-%d')
+        if 'end' in kwargs.keys():
+            end = kwargs['end']
+        else:
+            end = start
+        end_day = datetime.strptime(end,'%Y-%m-%d')
+        while day <= end_day:
+            day_str = datetime.strftime(day,'%Y-%m-%d')
+            fdsysExtract(day_str,**kwargs)
+            if parse:
+                dir_str = 'CREC-' + day_str
+                year_str = str(day.year)
+                if 'outpath' not in kwargs.keys():
+                    outpath = 'output'
+                else:
+                    outpath = kwargs['outpath']
+                try:
+                    dir_path = os.path.join(outpath,year_str,dir_str)
+                    crdir = ParseCRDir(dir_path)
+                    for the_file in os.listdir(os.path.join(dir_path,'html')):
+                        parse_path = os.path.join(dir_path,'html',the_file)
+                        if '-PgD' in parse_path or 'FrontMatter' in parse_path:
+                            print 'Skipping {0}'.format(parse_path)
+                        else:
+                            crfile = ParseCRFile(parse_path,crdir)
+                            handle_crfile(crfile,**kwargs)
+                except IOError, e:
+                    print '{0}, skipping.'.format(e)
+            day += timedelta(days=1)
+
+    def handle_crfile(self,crfile,**kwargs):
+        """
+         do_mode is either 'json' (write JSON to flatfiles)
+         or 'es' (index on elasticsearch)
+        """
+        if 'do_mode' in kwargs.keys():
+            do_mode = kwargs['do_mode']
+        else:
+            do_mode = 'pass'
+        if do_mode == 'json':
+            filename = os.path.split(crfile.filepath)[-1].split('.')[0] + '.json'
+            outpath = os.path.split(crfile.filepath)[0]
+            outpath = os.path.split(outpath)[0]
+            if 'json' not in os.listdir(outpath):
+                os.mkdir(os.path.join(outpath,'json'))
+            outpath = os.path.join(outpath,'json',filename)
+            with open(outpath,'w') as out_json:
+                json.dump(crfile.crdoc,out_json)
+        elif do_mode == 'es':
+            assert 'es_stack' in kwargs.keys(), 'Must specify ElasticSearch stack'
+            kwargs['es_stack'].stack.append(crfile.crdoc)
+        else:
+            print 'Unknown mode {0}'.format(do_mode)
+            pass
+
+    def __init__(self,start,parse,**kwargs):
+        # ex. es_stack = ElasticSearch stack object
+        # outpath = output (specified by default)
+        # do_mode = es (default 'pass')
+        # end = ending date
+        self.bulkdownload(start,parse,**kwargs)
+            
+        
 
 class downloadRequest(object):
 
