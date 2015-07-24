@@ -29,7 +29,7 @@ class ParseCRFile(object):
     re_vol = r' Congressional Record Vol. (?P<vol>[0-9]+), No. (?P<num>[0-9]+)$'
     re_vol_file =   r'^\[Congressional Record Volume (?P<vol>[0-9]+), Number (?P<num>[0-9]+)'\
                     + r' \((?P<wkday>[A-Za-z]+), (?P<month>[A-Za-z]+) (?P<day>[0-9]+), (?P<year>[0-9]{4})\)\]'
-    re_chamber =  r'\[(?P<chamber>[A-Za-z]+)\]'
+    re_chamber =  r'\[(?P<chamber>[A-Za-z\s]+)\]'
     re_pages =  r'\[Page[s]? (?P<pages>[\w\-]+)\]'
     re_trail = r'From the Congressional Record Online'\
       + r' through the Government Publishing Office \[www.gpo.gov\]$'
@@ -201,7 +201,12 @@ class ParseCRFile(object):
         header_in = self.the_text.next()
         match = re.match(self.re_chamber, header_in)
         if match:
-            chamber = match.group('chamber')
+            if match.group('chamber') == 'Extensions of Remarks':
+                chamber = 'House'
+                extensions = True
+            else:
+                chamber = match.group('chamber')
+                extensions = False
         else:
             return False
         header_in = self.the_text.next()
@@ -216,7 +221,7 @@ class ParseCRFile(object):
             pass
         else:
             return False
-        return vol, num, wkday, month, day, year, chamber, pages
+        return vol, num, wkday, month, day, year, chamber, pages, extensions
 
     def write_header(self):
         self.crdoc['id'] = self.access_path
@@ -224,7 +229,8 @@ class ParseCRFile(object):
         if header:
             self.crdoc['header'] = {'vol':header[0],'num':header[1],\
             'wkday':header[2],'month':header[3],'day':header[4],\
-            'year':header[5],'chamber':header[6],'pages':header[7]}
+            'year':header[5],'chamber':header[6],'pages':header[7],\
+            'extension':header[8]}
 
     def get_title(self):
         """
