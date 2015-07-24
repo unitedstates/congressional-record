@@ -4,9 +4,14 @@ from datetime import datetime,date,timedelta
 from time import sleep
 from zipfile import ZipFile
 from cr_parser import ParseCRDir, ParseCRFile
+import json
 
-def bulkdownload(start,end,extract=True,**kwargs):
+def bulkdownload(start,extract=True,**kwargs):
     day = datetime.strptime(start,'%Y-%m-%d')
+    if 'end' in kwargs.keys():
+        end = kwargs['end']
+    else:
+        end = start
     end_day = datetime.strptime(end,'%Y-%m-%d')
     while day <= end_day:
         day_str = datetime.strftime(day,'%Y-%m-%d')
@@ -32,8 +37,13 @@ def bulkdownload(start,end,extract=True,**kwargs):
                 print '{0}, skipping.'.format(e)
         day += timedelta(days=1)        
 
-def handle_crfile(a_file):
-    pass
+def handle_crfile(crfile,do_json=True):
+    if do_json:
+        outpath = ''.join([crfile.filepath.split('.')[0],'.json'])
+        with open(outpath,'w') as out_json:
+            json.dump(crfile.crdoc,out_json)
+    else:
+        pass
 
 class downloadRequest(object):
 
