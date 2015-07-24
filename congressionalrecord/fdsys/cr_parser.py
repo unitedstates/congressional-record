@@ -105,7 +105,10 @@ class ParseCRFile(object):
     def make_re_newspeaker(self):
         speaker_list = '|'.join([mbr for mbr in self.speakers.keys() \
         if self.speakers[mbr]['role'] == 'SPEAKING'])
-        re_speakers = r'^(  |<bullet> )(?P<name>((' + speaker_list + ')|(((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.))'
+        if len(speaker_list) > 0:
+            re_speakers = r'^(  |<bullet> )(?P<name>((' + speaker_list + ')|(((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.))'
+        else:
+            re_speakers = r'^(  |<bullet> )(?P<name>((((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.))'
         return re_speakers
     
     def find_people(self):
@@ -268,7 +271,7 @@ class ParseCRFile(object):
                 print '{0}'.format(e)
                 break
                         
-            self.crdoc['content'].append(the_content)
+        self.crdoc['content'].append(the_content)
 
         print 'Stopped. The last line is: {0}'.format(self.cur_line)
 

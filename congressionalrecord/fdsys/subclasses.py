@@ -30,10 +30,16 @@ class crItem(object):
                     #else:
                     #    self.item['edge'] = False
                     if params['speaker_re']:
-                        self.item['speaker'] = amatch.group( \
-                                          params['speaker_group'])
+                        them = amatch.group(params['speaker_group'])
+                        self.item['speaker'] = them
+                        if them in self.parent.speakers.keys():
+                            self.item['speaker_bioguide'] = \
+                              self.parent.speakers[them]['bioguideid']
+                        else:
+                            self.item['speaker_bioguide'] = None
                     else:
                         self.item['speaker'] = params['speaker']
+                        self.item['speaker_bioguide'] = None
         # OK so now put everything else in with it
         # that doesn't interrupt an item
         #if self.item['edge']:
