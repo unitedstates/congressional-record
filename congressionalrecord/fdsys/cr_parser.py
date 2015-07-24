@@ -278,7 +278,7 @@ class ParseCRFile(object):
                 print '{0}'.format(e)
                 break
                         
-        self.crdoc['content'].append(the_content)
+        self.crdoc['content'] = the_content
 
         print 'Stopped. The last line is: {0}'.format(self.cur_line)
 
