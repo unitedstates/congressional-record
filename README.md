@@ -20,8 +20,8 @@ It has weaknesses:
 * Bill text, letters and other material read into the Record, roll call votes and other things that are not members of Congress speaking are included, but misclassified -- portions are tagged are "titles" or "line breaks."
 
 But also strengths:
-* This parser's approach dramatically reduces the amount of material mistakenly included under a member of Congress' name. Currently the cruft is limited to the occasional note from the Recorder (such as "(Ms. SO-AND-SO asked for and was given permission to ...)") and page numbers (Like [[Page S5678]] that are sometimes not caught.
+* This parser's approach dramatically reduces the amount of material mistakenly included under a member of Congress' name. Currently the cruft is limited to the occasional note from the Recorder (such as "(Ms. SO-AND-SO asked for and was given permission to ...)") and page numbers (Like [[Page S5678]]) that are sometimes not caught.
 
-**This is a radical departure from the original branch. The core ideas -- including the regex -- are from the original. All bugs are the mine.**
+**This is a significant departure from the original branch. The core ideas -- including the regex -- are from the original. All bugs are mine.**
 
 This software is released as-is under the BSD3 License, with no warranty of any kind.
