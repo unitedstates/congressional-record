@@ -141,7 +141,7 @@ class ParseCRFile(object):
     def find_related_bills(self):
         related_bills = self.doc_ref.find_all('bill')
         if len(related_bills) > 0:
-            self.doc_related_bills = \
+            self.crdoc['related_bills'] = \
               [bill.attrs for bill in related_bills]
         
     def date_from_entry(self):
