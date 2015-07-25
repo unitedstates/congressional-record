@@ -113,14 +113,14 @@ class ParseCRFile(object):
     
     def people_helper(self,tagobject):
         output_dict = {}
-        if 'bioguideid' in tagobject.keys():
+        if 'bioguideid' in tagobject.attrs:
             output_dict['bioguideid'] = tagobject['bioguideid']
-        elif 'bioGuideId' in tagobject.keys():
+        elif 'bioGuideId' in tagobject.attrs:
             output_dict['bioguideid'] = tagobject['bioGuideId']
         else:
             output_dict['bioguideid'] = 'None'
         for key in ['chamber','congress','party','state','role']:
-            if key in tagobject.keys():
+            if key in tagobject.attrs:
                 output_dict[key] = tagobject[key]
             else:
                 output_dict[key] = 'None'
