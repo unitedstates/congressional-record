@@ -1,18 +1,20 @@
-# congressionalrecord
-## This is a fork from the unitedstates GitHub repo.
-## It is a branch being rebuilt more or less from the ground up.
-## It would not be possible without years of work from volunteers and Sunlight Foundation staffers who found edge cases, built out complex regular expressions, and iterated repeatedly on this project.
+# congressionalrecord2
+*2015-07-25*
 
-Features:
+This is a fork of [the congressionalrecord repo](https://github.com/unitedstates/congressional-record), part of The United States Project and a product of The Sunlight Foundation and collaborators.
 
-* Parser is modular and extensible: Easy to add and fix edge cases
-* Uses beautifulsoup: Slower, but easier to tweak. (TODO: Rewrite back into lxml later.)
-* Leverages modularity to parse directory-level data only once. This should speed it up.
-* Leverages metadata from XML files provided by THOMAS.gov
-* Produces JSON
+Like the original repo, it parses XML files downloaded from the Government Printing Office and produces structured text.
 
-Currently it can be pointed at a directory and an HTML file in Congressional Record format within that directory, returning a Python dictionary that is easy to convert into a JSON object.
+Unlike the original repo:
+* It outputs JSON intended for use in ElasticSearch, not XML for Lucene.
+* Instances of speech are tagged with the speaker's bioguideid wherever possible, leveraging new metadata not available when the parser was first written.
+* The parser is rewritten to work on top of new libraries rather than with core and builtins. It might not be as fast, but the code is easier to read and modify.
+* The parser is rewritten with certain other efficiency gains in mind -- for example, day-level metadata is parsed only once.
 
-The roadmap starts here and rebuilds all of the functionality of the unitedstates crparser.
+For now it has not been optimized for command line use and really works from the interpreter. It can:
+* Produce a JSON version of any day of the Congressional Record, downloading new files if necessary
+* Parse the Record and instead pass the resulting documents to an ElasticSearch cluster using bulk upload methods
 
-The roadmap ends at a project that can produce all the JSON that an ElasticSearch server would need to power a slightly modified, ES-powered Capitolwords.
+**This is a radical departure from the original branch. The core ideas -- including the regex -- are from the original. All bugs are the mine.**
+
+This software is released as-is under the MIT License, with no warranty of any kind.
