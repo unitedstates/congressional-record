@@ -274,11 +274,10 @@ class ParseCRFile(object):
 
     def write_page(self):
         turn = 0
-        tid = self.title_id()
         title = self.get_title()
-        the_content = {'title_id': tid, 'title':'None', 'items':[]}
+        the_content = []
         if title:
-            the_content['title'] = title
+            self.crdoc['title'] = title
         while True:
             # while not re.match(self.re_allcaps,self.cur_line):
             try:
@@ -286,11 +285,11 @@ class ParseCRFile(object):
                 if item['kind'] == 'speech':
                     item['turn'] = turn
                     turn += 1
-                the_content['items'].append(item)
+                the_content.append(item)
             except Exception, e:
                 print '{0}'.format(e)
                 break
-                        
+
         self.crdoc['content'] = the_content
 
         print 'Stopped. The last line is: {0}'.format(self.cur_line)
