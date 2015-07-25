@@ -111,20 +111,33 @@ class ParseCRFile(object):
             re_speakers = r'^(  |<bullet> )(?P<name>((((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.))'
         return re_speakers
     
+    def people_helper(self,tagobject):
+        output_dict = {}
+        if 'bioguideid' in tagobject.keys():
+            output_dict['bioguideid'] = tagobject['bioguideid']
+        elif 'bioGuideId' in tagobject.keys():
+            output_dict['bioguideid'] = tagobject['bioGuideId']
+        else:
+            output_dict['bioguideid'] = 'None'
+        for key in ['chamber','congress','party','state','role']:
+            if key in tagobject.keys():
+                output_dict[key] = tagobject[key]
+            else:
+                output_dict[key] = 'None'
+        try:
+            output_dict['name_full'] = tagobject.find('name',{'type':'authority-fnf'}).string
+        except:
+            output_dict['name_full'] = 'None'
+        return output_dict
+        
     def find_people(self):
         mbrs = self.doc_ref.find_all('congmember')
         if mbrs:
             for mbr in mbrs:
                 self.speakers[mbr.find('name',
                                        {'type':'parsed'}).string] = \
-                                       {'bioguideid':mbr['bioguideid'],
-                                        'chamber':mbr['chamber'], \
-                                        'congress':mbr['congress'],\
-                                        'party':mbr['party'],\
-                                        'state':mbr['state'],\
-                                        'role':mbr['role'],\
-                                        'name_full':mbr.find('name',{'type':'authority-fnf'}).string}
-
+                                       self.people_helper(mbr)
+    
     def find_related_bills(self):
         related_bills = self.doc_ref.find_all('bill')
         if len(related_bills) > 0:
