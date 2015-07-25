@@ -91,14 +91,12 @@ class downloadRequest(object):
                 binary_content = r.content
             else:
                 binary_content = False
-                r.raise_for_status()
+                self.status = r.status_code
                 print 'Download returned status code %s' % str(r.status_code)
                 
-        except (requests.exceptions.ConnectionError,requests.exceptions.HTTPError) as ce:
+        except (requests.exceptions.ConnectionError) as ce:
             print 'Connection error: %s' % ce
             binary_content = False
-            if r.status_code == 404:
-                self.status = 404
         return binary_content
 
     def __init__(self,url,filename,n_tries=3):
@@ -166,6 +164,8 @@ class fdsysExtract(object):
             outpath = kwargs['outpath']
         abspath = os.path.join(outpath,year,'CREC-' + day + '.zip')
         extract_to = 'CREC-' + day
+        if year not in os.listdir(outpath):
+            os.mkdir(os.path.join(outpath,year))
         if extract_to in os.listdir(os.path.join(outpath,year)):
             print "{0} already exists in extraction tree.".format(extract_to)
             return None
