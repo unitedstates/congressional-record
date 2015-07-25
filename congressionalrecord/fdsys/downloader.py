@@ -43,35 +43,10 @@ class Downloader(object):
                             print 'Skipping {0}'.format(parse_path)
                         else:
                             crfile = ParseCRFile(parse_path,crdir)
-                            the_doc = self.handle_crfile(crfile,**kwargs)
-                            yield the_doc
+                            yield crfile
                 except IOError, e:
                     print '{0}, skipping.'.format(e)
             day += timedelta(days=1)
-
-    def handle_crfile(self,crfile,**kwargs):
-        """
-         do_mode is either 'json' (write JSON to flatfiles)
-         or 'es' (index on elasticsearch)
-        """
-        if 'do_mode' in kwargs.keys():
-            do_mode = kwargs['do_mode']
-        else:
-            do_mode = 'pass'
-        if do_mode == 'json':
-            filename = os.path.split(crfile.filepath)[-1].split('.')[0] + '.json'
-            outpath = os.path.split(crfile.filepath)[0]
-            outpath = os.path.split(outpath)[0]
-            if 'json' not in os.listdir(outpath):
-                os.mkdir(os.path.join(outpath,'json'))
-            outpath = os.path.join(outpath,'json',filename)
-            with open(outpath,'w') as out_json:
-                json.dump(crfile.crdoc,out_json)
-        elif do_mode == 'es':
-            return crfile.crdoc
-        else:
-            print 'Unknown mode {0}'.format(do_mode)
-            pass
 
     def __init__(self,start,**kwargs):
         # ex. es_url = ElasticSearch service url
@@ -83,10 +58,24 @@ class Downloader(object):
         print ','.join(['='.join([key,value]) for key,value in kwargs.items()])
         if kwargs['do_mode'] == 'es':
             es = ElasticSearch(kwargs['es_url'])
-            for chunk in bulk_chunks((es.index_op(doc,id=doc.pop('id')) for doc
+            for chunk in bulk_chunks((es.index_op(crfile.crdoc,id=crfile.crdoc.pop('id')) for crfile
                                         in self.bulkdownload(start,**kwargs)),
                                         docs_per_chunk=100):
                 es.bulk(chunk,index=kwargs['index'],doc_type='crdoc')
+        elif kwargs['do_mode'] == 'json':
+            # outpath called so often to make it easy to follow
+            # the idea that we're traversing a directory tree
+            for crfile in self.bulkdownload(start,**kwargs):
+                filename = os.path.split(crfile.filepath)[-1].split('.')[0] + '.json'
+                outpath = os.path.split(crfile.filepath)[0]
+                outpath = os.path.split(outpath)[0]
+                if 'json' not in os.listdir(outpath):
+                    os.mkdir(os.path.join(outpath,'json'))
+                outpath = os.path.join(outpath,'json',filename)
+                with open(outpath,'w') as out_json:
+                    json.dump(crfile.crdoc,out_json)
+        else:
+            return None
                                                                        
                             
         
