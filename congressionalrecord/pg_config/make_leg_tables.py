@@ -74,7 +74,7 @@ class LegTerms(Base):
     url = Column(String(100))
     leg = relationship(LegBio)
 
-class LegFEC(Base)
+class LegFEC(Base):
     __tablename__ = 'leg_fec'
     fec_id = Column(String(9), primary_key=True)
     bioguide_id = Column(String(7), ForeignKey('leg_bio.bioguideid'))
