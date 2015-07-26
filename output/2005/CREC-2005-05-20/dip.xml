@@ -1,0 +1,1761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:utils="xalan://gov.gpo.fdsys.common.utils" xmlns:xalan="http://xml.apache.org/xalan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:datetime="http://exslt.org/dates-and-times" xmlns="http://www.loc.gov/METS/" xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd" ID="P0b002ee180902ab4" LABEL="Congressional Record Volume 151, Issue 68, (May 20, 2005)" OBJID="CREC-2005-05-20">
+<metsHdr CREATEDATE="2015-05-20T18:56:28Z" LASTMODDATE="2015-05-20T18:56:28Z">
+<agent ROLE="CREATOR" TYPE="ORGANIZATION">
+<name>United States Government Publishing Office</name>
+</agent>
+</metsHdr>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgD521">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgD521" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgD521']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgD521-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgD521-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgD521-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgD521-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgD521-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgD521-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgD521-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgD521-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgD521-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgD521-5">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgD521-5" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgD521-5']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgD525">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgD525" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgD525']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1029">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1029" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1029']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1029-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1029-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1029-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1029-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1029-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1029-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1030">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1030" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1030']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1030-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1030-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1030-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1030-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1030-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1030-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1031">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1031" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1031']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1031-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1031-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1031-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1031-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1031-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1031-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1031-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1031-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1031-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1032">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1032" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1032']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1032-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1032-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1032-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1032-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1032-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1032-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1033">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1033" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1033']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1033-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1033-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1033-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1033-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1033-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1033-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1033-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1033-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1033-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1034">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1034" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1034']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1034-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1034-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1034-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1034-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1034-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1034-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1035">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1035" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1035']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1035-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1035-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1035-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1035-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1035-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1035-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1036">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1036" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1036']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1036-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1036-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1036-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1036-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1036-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1036-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1036-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1036-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1036-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1036-5">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1036-5" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1036-5']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1037">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1037" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1037']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1037-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1037-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1037-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1037-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1037-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1037-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1037-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1037-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1037-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1038">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1038" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1038']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1038-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1038-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1038-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1038-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1038-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1038-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1039">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1039" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1039']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1039-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1039-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1039-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1039-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1039-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1039-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1040">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1040" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1040']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1040-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1040-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1040-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1040-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1040-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1040-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1040-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1040-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1040-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1040-5">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1040-5" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1040-5']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1041">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1041" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1041']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1042">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1042" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1042']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1043">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1043" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1043']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1043-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1043-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1043-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1043-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1043-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1043-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1044">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1044" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1044']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1045">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1045" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1045']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1045-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1045-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1045-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1045-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1045-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1045-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1045-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1045-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1045-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1046">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1046" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1046']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1046-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1046-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1046-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1047">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1047" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1047']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1047-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1047-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1047-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1047-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1047-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1047-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1047-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1047-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1047-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1048">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1048" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1048']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1049">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1049" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1049']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1049-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1049-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1049-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1049-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1049-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1049-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1049-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1049-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1049-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1050">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1050" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1050']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1050-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1050-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1050-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1050-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1050-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1050-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1051">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1051" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1051']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1051-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1051-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1051-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1051-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1051-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1051-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1052">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1052" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1052']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgE1052-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgE1052-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgE1052-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5551">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5551" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5551']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5551-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5551-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5551-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5551-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5551-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5551-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5551-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5551-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5551-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5551-5">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5551-5" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5551-5']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5551-6">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5551-6" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5551-6']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5551-7">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5551-7" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5551-7']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5551-8">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5551-8" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5551-8']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5578">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5578" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5578']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5578-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5578-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5578-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5579">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5579" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5579']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5579-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5579-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5579-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5579-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5579-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5579-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5579-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5579-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5579-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5579-5">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5579-5" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5579-5']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5580">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5580" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5580']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5580-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5580-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5580-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5581">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5581" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5581']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5582">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5582" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5582']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5714">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5714" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5714']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5714-2">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5714-2" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5714-2']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5714-3">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5714-3" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5714-3']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<dmdSec ID="descriptive-metadata-mods-id-CREC-2005-05-20-pt1-PgS5714-4">
+<mdRef ID="id-CREC-2005-05-20-pt1-PgS5714-4" MIMETYPE="text/xml" XPTR="/mods/relatedItem[@ID='id-CREC-2005-05-20-pt1-PgS5714-4']" LOCTYPE="URL" xlink:href="file://mods.xml" MDTYPE="MODS"/>
+</dmdSec>
+<amdSec>
+<digiprovMD ID="provenance-metadata-premis">
+<mdRef MIMETYPE="text/xml" LOCTYPE="URL" xlink:href="file://premis.xml" MDTYPE="PREMIS"/>
+</digiprovMD>
+</amdSec>
+<fileSec><fileGrp USE="text/html"><file ID="FID1" MIMETYPE="text/html" SIZE="1535" DMDID="id-CREC-2005-05-20-pt1-PgD521">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgD521.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgD521.htm"/>
+</file>
+<file ID="FID2" MIMETYPE="text/html" SIZE="56" DMDID="id-CREC-2005-05-20-pt1-PgD521-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgD521-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgD521-2.htm"/>
+</file>
+<file ID="FID3" MIMETYPE="text/html" SIZE="222" DMDID="id-CREC-2005-05-20-pt1-PgD521-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgD521-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgD521-3.htm"/>
+</file>
+<file ID="FID4" MIMETYPE="text/html" SIZE="708" DMDID="id-CREC-2005-05-20-pt1-PgD521-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgD521-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgD521-4.htm"/>
+</file>
+<file ID="FID5" MIMETYPE="text/html" SIZE="18944" DMDID="id-CREC-2005-05-20-pt1-PgD521-5">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgD521-5.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgD521-5.htm"/>
+</file>
+<file ID="FID6" MIMETYPE="text/html" SIZE="5868" DMDID="id-CREC-2005-05-20-pt1-PgD525">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgD525.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgD525.htm"/>
+</file>
+<file ID="FID7" MIMETYPE="text/html" SIZE="2531" DMDID="id-CREC-2005-05-20-pt1-PgE1029">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1029.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1029.htm"/>
+</file>
+<file ID="FID8" MIMETYPE="text/html" SIZE="2759" DMDID="id-CREC-2005-05-20-pt1-PgE1029-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1029-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1029-2.htm"/>
+</file>
+<file ID="FID9" MIMETYPE="text/html" SIZE="2772" DMDID="id-CREC-2005-05-20-pt1-PgE1029-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1029-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1029-3.htm"/>
+</file>
+<file ID="FID10" MIMETYPE="text/html" SIZE="2926" DMDID="id-CREC-2005-05-20-pt1-PgE1030">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1030.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1030.htm"/>
+</file>
+<file ID="FID11" MIMETYPE="text/html" SIZE="2652" DMDID="id-CREC-2005-05-20-pt1-PgE1030-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1030-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1030-2.htm"/>
+</file>
+<file ID="FID12" MIMETYPE="text/html" SIZE="3453" DMDID="id-CREC-2005-05-20-pt1-PgE1030-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1030-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1030-3.htm"/>
+</file>
+<file ID="FID13" MIMETYPE="text/html" SIZE="5193" DMDID="id-CREC-2005-05-20-pt1-PgE1031">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1031.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1031.htm"/>
+</file>
+<file ID="FID14" MIMETYPE="text/html" SIZE="2424" DMDID="id-CREC-2005-05-20-pt1-PgE1031-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1031-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1031-2.htm"/>
+</file>
+<file ID="FID15" MIMETYPE="text/html" SIZE="1880" DMDID="id-CREC-2005-05-20-pt1-PgE1031-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1031-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1031-3.htm"/>
+</file>
+<file ID="FID16" MIMETYPE="text/html" SIZE="2605" DMDID="id-CREC-2005-05-20-pt1-PgE1031-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1031-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1031-4.htm"/>
+</file>
+<file ID="FID17" MIMETYPE="text/html" SIZE="3357" DMDID="id-CREC-2005-05-20-pt1-PgE1032">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1032.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1032.htm"/>
+</file>
+<file ID="FID18" MIMETYPE="text/html" SIZE="2481" DMDID="id-CREC-2005-05-20-pt1-PgE1032-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1032-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1032-2.htm"/>
+</file>
+<file ID="FID19" MIMETYPE="text/html" SIZE="3315" DMDID="id-CREC-2005-05-20-pt1-PgE1032-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1032-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1032-3.htm"/>
+</file>
+<file ID="FID20" MIMETYPE="text/html" SIZE="1455" DMDID="id-CREC-2005-05-20-pt1-PgE1033">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1033.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1033.htm"/>
+</file>
+<file ID="FID21" MIMETYPE="text/html" SIZE="2305" DMDID="id-CREC-2005-05-20-pt1-PgE1033-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1033-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1033-2.htm"/>
+</file>
+<file ID="FID22" MIMETYPE="text/html" SIZE="1319" DMDID="id-CREC-2005-05-20-pt1-PgE1033-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1033-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1033-3.htm"/>
+</file>
+<file ID="FID23" MIMETYPE="text/html" SIZE="3054" DMDID="id-CREC-2005-05-20-pt1-PgE1033-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1033-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1033-4.htm"/>
+</file>
+<file ID="FID24" MIMETYPE="text/html" SIZE="4632" DMDID="id-CREC-2005-05-20-pt1-PgE1034">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1034.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1034.htm"/>
+</file>
+<file ID="FID25" MIMETYPE="text/html" SIZE="3789" DMDID="id-CREC-2005-05-20-pt1-PgE1034-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1034-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1034-2.htm"/>
+</file>
+<file ID="FID26" MIMETYPE="text/html" SIZE="2470" DMDID="id-CREC-2005-05-20-pt1-PgE1034-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1034-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1034-3.htm"/>
+</file>
+<file ID="FID27" MIMETYPE="text/html" SIZE="3475" DMDID="id-CREC-2005-05-20-pt1-PgE1035">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1035.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1035.htm"/>
+</file>
+<file ID="FID28" MIMETYPE="text/html" SIZE="1609" DMDID="id-CREC-2005-05-20-pt1-PgE1035-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1035-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1035-2.htm"/>
+</file>
+<file ID="FID29" MIMETYPE="text/html" SIZE="4009" DMDID="id-CREC-2005-05-20-pt1-PgE1035-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1035-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1035-3.htm"/>
+</file>
+<file ID="FID30" MIMETYPE="text/html" SIZE="1306" DMDID="id-CREC-2005-05-20-pt1-PgE1036">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1036.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1036.htm"/>
+</file>
+<file ID="FID31" MIMETYPE="text/html" SIZE="2343" DMDID="id-CREC-2005-05-20-pt1-PgE1036-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1036-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1036-2.htm"/>
+</file>
+<file ID="FID32" MIMETYPE="text/html" SIZE="2780" DMDID="id-CREC-2005-05-20-pt1-PgE1036-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1036-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1036-3.htm"/>
+</file>
+<file ID="FID33" MIMETYPE="text/html" SIZE="2684" DMDID="id-CREC-2005-05-20-pt1-PgE1036-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1036-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1036-4.htm"/>
+</file>
+<file ID="FID34" MIMETYPE="text/html" SIZE="1631" DMDID="id-CREC-2005-05-20-pt1-PgE1036-5">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1036-5.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1036-5.htm"/>
+</file>
+<file ID="FID35" MIMETYPE="text/html" SIZE="1766" DMDID="id-CREC-2005-05-20-pt1-PgE1037">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1037.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1037.htm"/>
+</file>
+<file ID="FID36" MIMETYPE="text/html" SIZE="2717" DMDID="id-CREC-2005-05-20-pt1-PgE1037-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1037-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1037-2.htm"/>
+</file>
+<file ID="FID37" MIMETYPE="text/html" SIZE="1457" DMDID="id-CREC-2005-05-20-pt1-PgE1037-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1037-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1037-3.htm"/>
+</file>
+<file ID="FID38" MIMETYPE="text/html" SIZE="2529" DMDID="id-CREC-2005-05-20-pt1-PgE1037-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1037-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1037-4.htm"/>
+</file>
+<file ID="FID39" MIMETYPE="text/html" SIZE="754" DMDID="id-CREC-2005-05-20-pt1-PgE1038">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1038.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1038.htm"/>
+</file>
+<file ID="FID40" MIMETYPE="text/html" SIZE="3828" DMDID="id-CREC-2005-05-20-pt1-PgE1038-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1038-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1038-2.htm"/>
+</file>
+<file ID="FID41" MIMETYPE="text/html" SIZE="6875" DMDID="id-CREC-2005-05-20-pt1-PgE1038-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1038-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1038-3.htm"/>
+</file>
+<file ID="FID42" MIMETYPE="text/html" SIZE="2457" DMDID="id-CREC-2005-05-20-pt1-PgE1039">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1039.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1039.htm"/>
+</file>
+<file ID="FID43" MIMETYPE="text/html" SIZE="4954" DMDID="id-CREC-2005-05-20-pt1-PgE1039-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1039-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1039-2.htm"/>
+</file>
+<file ID="FID44" MIMETYPE="text/html" SIZE="2609" DMDID="id-CREC-2005-05-20-pt1-PgE1039-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1039-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1039-3.htm"/>
+</file>
+<file ID="FID45" MIMETYPE="text/html" SIZE="2308" DMDID="id-CREC-2005-05-20-pt1-PgE1040">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1040.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1040.htm"/>
+</file>
+<file ID="FID46" MIMETYPE="text/html" SIZE="1619" DMDID="id-CREC-2005-05-20-pt1-PgE1040-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1040-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1040-2.htm"/>
+</file>
+<file ID="FID47" MIMETYPE="text/html" SIZE="2577" DMDID="id-CREC-2005-05-20-pt1-PgE1040-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1040-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1040-3.htm"/>
+</file>
+<file ID="FID48" MIMETYPE="text/html" SIZE="1613" DMDID="id-CREC-2005-05-20-pt1-PgE1040-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1040-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1040-4.htm"/>
+</file>
+<file ID="FID49" MIMETYPE="text/html" SIZE="2096" DMDID="id-CREC-2005-05-20-pt1-PgE1040-5">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1040-5.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1040-5.htm"/>
+</file>
+<file ID="FID50" MIMETYPE="text/html" SIZE="9643" DMDID="id-CREC-2005-05-20-pt1-PgE1041">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1041.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1041.htm"/>
+</file>
+<file ID="FID51" MIMETYPE="text/html" SIZE="13685" DMDID="id-CREC-2005-05-20-pt1-PgE1042">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1042.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1042.htm"/>
+</file>
+<file ID="FID52" MIMETYPE="text/html" SIZE="4396" DMDID="id-CREC-2005-05-20-pt1-PgE1043">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1043.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1043.htm"/>
+</file>
+<file ID="FID53" MIMETYPE="text/html" SIZE="1664" DMDID="id-CREC-2005-05-20-pt1-PgE1043-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1043-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1043-2.htm"/>
+</file>
+<file ID="FID54" MIMETYPE="text/html" SIZE="7126" DMDID="id-CREC-2005-05-20-pt1-PgE1043-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1043-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1043-3.htm"/>
+</file>
+<file ID="FID55" MIMETYPE="text/html" SIZE="6225" DMDID="id-CREC-2005-05-20-pt1-PgE1044">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1044.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1044.htm"/>
+</file>
+<file ID="FID56" MIMETYPE="text/html" SIZE="2221" DMDID="id-CREC-2005-05-20-pt1-PgE1045">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1045.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1045.htm"/>
+</file>
+<file ID="FID57" MIMETYPE="text/html" SIZE="2465" DMDID="id-CREC-2005-05-20-pt1-PgE1045-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1045-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1045-2.htm"/>
+</file>
+<file ID="FID58" MIMETYPE="text/html" SIZE="2667" DMDID="id-CREC-2005-05-20-pt1-PgE1045-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1045-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1045-3.htm"/>
+</file>
+<file ID="FID59" MIMETYPE="text/html" SIZE="3154" DMDID="id-CREC-2005-05-20-pt1-PgE1045-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1045-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1045-4.htm"/>
+</file>
+<file ID="FID60" MIMETYPE="text/html" SIZE="6381" DMDID="id-CREC-2005-05-20-pt1-PgE1046">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1046.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1046.htm"/>
+</file>
+<file ID="FID61" MIMETYPE="text/html" SIZE="3246" DMDID="id-CREC-2005-05-20-pt1-PgE1046-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1046-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1046-2.htm"/>
+</file>
+<file ID="FID62" MIMETYPE="text/html" SIZE="3303" DMDID="id-CREC-2005-05-20-pt1-PgE1047">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1047.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1047.htm"/>
+</file>
+<file ID="FID63" MIMETYPE="text/html" SIZE="2900" DMDID="id-CREC-2005-05-20-pt1-PgE1047-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1047-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1047-2.htm"/>
+</file>
+<file ID="FID64" MIMETYPE="text/html" SIZE="1326" DMDID="id-CREC-2005-05-20-pt1-PgE1047-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1047-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1047-3.htm"/>
+</file>
+<file ID="FID65" MIMETYPE="text/html" SIZE="9563" DMDID="id-CREC-2005-05-20-pt1-PgE1047-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1047-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1047-4.htm"/>
+</file>
+<file ID="FID66" MIMETYPE="text/html" SIZE="3503" DMDID="id-CREC-2005-05-20-pt1-PgE1048">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1048.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1048.htm"/>
+</file>
+<file ID="FID67" MIMETYPE="text/html" SIZE="2587" DMDID="id-CREC-2005-05-20-pt1-PgE1049">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1049.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1049.htm"/>
+</file>
+<file ID="FID68" MIMETYPE="text/html" SIZE="2531" DMDID="id-CREC-2005-05-20-pt1-PgE1049-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1049-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1049-2.htm"/>
+</file>
+<file ID="FID69" MIMETYPE="text/html" SIZE="1627" DMDID="id-CREC-2005-05-20-pt1-PgE1049-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1049-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1049-3.htm"/>
+</file>
+<file ID="FID70" MIMETYPE="text/html" SIZE="4428" DMDID="id-CREC-2005-05-20-pt1-PgE1049-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1049-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1049-4.htm"/>
+</file>
+<file ID="FID71" MIMETYPE="text/html" SIZE="3124" DMDID="id-CREC-2005-05-20-pt1-PgE1050">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1050.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1050.htm"/>
+</file>
+<file ID="FID72" MIMETYPE="text/html" SIZE="2645" DMDID="id-CREC-2005-05-20-pt1-PgE1050-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1050-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1050-2.htm"/>
+</file>
+<file ID="FID73" MIMETYPE="text/html" SIZE="4012" DMDID="id-CREC-2005-05-20-pt1-PgE1050-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1050-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1050-3.htm"/>
+</file>
+<file ID="FID74" MIMETYPE="text/html" SIZE="3244" DMDID="id-CREC-2005-05-20-pt1-PgE1051">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1051.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1051.htm"/>
+</file>
+<file ID="FID75" MIMETYPE="text/html" SIZE="2279" DMDID="id-CREC-2005-05-20-pt1-PgE1051-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1051-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1051-2.htm"/>
+</file>
+<file ID="FID76" MIMETYPE="text/html" SIZE="2592" DMDID="id-CREC-2005-05-20-pt1-PgE1051-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1051-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1051-3.htm"/>
+</file>
+<file ID="FID77" MIMETYPE="text/html" SIZE="2973" DMDID="id-CREC-2005-05-20-pt1-PgE1052">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1052.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1052.htm"/>
+</file>
+<file ID="FID78" MIMETYPE="text/html" SIZE="3594" DMDID="id-CREC-2005-05-20-pt1-PgE1052-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgE1052-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgE1052-2.htm"/>
+</file>
+<file ID="FID79" MIMETYPE="text/html" SIZE="720" DMDID="id-CREC-2005-05-20-pt1-PgS5551">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5551.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5551.htm"/>
+</file>
+<file ID="FID80" MIMETYPE="text/html" SIZE="803" DMDID="id-CREC-2005-05-20-pt1-PgS5551-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5551-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5551-2.htm"/>
+</file>
+<file ID="FID81" MIMETYPE="text/html" SIZE="374" DMDID="id-CREC-2005-05-20-pt1-PgS5551-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5551-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5551-3.htm"/>
+</file>
+<file ID="FID82" MIMETYPE="text/html" SIZE="948" DMDID="id-CREC-2005-05-20-pt1-PgS5551-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5551-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5551-4.htm"/>
+</file>
+<file ID="FID83" MIMETYPE="text/html" SIZE="193" DMDID="id-CREC-2005-05-20-pt1-PgS5551-5">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5551-5.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5551-5.htm"/>
+</file>
+<file ID="FID84" MIMETYPE="text/html" SIZE="1055" DMDID="id-CREC-2005-05-20-pt1-PgS5551-6">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5551-6.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5551-6.htm"/>
+</file>
+<file ID="FID85" MIMETYPE="text/html" SIZE="204" DMDID="id-CREC-2005-05-20-pt1-PgS5551-7">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5551-7.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5551-7.htm"/>
+</file>
+<file ID="FID86" MIMETYPE="text/html" SIZE="238236" DMDID="id-CREC-2005-05-20-pt1-PgS5551-8">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5551-8.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5551-8.htm"/>
+</file>
+<file ID="FID87" MIMETYPE="text/html" SIZE="306" DMDID="id-CREC-2005-05-20-pt1-PgS5578">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5578.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5578.htm"/>
+</file>
+<file ID="FID88" MIMETYPE="text/html" SIZE="4132" DMDID="id-CREC-2005-05-20-pt1-PgS5578-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5578-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5578-2.htm"/>
+</file>
+<file ID="FID89" MIMETYPE="text/html" SIZE="2913" DMDID="id-CREC-2005-05-20-pt1-PgS5579">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5579.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5579.htm"/>
+</file>
+<file ID="FID90" MIMETYPE="text/html" SIZE="524" DMDID="id-CREC-2005-05-20-pt1-PgS5579-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5579-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5579-2.htm"/>
+</file>
+<file ID="FID91" MIMETYPE="text/html" SIZE="457" DMDID="id-CREC-2005-05-20-pt1-PgS5579-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5579-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5579-3.htm"/>
+</file>
+<file ID="FID92" MIMETYPE="text/html" SIZE="436" DMDID="id-CREC-2005-05-20-pt1-PgS5579-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5579-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5579-4.htm"/>
+</file>
+<file ID="FID93" MIMETYPE="text/html" SIZE="9174" DMDID="id-CREC-2005-05-20-pt1-PgS5579-5">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5579-5.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5579-5.htm"/>
+</file>
+<file ID="FID94" MIMETYPE="text/html" SIZE="1872" DMDID="id-CREC-2005-05-20-pt1-PgS5580">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5580.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5580.htm"/>
+</file>
+<file ID="FID95" MIMETYPE="text/html" SIZE="1894" DMDID="id-CREC-2005-05-20-pt1-PgS5580-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5580-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5580-2.htm"/>
+</file>
+<file ID="FID96" MIMETYPE="text/html" SIZE="13934" DMDID="id-CREC-2005-05-20-pt1-PgS5581">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5581.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5581.htm"/>
+</file>
+<file ID="FID97" MIMETYPE="text/html" SIZE="1568302" DMDID="id-CREC-2005-05-20-pt1-PgS5582">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5582.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5582.htm"/>
+</file>
+<file ID="FID98" MIMETYPE="text/html" SIZE="899" DMDID="id-CREC-2005-05-20-pt1-PgS5714">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5714.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5714.htm"/>
+</file>
+<file ID="FID99" MIMETYPE="text/html" SIZE="1124" DMDID="id-CREC-2005-05-20-pt1-PgS5714-2">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5714-2.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5714-2.htm"/>
+</file>
+<file ID="FID100" MIMETYPE="text/html" SIZE="988" DMDID="id-CREC-2005-05-20-pt1-PgS5714-3">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5714-3.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5714-3.htm"/>
+</file>
+<file ID="FID101" MIMETYPE="text/html" SIZE="328" DMDID="id-CREC-2005-05-20-pt1-PgS5714-4">
+<FLocat LOCTYPE="URL" xlink:href="file://html/CREC-2005-05-20-pt1-PgS5714-4.htm"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/html/CREC-2005-05-20-pt1-PgS5714-4.htm"/>
+</file></fileGrp><fileGrp USE="application/pdf"><file ID="FID102" MIMETYPE="application/pdf" SIZE="55308" DMDID="id-CREC-2005-05-20-pt1-PgD521">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgD521.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgD521.pdf"/>
+</file>
+<file ID="FID103" MIMETYPE="application/pdf" SIZE="55308" DMDID="id-CREC-2005-05-20-pt1-PgD521-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgD521-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgD521-2.pdf"/>
+</file>
+<file ID="FID104" MIMETYPE="application/pdf" SIZE="55308" DMDID="id-CREC-2005-05-20-pt1-PgD521-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgD521-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgD521-3.pdf"/>
+</file>
+<file ID="FID105" MIMETYPE="application/pdf" SIZE="55308" DMDID="id-CREC-2005-05-20-pt1-PgD521-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgD521-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgD521-4.pdf"/>
+</file>
+<file ID="FID106" MIMETYPE="application/pdf" SIZE="77402" DMDID="id-CREC-2005-05-20-pt1-PgD521-5">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgD521-5.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgD521-5.pdf"/>
+</file>
+<file ID="FID107" MIMETYPE="application/pdf" SIZE="80474" DMDID="id-CREC-2005-05-20-pt1-PgD525">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgD525.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgD525.pdf"/>
+</file>
+<file ID="FID108" MIMETYPE="application/pdf" SIZE="48265" DMDID="id-CREC-2005-05-20-pt1-PgE1029">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1029.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1029.pdf"/>
+</file>
+<file ID="FID109" MIMETYPE="application/pdf" SIZE="48265" DMDID="id-CREC-2005-05-20-pt1-PgE1029-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1029-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1029-2.pdf"/>
+</file>
+<file ID="FID110" MIMETYPE="application/pdf" SIZE="48265" DMDID="id-CREC-2005-05-20-pt1-PgE1029-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1029-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1029-3.pdf"/>
+</file>
+<file ID="FID111" MIMETYPE="application/pdf" SIZE="50599" DMDID="id-CREC-2005-05-20-pt1-PgE1030">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1030.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1030.pdf"/>
+</file>
+<file ID="FID112" MIMETYPE="application/pdf" SIZE="50599" DMDID="id-CREC-2005-05-20-pt1-PgE1030-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1030-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1030-2.pdf"/>
+</file>
+<file ID="FID113" MIMETYPE="application/pdf" SIZE="50599" DMDID="id-CREC-2005-05-20-pt1-PgE1030-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1030-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1030-3.pdf"/>
+</file>
+<file ID="FID114" MIMETYPE="application/pdf" SIZE="51293" DMDID="id-CREC-2005-05-20-pt1-PgE1031">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1031.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1031.pdf"/>
+</file>
+<file ID="FID115" MIMETYPE="application/pdf" SIZE="51293" DMDID="id-CREC-2005-05-20-pt1-PgE1031-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1031-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1031-2.pdf"/>
+</file>
+<file ID="FID116" MIMETYPE="application/pdf" SIZE="51293" DMDID="id-CREC-2005-05-20-pt1-PgE1031-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1031-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1031-3.pdf"/>
+</file>
+<file ID="FID117" MIMETYPE="application/pdf" SIZE="62001" DMDID="id-CREC-2005-05-20-pt1-PgE1031-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1031-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1031-4.pdf"/>
+</file>
+<file ID="FID118" MIMETYPE="application/pdf" SIZE="54880" DMDID="id-CREC-2005-05-20-pt1-PgE1032">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1032.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1032.pdf"/>
+</file>
+<file ID="FID119" MIMETYPE="application/pdf" SIZE="54880" DMDID="id-CREC-2005-05-20-pt1-PgE1032-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1032-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1032-2.pdf"/>
+</file>
+<file ID="FID120" MIMETYPE="application/pdf" SIZE="61636" DMDID="id-CREC-2005-05-20-pt1-PgE1032-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1032-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1032-3.pdf"/>
+</file>
+<file ID="FID121" MIMETYPE="application/pdf" SIZE="50928" DMDID="id-CREC-2005-05-20-pt1-PgE1033">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1033.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1033.pdf"/>
+</file>
+<file ID="FID122" MIMETYPE="application/pdf" SIZE="50928" DMDID="id-CREC-2005-05-20-pt1-PgE1033-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1033-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1033-2.pdf"/>
+</file>
+<file ID="FID123" MIMETYPE="application/pdf" SIZE="50928" DMDID="id-CREC-2005-05-20-pt1-PgE1033-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1033-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1033-3.pdf"/>
+</file>
+<file ID="FID124" MIMETYPE="application/pdf" SIZE="50928" DMDID="id-CREC-2005-05-20-pt1-PgE1033-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1033-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1033-4.pdf"/>
+</file>
+<file ID="FID125" MIMETYPE="application/pdf" SIZE="52756" DMDID="id-CREC-2005-05-20-pt1-PgE1034">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1034.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1034.pdf"/>
+</file>
+<file ID="FID126" MIMETYPE="application/pdf" SIZE="52756" DMDID="id-CREC-2005-05-20-pt1-PgE1034-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1034-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1034-2.pdf"/>
+</file>
+<file ID="FID127" MIMETYPE="application/pdf" SIZE="59728" DMDID="id-CREC-2005-05-20-pt1-PgE1034-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1034-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1034-3.pdf"/>
+</file>
+<file ID="FID128" MIMETYPE="application/pdf" SIZE="51917" DMDID="id-CREC-2005-05-20-pt1-PgE1035">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1035.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1035.pdf"/>
+</file>
+<file ID="FID129" MIMETYPE="application/pdf" SIZE="51917" DMDID="id-CREC-2005-05-20-pt1-PgE1035-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1035-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1035-2.pdf"/>
+</file>
+<file ID="FID130" MIMETYPE="application/pdf" SIZE="51917" DMDID="id-CREC-2005-05-20-pt1-PgE1035-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1035-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1035-3.pdf"/>
+</file>
+<file ID="FID131" MIMETYPE="application/pdf" SIZE="54673" DMDID="id-CREC-2005-05-20-pt1-PgE1036">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1036.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1036.pdf"/>
+</file>
+<file ID="FID132" MIMETYPE="application/pdf" SIZE="54673" DMDID="id-CREC-2005-05-20-pt1-PgE1036-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1036-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1036-2.pdf"/>
+</file>
+<file ID="FID133" MIMETYPE="application/pdf" SIZE="54673" DMDID="id-CREC-2005-05-20-pt1-PgE1036-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1036-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1036-3.pdf"/>
+</file>
+<file ID="FID134" MIMETYPE="application/pdf" SIZE="54673" DMDID="id-CREC-2005-05-20-pt1-PgE1036-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1036-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1036-4.pdf"/>
+</file>
+<file ID="FID135" MIMETYPE="application/pdf" SIZE="62342" DMDID="id-CREC-2005-05-20-pt1-PgE1036-5">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1036-5.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1036-5.pdf"/>
+</file>
+<file ID="FID136" MIMETYPE="application/pdf" SIZE="51926" DMDID="id-CREC-2005-05-20-pt1-PgE1037">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1037.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1037.pdf"/>
+</file>
+<file ID="FID137" MIMETYPE="application/pdf" SIZE="51926" DMDID="id-CREC-2005-05-20-pt1-PgE1037-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1037-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1037-2.pdf"/>
+</file>
+<file ID="FID138" MIMETYPE="application/pdf" SIZE="51926" DMDID="id-CREC-2005-05-20-pt1-PgE1037-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1037-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1037-3.pdf"/>
+</file>
+<file ID="FID139" MIMETYPE="application/pdf" SIZE="51926" DMDID="id-CREC-2005-05-20-pt1-PgE1037-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1037-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1037-4.pdf"/>
+</file>
+<file ID="FID140" MIMETYPE="application/pdf" SIZE="52718" DMDID="id-CREC-2005-05-20-pt1-PgE1038">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1038.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1038.pdf"/>
+</file>
+<file ID="FID141" MIMETYPE="application/pdf" SIZE="52718" DMDID="id-CREC-2005-05-20-pt1-PgE1038-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1038-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1038-2.pdf"/>
+</file>
+<file ID="FID142" MIMETYPE="application/pdf" SIZE="60696" DMDID="id-CREC-2005-05-20-pt1-PgE1038-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1038-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1038-3.pdf"/>
+</file>
+<file ID="FID143" MIMETYPE="application/pdf" SIZE="52923" DMDID="id-CREC-2005-05-20-pt1-PgE1039">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1039.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1039.pdf"/>
+</file>
+<file ID="FID144" MIMETYPE="application/pdf" SIZE="52923" DMDID="id-CREC-2005-05-20-pt1-PgE1039-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1039-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1039-2.pdf"/>
+</file>
+<file ID="FID145" MIMETYPE="application/pdf" SIZE="59768" DMDID="id-CREC-2005-05-20-pt1-PgE1039-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1039-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1039-3.pdf"/>
+</file>
+<file ID="FID146" MIMETYPE="application/pdf" SIZE="51102" DMDID="id-CREC-2005-05-20-pt1-PgE1040">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1040.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1040.pdf"/>
+</file>
+<file ID="FID147" MIMETYPE="application/pdf" SIZE="51102" DMDID="id-CREC-2005-05-20-pt1-PgE1040-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1040-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1040-2.pdf"/>
+</file>
+<file ID="FID148" MIMETYPE="application/pdf" SIZE="51102" DMDID="id-CREC-2005-05-20-pt1-PgE1040-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1040-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1040-3.pdf"/>
+</file>
+<file ID="FID149" MIMETYPE="application/pdf" SIZE="51102" DMDID="id-CREC-2005-05-20-pt1-PgE1040-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1040-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1040-4.pdf"/>
+</file>
+<file ID="FID150" MIMETYPE="application/pdf" SIZE="59651" DMDID="id-CREC-2005-05-20-pt1-PgE1040-5">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1040-5.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1040-5.pdf"/>
+</file>
+<file ID="FID151" MIMETYPE="application/pdf" SIZE="52806" DMDID="id-CREC-2005-05-20-pt1-PgE1041">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1041.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1041.pdf"/>
+</file>
+<file ID="FID152" MIMETYPE="application/pdf" SIZE="60030" DMDID="id-CREC-2005-05-20-pt1-PgE1042">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1042.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1042.pdf"/>
+</file>
+<file ID="FID153" MIMETYPE="application/pdf" SIZE="51311" DMDID="id-CREC-2005-05-20-pt1-PgE1043">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1043.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1043.pdf"/>
+</file>
+<file ID="FID154" MIMETYPE="application/pdf" SIZE="51311" DMDID="id-CREC-2005-05-20-pt1-PgE1043-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1043-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1043-2.pdf"/>
+</file>
+<file ID="FID155" MIMETYPE="application/pdf" SIZE="62673" DMDID="id-CREC-2005-05-20-pt1-PgE1043-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1043-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1043-3.pdf"/>
+</file>
+<file ID="FID156" MIMETYPE="application/pdf" SIZE="62904" DMDID="id-CREC-2005-05-20-pt1-PgE1044">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1044.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1044.pdf"/>
+</file>
+<file ID="FID157" MIMETYPE="application/pdf" SIZE="52230" DMDID="id-CREC-2005-05-20-pt1-PgE1045">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1045.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1045.pdf"/>
+</file>
+<file ID="FID158" MIMETYPE="application/pdf" SIZE="52230" DMDID="id-CREC-2005-05-20-pt1-PgE1045-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1045-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1045-2.pdf"/>
+</file>
+<file ID="FID159" MIMETYPE="application/pdf" SIZE="52230" DMDID="id-CREC-2005-05-20-pt1-PgE1045-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1045-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1045-3.pdf"/>
+</file>
+<file ID="FID160" MIMETYPE="application/pdf" SIZE="59868" DMDID="id-CREC-2005-05-20-pt1-PgE1045-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1045-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1045-4.pdf"/>
+</file>
+<file ID="FID161" MIMETYPE="application/pdf" SIZE="52583" DMDID="id-CREC-2005-05-20-pt1-PgE1046">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1046.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1046.pdf"/>
+</file>
+<file ID="FID162" MIMETYPE="application/pdf" SIZE="59956" DMDID="id-CREC-2005-05-20-pt1-PgE1046-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1046-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1046-2.pdf"/>
+</file>
+<file ID="FID163" MIMETYPE="application/pdf" SIZE="52318" DMDID="id-CREC-2005-05-20-pt1-PgE1047">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1047.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1047.pdf"/>
+</file>
+<file ID="FID164" MIMETYPE="application/pdf" SIZE="52318" DMDID="id-CREC-2005-05-20-pt1-PgE1047-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1047-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1047-2.pdf"/>
+</file>
+<file ID="FID165" MIMETYPE="application/pdf" SIZE="52318" DMDID="id-CREC-2005-05-20-pt1-PgE1047-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1047-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1047-3.pdf"/>
+</file>
+<file ID="FID166" MIMETYPE="application/pdf" SIZE="59315" DMDID="id-CREC-2005-05-20-pt1-PgE1047-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1047-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1047-4.pdf"/>
+</file>
+<file ID="FID167" MIMETYPE="application/pdf" SIZE="58916" DMDID="id-CREC-2005-05-20-pt1-PgE1048">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1048.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1048.pdf"/>
+</file>
+<file ID="FID168" MIMETYPE="application/pdf" SIZE="51919" DMDID="id-CREC-2005-05-20-pt1-PgE1049">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1049.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1049.pdf"/>
+</file>
+<file ID="FID169" MIMETYPE="application/pdf" SIZE="51919" DMDID="id-CREC-2005-05-20-pt1-PgE1049-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1049-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1049-2.pdf"/>
+</file>
+<file ID="FID170" MIMETYPE="application/pdf" SIZE="51919" DMDID="id-CREC-2005-05-20-pt1-PgE1049-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1049-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1049-3.pdf"/>
+</file>
+<file ID="FID171" MIMETYPE="application/pdf" SIZE="59195" DMDID="id-CREC-2005-05-20-pt1-PgE1049-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1049-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1049-4.pdf"/>
+</file>
+<file ID="FID172" MIMETYPE="application/pdf" SIZE="52221" DMDID="id-CREC-2005-05-20-pt1-PgE1050">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1050.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1050.pdf"/>
+</file>
+<file ID="FID173" MIMETYPE="application/pdf" SIZE="52221" DMDID="id-CREC-2005-05-20-pt1-PgE1050-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1050-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1050-2.pdf"/>
+</file>
+<file ID="FID174" MIMETYPE="application/pdf" SIZE="60117" DMDID="id-CREC-2005-05-20-pt1-PgE1050-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1050-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1050-3.pdf"/>
+</file>
+<file ID="FID175" MIMETYPE="application/pdf" SIZE="51465" DMDID="id-CREC-2005-05-20-pt1-PgE1051">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1051.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1051.pdf"/>
+</file>
+<file ID="FID176" MIMETYPE="application/pdf" SIZE="51465" DMDID="id-CREC-2005-05-20-pt1-PgE1051-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1051-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1051-2.pdf"/>
+</file>
+<file ID="FID177" MIMETYPE="application/pdf" SIZE="57640" DMDID="id-CREC-2005-05-20-pt1-PgE1051-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1051-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1051-3.pdf"/>
+</file>
+<file ID="FID178" MIMETYPE="application/pdf" SIZE="50517" DMDID="id-CREC-2005-05-20-pt1-PgE1052">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1052.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1052.pdf"/>
+</file>
+<file ID="FID179" MIMETYPE="application/pdf" SIZE="50517" DMDID="id-CREC-2005-05-20-pt1-PgE1052-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgE1052-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgE1052-2.pdf"/>
+</file>
+<file ID="FID180" MIMETYPE="application/pdf" SIZE="68380" DMDID="id-CREC-2005-05-20-pt1-PgS5551">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5551.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5551.pdf"/>
+</file>
+<file ID="FID181" MIMETYPE="application/pdf" SIZE="68380" DMDID="id-CREC-2005-05-20-pt1-PgS5551-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5551-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5551-2.pdf"/>
+</file>
+<file ID="FID182" MIMETYPE="application/pdf" SIZE="68380" DMDID="id-CREC-2005-05-20-pt1-PgS5551-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5551-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5551-3.pdf"/>
+</file>
+<file ID="FID183" MIMETYPE="application/pdf" SIZE="68380" DMDID="id-CREC-2005-05-20-pt1-PgS5551-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5551-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5551-4.pdf"/>
+</file>
+<file ID="FID184" MIMETYPE="application/pdf" SIZE="68380" DMDID="id-CREC-2005-05-20-pt1-PgS5551-5">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5551-5.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5551-5.pdf"/>
+</file>
+<file ID="FID185" MIMETYPE="application/pdf" SIZE="68380" DMDID="id-CREC-2005-05-20-pt1-PgS5551-6">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5551-6.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5551-6.pdf"/>
+</file>
+<file ID="FID186" MIMETYPE="application/pdf" SIZE="68380" DMDID="id-CREC-2005-05-20-pt1-PgS5551-7">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5551-7.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5551-7.pdf"/>
+</file>
+<file ID="FID187" MIMETYPE="application/pdf" SIZE="249231" DMDID="id-CREC-2005-05-20-pt1-PgS5551-8">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5551-8.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5551-8.pdf"/>
+</file>
+<file ID="FID188" MIMETYPE="application/pdf" SIZE="42738" DMDID="id-CREC-2005-05-20-pt1-PgS5578">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5578.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5578.pdf"/>
+</file>
+<file ID="FID189" MIMETYPE="application/pdf" SIZE="50005" DMDID="id-CREC-2005-05-20-pt1-PgS5578-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5578-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5578-2.pdf"/>
+</file>
+<file ID="FID190" MIMETYPE="application/pdf" SIZE="44288" DMDID="id-CREC-2005-05-20-pt1-PgS5579">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5579.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5579.pdf"/>
+</file>
+<file ID="FID191" MIMETYPE="application/pdf" SIZE="44288" DMDID="id-CREC-2005-05-20-pt1-PgS5579-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5579-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5579-2.pdf"/>
+</file>
+<file ID="FID192" MIMETYPE="application/pdf" SIZE="44288" DMDID="id-CREC-2005-05-20-pt1-PgS5579-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5579-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5579-3.pdf"/>
+</file>
+<file ID="FID193" MIMETYPE="application/pdf" SIZE="44288" DMDID="id-CREC-2005-05-20-pt1-PgS5579-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5579-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5579-4.pdf"/>
+</file>
+<file ID="FID194" MIMETYPE="application/pdf" SIZE="48950" DMDID="id-CREC-2005-05-20-pt1-PgS5579-5">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5579-5.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5579-5.pdf"/>
+</file>
+<file ID="FID195" MIMETYPE="application/pdf" SIZE="41683" DMDID="id-CREC-2005-05-20-pt1-PgS5580">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5580.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5580.pdf"/>
+</file>
+<file ID="FID196" MIMETYPE="application/pdf" SIZE="60474" DMDID="id-CREC-2005-05-20-pt1-PgS5580-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5580-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5580-2.pdf"/>
+</file>
+<file ID="FID197" MIMETYPE="application/pdf" SIZE="74485" DMDID="id-CREC-2005-05-20-pt1-PgS5581">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5581.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5581.pdf"/>
+</file>
+<file ID="FID198" MIMETYPE="application/pdf" SIZE="1234429" DMDID="id-CREC-2005-05-20-pt1-PgS5582">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5582.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5582.pdf"/>
+</file>
+<file ID="FID199" MIMETYPE="application/pdf" SIZE="67804" DMDID="id-CREC-2005-05-20-pt1-PgS5714">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5714.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5714.pdf"/>
+</file>
+<file ID="FID200" MIMETYPE="application/pdf" SIZE="67804" DMDID="id-CREC-2005-05-20-pt1-PgS5714-2">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5714-2.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5714-2.pdf"/>
+</file>
+<file ID="FID201" MIMETYPE="application/pdf" SIZE="67804" DMDID="id-CREC-2005-05-20-pt1-PgS5714-3">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5714-3.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5714-3.pdf"/>
+</file>
+<file ID="FID202" MIMETYPE="application/pdf" SIZE="67804" DMDID="id-CREC-2005-05-20-pt1-PgS5714-4">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-pt1-PgS5714-4.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20-pt1-PgS5714-4.pdf"/>
+</file>
+<file ID="FID203" MIMETYPE="application/pdf" SIZE="1451371">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-senate.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20.pdf"/>
+</file>
+<file ID="FID204" MIMETYPE="application/pdf" SIZE="222660">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-extensions.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20.pdf"/>
+</file>
+<file ID="FID205" MIMETYPE="application/pdf" SIZE="1774717">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20.pdf"/>
+</file>
+<file ID="FID206" MIMETYPE="application/pdf" SIZE="100881">
+<FLocat LOCTYPE="URL" xlink:href="file://pdf/CREC-2005-05-20-dailydigest.pdf"/>
+<FLocat LOCTYPE="URL" xlink:href="http://www.gpo.gov:80/fdsys/pkg/CREC-2005-05-20/pdf/CREC-2005-05-20.pdf"/>
+</file></fileGrp></fileSec>
+<structMap>
+<div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID1"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID2"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID3"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID4"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID5"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD525" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID6"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1029" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID7"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1029-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID8"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1029-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID9"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1030" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID10"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1030-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID11"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1030-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID12"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1031" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID13"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1031-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID14"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1031-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID15"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1031-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID16"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1032" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID17"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1032-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID18"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1032-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID19"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1033" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID20"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1033-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID21"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1033-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID22"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1033-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID23"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1034" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID24"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1034-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID25"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1034-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID26"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1035" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID27"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1035-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID28"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1035-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID29"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID30"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID31"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID32"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID33"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID34"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1037" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID35"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1037-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID36"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1037-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID37"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1037-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID38"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1038" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID39"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1038-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID40"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1038-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID41"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1039" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID42"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1039-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID43"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1039-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID44"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID45"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID46"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID47"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID48"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID49"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1041" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID50"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1042" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID51"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1043" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID52"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1043-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID53"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1043-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID54"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1044" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID55"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1045" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID56"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1045-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID57"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1045-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID58"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1045-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID59"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1046" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID60"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1046-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID61"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1047" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID62"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1047-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID63"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1047-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID64"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1047-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID65"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1048" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID66"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1049" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID67"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1049-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID68"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1049-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID69"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1049-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID70"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1050" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID71"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1050-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID72"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1050-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID73"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1051" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID74"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1051-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID75"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1051-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID76"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1052" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID77"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1052-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID78"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID79"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID80"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID81"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID82"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID83"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-6" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID84"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-7" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID85"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-8" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID86"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5578" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID87"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5578-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID88"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID89"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID90"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID91"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID92"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID93"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5580" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID94"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5580-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID95"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5581" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID96"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5582" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID97"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5714" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID98"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5714-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID99"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5714-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID100"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5714-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID101"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID102"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID103"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID104"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID105"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD521-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID106"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgD525" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID107"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1029" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID108"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1029-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID109"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1029-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID110"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1030" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID111"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1030-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID112"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1030-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID113"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1031" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID114"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1031-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID115"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1031-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID116"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1031-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID117"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1032" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID118"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1032-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID119"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1032-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID120"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1033" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID121"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1033-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID122"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1033-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID123"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1033-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID124"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1034" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID125"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1034-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID126"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1034-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID127"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1035" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID128"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1035-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID129"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1035-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID130"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID131"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID132"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID133"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID134"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1036-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID135"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1037" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID136"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1037-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID137"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1037-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID138"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1037-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID139"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1038" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID140"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1038-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID141"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1038-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID142"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1039" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID143"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1039-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID144"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1039-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID145"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID146"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID147"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID148"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID149"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1040-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID150"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1041" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID151"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1042" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID152"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1043" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID153"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1043-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID154"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1043-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID155"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1044" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID156"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1045" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID157"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1045-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID158"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1045-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID159"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1045-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID160"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1046" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID161"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1046-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID162"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1047" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID163"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1047-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID164"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1047-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID165"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1047-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID166"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1048" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID167"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1049" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID168"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1049-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID169"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1049-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID170"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1049-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID171"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1050" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID172"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1050-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID173"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1050-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID174"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1051" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID175"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1051-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID176"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1051-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID177"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1052" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID178"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgE1052-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID179"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID180"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID181"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID182"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID183"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID184"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-6" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID185"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-7" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID186"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5551-8" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID187"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5578" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID188"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5578-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID189"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID190"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID191"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID192"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID193"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5579-5" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID194"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5580" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID195"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5580-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID196"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5581" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID197"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5582" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID198"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5714" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID199"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5714-2" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID200"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5714-3" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID201"/>
+</div>
+<div DMDID="id-CREC-2005-05-20-pt1-PgS5714-4" ADMID="provenance-metadata-premis">
+<fptr FILEID="FID202"/>
+</div>
+<div ADMID="provenance-metadata-premis">
+<fptr FILEID="FID203"/>
+</div>
+<div ADMID="provenance-metadata-premis">
+<fptr FILEID="FID204"/>
+</div>
+<div ADMID="provenance-metadata-premis">
+<fptr FILEID="FID205"/>
+</div>
+<div ADMID="provenance-metadata-premis">
+<fptr FILEID="FID206"/>
+</div>
+</div>
+</structMap>
+</mets>
