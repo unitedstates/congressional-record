@@ -5,7 +5,7 @@ from datetime import datetime
 import re
 import xml.etree.cElementTree as ET
 from subclasses import crItem
-
+import logging
 
 class ParseCRDir(object):
     
@@ -289,12 +289,12 @@ class ParseCRFile(object):
                     turn += 1
                 the_content.append(item)
             except Exception, e:
-                print '{0}'.format(e)
+                logging.warn('{0}'.format(e))
                 break
 
         self.crdoc['content'] = the_content
 
-        print 'Stopped. The last line is: {0}'.format(self.cur_line)
+        logging.debug('Stopped. The last line is: {0}'.format(self.cur_line))
 
     def parse(self):
         """
