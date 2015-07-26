@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/nclarkjudd/congressionalrecord2.png)](https://travis-ci.org/nclarkjudd/congressionalrecord2)
 # congressionalrecord2
 *2015-07-25*
 
