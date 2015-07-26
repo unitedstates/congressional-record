@@ -26,7 +26,7 @@ class ParseCRDir(object):
 class ParseCRFile(object):
     # Some regex
     re_time = r'^CREC-(?P<year>[0-9]{4})-(?P<month>[0-9]{2})-(?P<day>[0-9]{2})-.*'
-    re_vol = r' Congressional Record Vol. (?P<vol>[0-9]+), No. (?P<num>[0-9]+)$'
+    re_vol = r'^(?P<title>.*); Congressional Record Vol. (?P<vol>[0-9]+), No. (?P<num>[0-9]+)$'
     re_vol_file =   r'^\[Congressional Record Volume (?P<vol>[0-9]+), Number (?P<num>[0-9]+)'\
                     + r' \((?P<wkday>[A-Za-z]+), (?P<month>[A-Za-z]+) (?P<day>[0-9]+), (?P<year>[0-9]{4})\)\]'
     re_chamber =  r'\[(?P<chamber>[A-Za-z\s]+)\]'
@@ -158,13 +158,14 @@ class ParseCRFile(object):
     
     # Flow control for metadata generation
     def gen_file_metadata(self):
+        # Sometimes the searchtitle has semicolons in it so .split(';') is a nogo
         self.doc_ref = self.cr_dir.mods.find('accessid', text=self.access_path).parent
-        self.doc_title, self.cr_loc = self.doc_ref.searchtitle.string.split(';')
+        self.doc_title, self.cr_vol, self.cr_num = \
+          re.match(self.re_vol, self.doc_ref.searchtitle.string).group('title','vol','num')
         self.find_people()
         self.find_related_bills()
         self.date_from_entry()
         self.chamber = self.doc_ref.granuleclass.string
-        self.cr_vol, self.cr_num = re.match(self.re_vol,self.cr_loc).group('vol','num')
         self.re_newspeaker = self.make_re_newspeaker()
         self.item_types['speech']['patterns'] = [self.re_newspeaker]
 
@@ -244,6 +245,7 @@ class ParseCRFile(object):
             'wkday':header[2],'month':header[3],'day':header[4],\
             'year':header[5],'chamber':header[6],'pages':header[7],\
             'extension':header[8]}
+        self.crdoc['doc_title'] = self.doc_title
 
     def get_title(self):
         """
