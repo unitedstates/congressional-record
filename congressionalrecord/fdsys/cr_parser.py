@@ -280,7 +280,7 @@ class ParseCRFile(object):
         the_content = []
         if title:
             self.crdoc['title'] = title
-        while True:
+        while self.lines_remaining:
             # while not re.match(self.re_allcaps,self.cur_line):
             try:
                 item = crItem(self).item

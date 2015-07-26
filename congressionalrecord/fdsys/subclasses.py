@@ -1,4 +1,5 @@
 import re
+import logging
 
 class crItem(object):
     
@@ -15,7 +16,8 @@ class crItem(object):
     def item_builder(self):
         parent = self.parent
         if parent.lines_remaining == False:
-            raise Exception, "Reached end of document."
+            logging.info("Reached end of document.")
+            return
         item_types = parent.item_types
         content = [parent.cur_line]
         # What is this line
