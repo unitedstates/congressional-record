@@ -8,6 +8,8 @@ import json
 from pyelasticsearch import ElasticSearch, bulk_chunks
 import logging
 
+logging.basicConfig(level=logging.INFO)
+
 
 class Downloader(object):
     """
@@ -162,6 +164,7 @@ class fdsysDL(object):
 class fdsysExtract(object):
 
     def __init__(self,day,**kwargs):
+        self.status = 'idle'
         assert datetime.strptime(day,"%Y-%m-%d"), "Malformed date field. Must be 'YYYY-MM-DD'"
         dl_time = datetime.strptime(day,"%Y-%m-%d")
         year = str(dl_time.year)
@@ -176,6 +179,7 @@ class fdsysExtract(object):
         if not os.path.exists(os.path.join(outpath,year)):
             os.makedirs(os.path.join(outpath,year))
         if extract_to in os.listdir(os.path.join(outpath,year)):
+            self.status = True
             logging.info("{0} already exists in extraction tree.".format(extract_to))
             return None
         if extract_to + '.zip' not in os.listdir(os.path.join(outpath,year)):
