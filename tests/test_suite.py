@@ -1,5 +1,6 @@
 import unittest
 from congressionalrecord.fdsys import cr_parser as cr
+from congressionalrecord.fdsys import downloader as dl
 import random
 import os
 
@@ -31,3 +32,15 @@ class testCRFile(unittest.TestCase):
     def test_content_length(self):
         crfile = cr.ParseCRFile(self.input_path,self.crdir)
         self.assertGreater(crfile.crdoc['content'],0,msg='No items in content!')
+
+class testDownloader(unittest.TestCase):
+
+    def handle_404(self):
+        download = dl.Downloader('2015-07-19',do_mode='json')
+        self.assertEqual(download.status,404)
+
+    def handle_existing(self):
+        download = dl.Downloader('2005-07-20')
+        self.assertEqual(download.status,'existingFiles')
+        
+    

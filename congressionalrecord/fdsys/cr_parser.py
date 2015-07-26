@@ -160,8 +160,14 @@ class ParseCRFile(object):
     def gen_file_metadata(self):
         # Sometimes the searchtitle has semicolons in it so .split(';') is a nogo
         self.doc_ref = self.cr_dir.mods.find('accessid', text=self.access_path).parent
-        self.doc_title, self.cr_vol, self.cr_num = \
-          re.match(self.re_vol, self.doc_ref.searchtitle.string).group('title','vol','num')
+        matchobj = re.match(self.re_vol, self.doc_ref.searchtitle.string)
+        if matchobj:
+            self.doc_title, self.cr_vol, self.cr_num = matchobj.group('title','vol','num')
+        else:
+            logging.warn('{0} yields no title, vol, num'.format(
+                self.access_path))
+            self.doc_title, self.cr_vol, self.cr_num = \
+              'None','Unknown','Unknown'
         self.find_people()
         self.find_related_bills()
         self.date_from_entry()
@@ -280,6 +286,8 @@ class ParseCRFile(object):
         the_content = []
         if title:
             self.crdoc['title'] = title
+        else:
+            self.crdoc['title'] = None
         while self.lines_remaining:
             # while not re.match(self.re_allcaps,self.cur_line):
             try:
