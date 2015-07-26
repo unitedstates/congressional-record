@@ -6,6 +6,7 @@ from zipfile import ZipFile
 from cr_parser import ParseCRDir, ParseCRFile
 import json
 from pyelasticsearch import ElasticSearch, bulk_chunks
+import logging
 
 
 class Downloader(object):
@@ -26,7 +27,8 @@ class Downloader(object):
         end_day = datetime.strptime(end,'%Y-%m-%d')
         while day <= end_day:
             day_str = datetime.strftime(day,'%Y-%m-%d')
-            fdsysExtract(day_str,**kwargs)
+            ex = fdsysExtract(day_str,**kwargs)
+            self.status = ex.status
             if parse:
                 dir_str = 'CREC-' + day_str
                 year_str = str(day.year)
@@ -40,12 +42,15 @@ class Downloader(object):
                     for the_file in os.listdir(os.path.join(dir_path,'html')):
                         parse_path = os.path.join(dir_path,'html',the_file)
                         if '-PgD' in parse_path or 'FrontMatter' in parse_path:
-                            print 'Skipping {0}'.format(parse_path)
+                            logging.info('Skipping {0}'.format(parse_path))
                         else:
                             crfile = ParseCRFile(parse_path,crdir)
                             yield crfile
                 except IOError, e:
-                    print '{0}, skipping.'.format(e)
+                    if self.status == 404:
+                        logging.warning('{0}, skipping.'.format(e))
+                    else:
+                        logging.warn('{0} but no 404 error'.format(e))
             day += timedelta(days=1)
 
     def __init__(self,start,**kwargs):
@@ -54,8 +59,10 @@ class Downloader(object):
         # outpath = output (specified by default)
         # do_mode = es (default 'pass')
         # end = ending date
-        print 'Downloader object ready with params:'
-        print ','.join(['='.join([key,value]) for key,value in kwargs.items()])
+        self.status = 'ok'
+        self.start_day = start
+        logging.info('Downloader object ready with params:')
+        logging.info(','.join(['='.join([key,value]) for key,value in kwargs.items()]))
         if kwargs['do_mode'] == 'es':
             es = ElasticSearch(kwargs['es_url'])
             for chunk in bulk_chunks((es.index_op(crfile.crdoc,id=crfile.crdoc.pop('id')) for crfile
@@ -69,8 +76,8 @@ class Downloader(object):
                 filename = os.path.split(crfile.filepath)[-1].split('.')[0] + '.json'
                 outpath = os.path.split(crfile.filepath)[0]
                 outpath = os.path.split(outpath)[0]
-                if 'json' not in os.listdir(outpath):
-                    os.mkdir(os.path.join(outpath,'json'))
+                if not os.path.exists(os.path.join(outpath,'json')):
+                    os.makedirs(os.path.join(outpath,'json'))
                 outpath = os.path.join(outpath,'json',filename)
                 with open(outpath,'w') as out_json:
                     json.dump(crfile.crdoc,out_json)
@@ -92,25 +99,25 @@ class downloadRequest(object):
             else:
                 binary_content = False
                 self.status = r.status_code
-                print 'Download returned status code %s' % str(r.status_code)
+                logging.info('Download returned status code %s' % str(r.status_code))
                 
         except (requests.exceptions.ConnectionError) as ce:
-            print 'Connection error: %s' % ce
+            logging.warning('Connection error: %s' % ce)
             binary_content = False
         return binary_content
 
     def __init__(self,url,filename,n_tries=3):
         self.status = False
-        print 'Download request: %s, made on %s' % (url,self.its_today)
+        logging.info('Download request: %s, made on %s' % (url,self.its_today))
         while n_tries > 0:
-            print 'Attempting download ...'
+            logging.info('Attempting download ...')
             binary_content = self.knock(url)
             self.binary_content = binary_content
             if self.binary_content:
-                print 'Request returned results.'
+                logging.info('Request returned results.')
                 n_tries = 0
             elif self.status == 404:
-                print 'File not found, skipping.'
+                logging.info('File not found, skipping.')
                 break
             else:
                 n_tries -= 1
@@ -118,10 +125,10 @@ class downloadRequest(object):
         if self.binary_content:
             with open(filename,'wb') as outfile:
                 outfile.write(self.binary_content)
-            print 'Wrote {0}'.format(filename)
+            logging.info('Wrote {0}'.format(filename))
             self.status = True
         else:            
-            print 'No download for {0}'.format(url)
+            logging.info('No download for {0}'.format(url))
             
 
     
@@ -133,15 +140,15 @@ class fdsysDL(object):
         the_url = self.fdsys_base + day + '.zip'
         dl_time = datetime.strptime(day,"%Y-%m-%d")
         year = str(dl_time.year)
-        if year not in os.listdir(outpath):
-            os.mkdir(os.path.join(outpath,year))
+        if not os.path.exists(os.path.join(outpath,year)):
+            os.makedirs(os.path.join(outpath,year))
         the_filename = os.path.join(outpath,year,'CREC-' + day + '.zip')
         the_download = downloadRequest(the_url,the_filename)
         self.status = the_download.status
         if the_download.status == False:
-            print "Download for {0} did not complete.".format(day)
+            logging.warning("Download for {0} did not complete.".format(day))
         elif the_download.status == 404:
-            print 'Download for {0} did not complete because there is no record for that day.'.format(day)
+            logging.info('Download for {0} did not complete because there is no record for that day.'.format(day))
 
     def __init__(self,day,**kwargs):
         if 'outpath' in kwargs.keys():
@@ -164,23 +171,20 @@ class fdsysExtract(object):
             outpath = kwargs['outpath']
         abspath = os.path.join(outpath,year,'CREC-' + day + '.zip')
         extract_to = 'CREC-' + day
-        if year not in os.listdir(outpath):
-            os.mkdir(os.path.join(outpath,year))
+        if not os.path.exists(outpath):
+            os.makedirs(outpath)
+        if not os.path.exists(os.path.join(outpath,year)):
+            os.makedirs(os.path.join(outpath,year))
         if extract_to in os.listdir(os.path.join(outpath,year)):
-            print "{0} already exists in extraction tree.".format(extract_to)
+            logging.info("{0} already exists in extraction tree.".format(extract_to))
             return None
         if extract_to + '.zip' not in os.listdir(os.path.join(outpath,year)):
             the_dl = fdsysDL(day,outpath=outpath)
+            self.status = the_dl.status
             if the_dl.status == 404:
-                print 'No record on this day, not trying to extract'
+                logging.info('No record on this day, not trying to extract')
                 return None
         with ZipFile(abspath,'r') as the_zip:
             the_zip.extractall(os.path.join(outpath,year))
-            print 'Extracted to {0}'.format(os.path.join(outpath,year))
+            logging.info('Extracted to {0}'.format(os.path.join(outpath,year)))
         os.remove(abspath)
-
-
-
-        
-
-        
