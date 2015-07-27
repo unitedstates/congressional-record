@@ -39,19 +39,19 @@ class LegBio(Base):
     """
     __tablename__ = 'leg_bio'
     bioguideid = Column(String(7), primary_key=True)
-    dob = Column(Date)
+    dob = Column(String(10))
     gender = Column(String(1))
     religion = Column(String(50))
-    cspan = Column(String(10))
-    govtrack = Column(String(10))
-    house_history = Column(String(10))
-    icpsr = Column(String(10))
-    lis = Column(String(10))
-    maplight = Column(String(10))
+    cspan = Column(String(100))
+    govtrack = Column(String(100))
+    house_history = Column(String(100))
+    icpsr = Column(String(100))
+    lis = Column(String(100))
+    maplight = Column(String(100))
     opensecrets = Column(String(9))
     thomas = Column(String(5))
     votesmart = Column(String(10))
-    washington_post = Column(String(10))
+    washington_post = Column(String(100))
     wikipedia = Column(String(100))
     name_first = Column(String(50),nullable=False)
     name_last = Column(String(50),nullable=False)
@@ -64,8 +64,8 @@ class LegTerms(Base):
     address = Column(String(255))
     contact_form = Column(String(255))
     district = Column(String(2))
-    start = Column(Date,nullable=False)
-    end = Column(Date,nullable=False)
+    start = Column(String(10))
+    end = Column(String(10))
     office = Column(String(255))
     party = Column(String(50))
     phone = Column(String(12))
@@ -77,9 +77,9 @@ class LegTerms(Base):
 class LegFEC(Base):
     __tablename__ = 'leg_fec'
     fec_id = Column(String(9), primary_key=True)
-    bioguide_id = Column(String(7), ForeignKey('leg_bio.bioguideid'))
+    bioguideid = Column(String(7), ForeignKey('leg_bio.bioguideid'))
     leg = relationship(LegBio)
-                         
-    
-    
-    
+
+if __name__ == '__main__':
+    session = sessionmaker()
+    build_all_tables(session,'ncj','congress')
