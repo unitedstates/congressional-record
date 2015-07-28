@@ -139,10 +139,10 @@ class downloadRequest(object):
     def knock(self,url):
         try:
             r = requests.get(url,timeout=15)
-            self.status = True
         except (requests.exceptions.ConnectionError) as ce:
             logging.warn('Connection error: %s' % ce)
-            binary_content = False
+            self.status = False
+            return False
         if r.status_code == requests.codes.ok:
             binary_content = r.content
         else:
