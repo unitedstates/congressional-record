@@ -55,11 +55,51 @@ class Downloader(object):
             day += timedelta(days=1)
 
     def __init__(self,start,**kwargs):
-        # ex. es_url = ElasticSearch service url
-        # index = ElasticSearch index
-        # outpath = output (specified by default)
-        # do_mode = es (default 'pass')
-        # end = ending date
+        """
+        Invoke a Downloader object to get data from
+        the Record. It will check to see if the necessary
+        files are already downloaded and use those instead of
+        querying FDSys. Downloaders are the endpoint for raw data.
+
+        Required arguments:
+
+        start : In form 'YYYY-MM-DD.' This is the day/start day you want.
+
+        Optional arguments:
+
+        parse : Defaults to True. This tells the downloader whether you just want
+                the raw files, or if you also want it to extract data from the HTML.
+                (Default means yes, give me the data.)
+
+
+        end : Same form as start. This is the end date.
+
+        outpath : Output path RELATIVE TO the present working directory. Defaults
+                  to 'output' and works fine when you run it from the repo's root
+                  directory.
+
+        do_mode : Specify what kind of data you want from the parser.
+                  If do_mode is not set, the downloader will do absolutely zilch.
+                  do_mode can take the following values:
+
+                  json : write json files in a /json directory for that
+                         day of the Record.
+
+                  es : Specify the URL and index of an ElasticSearch cluster with
+                       arguments es_url and index, and it will pass each file to
+                       that cluster for indexing. WARNING: This doesn't handle any
+                       mappings, and it doesn't check to see if records are already
+                       there, so it will overwrite old files in the same index
+                       WITHOUT versioning.
+
+                       also specify:
+                       es_url : ElasticSearch cluster url
+                       index  : ElasticSearch cluster index
+
+                  yield : For each day of the Record the user specifies,
+                          the downloader acts like a generator, yielding that day's
+                          "crfile" dictionary. 
+        """
         self.status = 'idle'
         logging.debug('Downloader object ready with params:')
         logging.debug(','.join(['='.join([key,value]) for key,value in kwargs.items()]))
@@ -81,6 +121,10 @@ class Downloader(object):
                 outpath = os.path.join(outpath,'json',filename)
                 with open(outpath,'w') as out_json:
                     json.dump(crfile.crdoc,out_json)
+        elif kwargs['do_mode'] == 'yield':
+            for crfile in self.bulkdownload(start,**kwargs):
+                yield crfile
+            
         else:
             return None
                                                                        
