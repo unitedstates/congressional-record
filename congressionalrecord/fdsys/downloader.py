@@ -26,7 +26,6 @@ class Downloader(object):
             self.status = extractor.status
             if self.status == 404:
                 logging.info('bulkdownloader skipping a missing day.')
-                pass
             elif parse:
                 dir_str = 'CREC-' + day_str
                 year_str = str(day.year)
@@ -139,7 +138,7 @@ class downloadRequest(object):
     
     def knock(self,url):
         try:
-            r = requests.get(url)
+            r = requests.get(url,timeout=15)
             if r.status_code == requests.codes.ok:
                 binary_content = r.content
             else:
@@ -238,6 +237,7 @@ class fdsysExtract(object):
             self.status = 'extractedFiles'
         os.remove(abspath)
         self.status += 'deletedZip'
+        logging.info('Extractor completed with status {0}'.format(self.status))
 
 
 
