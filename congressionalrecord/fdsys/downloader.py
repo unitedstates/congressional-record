@@ -13,16 +13,12 @@ class Downloader(object):
     Chunks through downloads and is ready to pass
     to elasticsearch or yield json.
     """
-    def bulkdownload(self,start,**kwargs):
+    def bulkdownload(self,start,parse=True,**kwargs):
         day = datetime.strptime(start,'%Y-%m-%d')
         if 'end' in kwargs.keys():
             end = kwargs['end']
         else:
             end = start
-        if 'parse' in kwargs.keys():
-            parse = kwargs['parse']
-        else:
-            parse = True
         end_day = datetime.strptime(end,'%Y-%m-%d')
         while day <= end_day:
             day_str = datetime.strftime(day,'%Y-%m-%d')
@@ -128,6 +124,8 @@ class Downloader(object):
                     json.dump(crfile.crdoc,out_json)
         elif kwargs['do_mode'] == 'yield':
             self.yielded = self.generate(start,**kwargs)
+        elif kwargs['do_mode'] == 'noparse':
+            self.bulkdownload(start,parse=False,**kwargs)
 
         else:
             return None
