@@ -139,36 +139,49 @@ class downloadRequest(object):
     def knock(self,url):
         try:
             r = requests.get(url,timeout=15)
-        except (requests.exceptions.ConnectionError) as ce:
-            logging.warn('Connection error: %s' % ce)
-            self.status = False
+            logging.debug('Requests returns code {0}'.format(str(r.status_code)))
+            r.raise_for_status()
+        except (requests.exceptions.HTTPError,requests.exceptions.ConnectionError) as ce:
+            logging.warn('Error: %s' % ce)
+            if r.status_code == 404:
+                self.status = 404
+            else:
+                self.status = False
             return False
         if r.status_code == requests.codes.ok:
             binary_content = r.content
+            self.status = True
         else:
             binary_content = False
             self.status = r.status_code
             logging.warning('Download returned status code %s' % str(r.status_code))
-                
         return binary_content
 
     def __init__(self,url,filename,n_tries=3):
+        """
+        Sleeptimer speeds up when things are going well
+        and slows down when having trouble connecting.
+        """
         self.status = False
         logging.info('Download request: %s, made on %s' % (url,self.its_today))
+        sleeptimer = 15
         while n_tries > 0:
             logging.debug('Attempting download ...')
-            binary_content = self.knock(url)
-            self.binary_content = binary_content
             if self.status == True:
                 logging.info('Request returned results.')
-                n_tries = 0
+                binary_content = self.knock(url)
+                if sleeptimer > 10:
+                    sleeptimer -= 5
+                break
             elif self.status == 404:
                 logging.info('File not found, skipping.')
                 break
             else:
                 n_tries -= 1
-                sleep(15)
-        if self.binary_content:
+                sleep(sleeptimer)
+                if sleeptimer < 30:
+                    sleeptimer += 5
+        if binary_content:
             with open(filename,'wb') as outfile:
                 outfile.write(self.binary_content)
             logging.info('Wrote {0}'.format(filename))
