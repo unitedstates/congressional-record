@@ -4,6 +4,7 @@ import sys
 from pg_run.pg_cr_bulkwrite import crToPG as cr
 from fdsys.downloader import Downloader as dl
 import argparse
+import logging
 
 def main():
     parser = argparse.ArgumentParser(
@@ -43,11 +44,14 @@ def main():
 
         
     args = parser.parse_args()
-
+    logging.basicConfig(filename='cr2.log',level=logging.DEBUG)
+    logging.info('Logging begins')
     if args.do_mode == 'pg':
         cr(args.start,end=args.end,do_mode='yield')
     else:
         print "Haven't written the hooks for other functionality yet."
+
+    logging.info('Logging ends')
 
     
 if __name__ == '__main__':
