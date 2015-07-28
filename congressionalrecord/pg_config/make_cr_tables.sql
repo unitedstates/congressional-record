@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS cr_pages CASCADE;
 CREATE TABLE cr_pages (
        pageid varchar(35) PRIMARY KEY,
-       title varchar(100),
+       title text,
        chamber varchar(21),
        extension boolean,
        cr_day varchar(2),
@@ -9,24 +9,24 @@ CREATE TABLE cr_pages (
        cr_year varchar(4),
        num varchar(4),
        vol varchar(4),
-       pages varchar(5),
+       pages varchar(15),
        wkday varchar(10));
 
 DROP TABLE IF EXISTS cr_bills;
 CREATE TABLE cr_bills (
        relationid SERIAL PRIMARY KEY,
        congress smallint,
-       context varchar(5),
-       bill_type varchar(4),
+       context varchar(50),
+       bill_type varchar(7),
        bill_no smallint,
-       pageid varchar(25) REFERENCES cr_pages(pageid));
+       pageid varchar(35) REFERENCES cr_pages(pageid));
 
 DROP TABLE IF EXISTS cr_speech;
 CREATE TABLE cr_speech (
        speechid varchar(50) PRIMARY KEY,
        speaker varchar(50),
        speaker_bioguide varchar(7) REFERENCES leg_bio(bioguideid),
-       pageid varchar(25) REFERENCES cr_pages(pageid),
+       pageid varchar(35) REFERENCES cr_pages(pageid),
        text text,
        turn smallint NOT NULL);
        

@@ -12,7 +12,11 @@ def if_exists(key,store):
     else:
         logging.warning('{0} not in {1}, returning default value'.format(key,store))
         return None
-        
+
+def rd(astring,delimiter='|'):
+    outstr = astring.replace(delimiter,'')
+    return outstr
+
 class outStack(object):
     def add(self,a_page):
         self.stack.append(a_page)
@@ -31,7 +35,7 @@ class outStack(object):
         """
         self.outfile = open(outpath,'ab')
         self.stack = []
-        self.writer = csv.DictWriter(outfile,fieldnames=fieldnames,
+        self.writer = csv.DictWriter(self.outfile,fieldnames=fieldnames,
                                      delimiter='|',encoding='utf-8')
 
     
@@ -45,7 +49,7 @@ class crToPG(object):
         to the right stack for a bulk insert.
         """
         page_row =  OrderedDict([('pageid',crfile['id']),
-                     ('title',crfile['doc_title']),
+                     ('title',rd(crfile['doc_title'])),
                      ('chamber',crfile['header']['chamber']),
                      ('extension',crfile['header']['extension']),
                      ('cr_day',crfile['header']['day']),
@@ -64,11 +68,12 @@ class crToPG(object):
             for bill in crfile['related_bills']:
                 bill_row = OrderedDict([('relationid',self.brid),
                             ('congress',bill['congress']),
+                            ('context',bill['context']),
                             ('bill_type',bill['type']),
                             ('bill_no',bill['number']),
                             ('pageid',crfile['id'])
                             ])
-                bills.append(bill)
+                bills.append(bill_row)
                 self.brid += 1
 
         # Bills for the bill god!
@@ -82,9 +87,9 @@ class crToPG(object):
                               ('speaker',speech['speaker']),
                               ('speaker_bioguide',speech['speaker_bioguide']),
                               ('pageid',crfile['id']),
-                              ('text',speech['text']),
+                              ('text',rd(speech['text'])),
                               ('turn',speech['turn'])
-                             ])
+                             ]) # Gotta get rid of delimiter char
                 speeches.append(speech_row)
 
         # SPEECHES FOR THE SPEECH THRONE
@@ -109,19 +114,20 @@ class crToPG(object):
         """
         kwargs['do_mode'] = 'yield'
         self.brid = 0
-        self.downloader = dl.Downloader(start,**kwargs)
+        self.downloader = dl(start,**kwargs)
         self.page_fields = ['pageid','title','chamber','extension',
                            'cr_day','cr_month','cr_year','num','vol',
                            'pages','wkday']
-        self.bill_fields = ['relationid','congress','bill_type',
-                            'bill_no','pageid']
+        self.bill_fields = ['relationid','congress','context',
+                            'bill_type','bill_no','pageid']
         self.speech_fields = ['speechid','speaker','speaker_bioguide',
                               'pageid','text','turn']
         pagestack = crPages('dbfiles/pages.csv',self.page_fields)
         billstack = crBills('dbfiles/bills.csv',self.bill_fields)
         speechstack = crSpeeches('dbfiles/speeches.csv',self.speech_fields)
-        for crfile in self.downloader:
-            self.ingest(crfile,pagestack,billstack,speechstack)
+        for crfile in self.downloader.yielded:
+            doc = crfile.crdoc
+            self.ingest(doc,pagestack,billstack,speechstack)
             pagestack.write()
             billstack.write()
             speechstack.write()

@@ -54,6 +54,11 @@ class Downloader(object):
                 logging.warning('Unexpected condition in bulkdownloader')
             day += timedelta(days=1)
 
+    def generate(self,start,**kwargs):
+        for crfile in self.bulkdownload(start,**kwargs):
+            yield crfile
+        
+
     def __init__(self,start,**kwargs):
         """
         Invoke a Downloader object to get data from
@@ -122,9 +127,8 @@ class Downloader(object):
                 with open(outpath,'w') as out_json:
                     json.dump(crfile.crdoc,out_json)
         elif kwargs['do_mode'] == 'yield':
-            for crfile in self.bulkdownload(start,**kwargs):
-                yield crfile
-            
+            self.yielded = self.generate(start,**kwargs)
+
         else:
             return None
                                                                        
