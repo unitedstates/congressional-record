@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS cr_pages;
+DROP TABLE IF EXISTS cr_pages CASCADE;
 CREATE TABLE cr_pages (
        pageid varchar(35) PRIMARY KEY,
        title varchar(100),
@@ -23,12 +23,10 @@ CREATE TABLE cr_bills (
 
 DROP TABLE IF EXISTS cr_speech;
 CREATE TABLE cr_speech (
-       speechid SERIAL PRIMARY KEY,
+       speechid varchar(50) PRIMARY KEY,
        speaker varchar(50),
        speaker_bioguide varchar(7) REFERENCES leg_bio(bioguideid),
        pageid varchar(25) REFERENCES cr_pages(pageid),
        text text,
        turn smallint NOT NULL);
-
-CREATE INDEX speech_bio_ix ON cr_speech (speaker_bioguide);
        
