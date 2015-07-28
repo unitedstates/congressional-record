@@ -66,15 +66,13 @@ class crToPG(object):
         bills = []
         if 'related_bills' in crfile.keys():
             for bill in crfile['related_bills']:
-                bill_row = OrderedDict([('relationid',self.brid),
-                            ('congress',bill['congress']),
+                bill_row = OrderedDict([('congress',bill['congress']),
                             ('context',bill['context']),
                             ('bill_type',bill['type']),
                             ('bill_no',bill['number']),
                             ('pageid',crfile['id'])
                             ])
                 bills.append(bill_row)
-                self.brid += 1
 
         # Bills for the bill god!
         billstack.add(bills)
@@ -113,12 +111,11 @@ class crToPG(object):
         of transactions to the database, which we want.
         """
         kwargs['do_mode'] = 'yield'
-        self.brid = 0
         self.downloader = dl(start,**kwargs)
         self.page_fields = ['pageid','title','chamber','extension',
                            'cr_day','cr_month','cr_year','num','vol',
                            'pages','wkday']
-        self.bill_fields = ['relationid','congress','context',
+        self.bill_fields = ['congress','context',
                             'bill_type','bill_no','pageid']
         self.speech_fields = ['speechid','speaker','speaker_bioguide',
                               'pageid','text','turn']

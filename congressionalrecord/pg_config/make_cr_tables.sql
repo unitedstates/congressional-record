@@ -14,7 +14,6 @@ CREATE TABLE cr_pages (
 
 DROP TABLE IF EXISTS cr_bills;
 CREATE TABLE cr_bills (
-       relationid SERIAL PRIMARY KEY,
        congress smallint,
        context varchar(50),
        bill_type varchar(7),
@@ -24,7 +23,7 @@ CREATE TABLE cr_bills (
 DROP TABLE IF EXISTS cr_speech;
 CREATE TABLE cr_speech (
        speechid varchar(50) PRIMARY KEY,
-       speaker varchar(50),
+       speaker varchar(100),
        speaker_bioguide varchar(7) REFERENCES leg_bio(bioguideid),
        pageid varchar(35) REFERENCES cr_pages(pageid),
        text text,
