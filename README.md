@@ -4,7 +4,9 @@
 
 This is a fork of [the congressionalrecord repo](https://github.com/unitedstates/congressional-record), part of The United States Project and a product of The Sunlight Foundation and collaborators.
 
-Like the original repo, it parses XML files downloaded from the Government Printing Office and produces structured text.
+Like the original, it parses XML files downloaded from the Government Printing Office and produces structured text.
+
+This version has a command line interface and is under heavy development. From the repository root, type ``python -m congressionalrecord.cli -h`` for instructions.
 
 Unlike the original repo:
 * It outputs JSON intended for use in ElasticSearch, not XML for Lucene.
