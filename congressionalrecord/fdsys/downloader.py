@@ -229,7 +229,7 @@ class fdsysExtract(object):
         if extract_to + '.zip' not in os.listdir(os.path.join(outpath,year)):
             the_dl = fdsysDL(day,outpath=outpath)
             self.status = the_dl.status
-            if the_dl.status == 404:
+            if self.status != True:
                 logging.info('No record on this day, not trying to extract')
                 return None
         with ZipFile(abspath,'r') as the_zip:
