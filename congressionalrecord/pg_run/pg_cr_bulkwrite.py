@@ -107,6 +107,7 @@ class crToPG(object):
         This is the way to minimize the number
         of transactions to the database, which we want.
         """
+        kwargs['do_mode'] = 'yield'
         self.brid = 0
         self.downloader = dl.Downloader(start,**kwargs)
         self.page_fields = ['pageid','title','chamber','extension',
