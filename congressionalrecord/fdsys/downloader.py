@@ -139,16 +139,17 @@ class downloadRequest(object):
     def knock(self,url):
         try:
             r = requests.get(url,timeout=15)
-            if r.status_code == requests.codes.ok:
-                binary_content = r.content
-            else:
-                binary_content = False
-                self.status = r.status_code
-                logging.warning('Download returned status code %s' % str(r.status_code))
-                
+            self.status = True
         except (requests.exceptions.ConnectionError) as ce:
             logging.warn('Connection error: %s' % ce)
             binary_content = False
+        if r.status_code == requests.codes.ok:
+            binary_content = r.content
+        else:
+            binary_content = False
+            self.status = r.status_code
+            logging.warning('Download returned status code %s' % str(r.status_code))
+                
         return binary_content
 
     def __init__(self,url,filename,n_tries=3):
@@ -158,7 +159,7 @@ class downloadRequest(object):
             logging.debug('Attempting download ...')
             binary_content = self.knock(url)
             self.binary_content = binary_content
-            if self.binary_content:
+            if self.status == True:
                 logging.info('Request returned results.')
                 n_tries = 0
             elif self.status == 404:
