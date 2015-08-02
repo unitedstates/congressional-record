@@ -1,4 +1,6 @@
 import requests
+import urllib3
+from urllib3 import PoolManager, Retry, Timeout
 import os
 from datetime import datetime,date,timedelta
 from time import sleep
@@ -124,6 +126,7 @@ class Downloader(object):
 
         else:
             return None
+    
                                                                        
                             
         
@@ -131,29 +134,29 @@ class Downloader(object):
 class downloadRequest(object):
 
     its_today = datetime.strftime(datetime.today(),'%Y-%m-%d %H:%M')
-
-    def __init__(self,url,filename,n_tries=3):
+    timeout = Timeout(connect=2.0,read=10.0)
+    retry = Retry(total=3,backoff_factor=300)
+    retry.BACKOFF_MAX = 602
+    http = PoolManager(timeout=timeout,retries=retry)
+    
+    def __init__(self,url,filename):
         self.status = False
-        tries_left = n_tries
-        while tries_left > 0:
-            try:
-                logging.info('Sending request on {0}'.format(self.its_today))
-                r = requests.get(url,timeout=15)
-                logging.debug('Request headers received with code {0}'.format(str(r.status_code)))
-                r.raise_for_status()
-                self.binary_content = r.content
+        try:
+            logging.info('Sending request on {0}'.format(self.its_today))
+            r = self.http.request('GET',url)
+            logging.debug('Request headers received with code {0}'.format(str(r.status)))
+            if r.status == 404:
+                logging.warn('Received 404, not retrying request.')
+                self.status = 404
+            elif r.status == 200:
+                logging.info('Considering request successful.')
+                self.binary_content = r.data
                 self.status = True
-                break
-            except (requests.exceptions.HTTPError,requests.exceptions.ConnectionError) as ce:
-                logging.warning('Error: %s' % ce)
-                if r.status_code == 404:
-                    self.status = 404
-                    break
-                else:
-                    self.status = False
-                tries_left -= 1
-                logging.warning('Tries remaining: {0}\n\tTrying again in 15s ...'.format(str(tries_left)))
-                sleep(15)
+            else:
+                logging.warn('Unexpected condition, not continuing:\
+                {0}'.format(str(r.status)))
+        except urllib3.exceptions.MaxRetryError as ce:
+            logging.warn('Error: %s - Aborting download' % ce)
         if self.status == False:
             logging.warn('Failed to download file {0}'.format(url))
         elif self.status == 404:
