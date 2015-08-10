@@ -139,7 +139,7 @@ class downloadRequest(object):
     def knock(self,url):
         try:
             r = requests.get(url,timeout=15)
-        except (requests.exceptions.ConnectionError) as ce:
+        except (requests.exceptions.ConnectionError,requests.exceptions.Timeout) as ce:
             logging.warn('Connection error: %s' % ce)
             self.status = False
             return False
@@ -231,6 +231,7 @@ class fdsysExtract(object):
             self.status = the_dl.status
             if self.status != True:
                 logging.info('No record on this day, not trying to extract')
+                self.status = 'downloadFailure'
                 return None
         with ZipFile(abspath,'r') as the_zip:
             the_zip.extractall(os.path.join(outpath,year))
