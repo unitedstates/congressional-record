@@ -1,4 +1,6 @@
 import requests
+import urllib3
+from urllib3 import PoolManager, Retry, Timeout
 import os
 from datetime import datetime,date,timedelta
 from time import sleep
@@ -49,10 +51,6 @@ class Downloader(object):
                 logging.warning('Unexpected condition in bulkdownloader')
             day += timedelta(days=1)
 
-    def generate(self,start,**kwargs):
-        for crfile in self.bulkdownload(start,**kwargs):
-            yield crfile
-        
 
     def __init__(self,start,**kwargs):
         """
@@ -122,59 +120,53 @@ class Downloader(object):
                 with open(outpath,'w') as out_json:
                     json.dump(crfile.crdoc,out_json)
         elif kwargs['do_mode'] == 'yield':
-            self.yielded = self.generate(start,**kwargs)
+            self.yielded = self.bulkdownload(start,parse=True,**kwargs)
         elif kwargs['do_mode'] == 'noparse':
             self.bulkdownload(start,parse=False,**kwargs)
 
         else:
             return None
+    
                                                                        
                             
         
 
 class downloadRequest(object):
 
-    its_today = date.strftime(date.today(),'%Y-%m-%d')
+    its_today = datetime.strftime(datetime.today(),'%Y-%m-%d %H:%M')
+    timeout = Timeout(connect=2.0,read=10.0)
+    retry = Retry(total=3,backoff_factor=300)
+    retry.BACKOFF_MAX = 602
+    http = PoolManager(timeout=timeout,retries=retry)
     
-    def knock(self,url):
-        try:
-            r = requests.get(url,timeout=15)
-        except (requests.exceptions.ConnectionError,requests.exceptions.Timeout) as ce:
-            logging.warn('Connection error: %s' % ce)
-            self.status = False
-            return False
-        if r.status_code == requests.codes.ok:
-            binary_content = r.content
-        else:
-            binary_content = False
-            self.status = r.status_code
-            logging.warning('Download returned status code %s' % str(r.status_code))
-                
-        return binary_content
-
-    def __init__(self,url,filename,n_tries=3):
+    def __init__(self,url,filename):
         self.status = False
-        logging.info('Download request: %s, made on %s' % (url,self.its_today))
-        while n_tries > 0:
-            logging.debug('Attempting download ...')
-            binary_content = self.knock(url)
-            self.binary_content = binary_content
-            if self.status == True:
-                logging.info('Request returned results.')
-                n_tries = 0
-            elif self.status == 404:
-                logging.info('File not found, skipping.')
-                break
+        try:
+            logging.info('Sending request on {0}'.format(self.its_today))
+            r = self.http.request('GET',url)
+            logging.debug('Request headers received with code {0}'.format(str(r.status)))
+            if r.status == 404:
+                logging.warn('Received 404, not retrying request.')
+                self.status = 404
+            elif r.status == 200:
+                logging.info('Considering request successful.')
+                self.binary_content = r.data
+                self.status = True
             else:
-                n_tries -= 1
-                sleep(15)
-        if self.binary_content:
+                logging.warn('Unexpected condition, not continuing:\
+                {0}'.format(str(r.status)))
+        except urllib3.exceptions.MaxRetryError as ce:
+            logging.warn('Error: %s - Aborting download' % ce)
+        if self.status == False:
+            logging.warn('Failed to download file {0}'.format(url))
+        elif self.status == 404:
+            logging.info('downloadRequester skipping file that returned 404.')
+        elif self.binary_content:
             with open(filename,'wb') as outfile:
                 outfile.write(self.binary_content)
             logging.info('Wrote {0}'.format(filename))
-            self.status = True
         else:            
-            logging.info('No download for {0}'.format(url))
+            logging.info('No download for {0} and terminating with unexpected condition.\n'.format(url))
             
 
     
@@ -191,19 +183,18 @@ class fdsysDL(object):
         the_filename = os.path.join(outpath,year,'CREC-' + day + '.zip')
         the_download = downloadRequest(the_url,the_filename)
         self.status = the_download.status
-        if the_download.status == False:
-            logging.warn("Download for {0} did not complete.".format(day))
-        elif the_download.status == 404:
-            logging.warning('Download for {0} did not complete because there is no record for that day.'.format(day))
-        self.status = the_download.status
+        if self.status == False:
+            logging.warn("fdsysDL received report that download for {0} did not complete.".format(day))
+        elif self.status == 404:
+            logging.warning('fdsysDL received 404 report for {0}.'.format(day))
+        else:
+            logging.info('fdsysDL received expected condition {0} for downloader'.format(the_download.status))
 
     def __init__(self,day,**kwargs):
         self.status = 'idle'
         if 'outpath' in kwargs.keys():
             self.outpath = kwargs['outpath']
         else:
-            if 'output' not in os.listdir(os.getcwd()):
-                os.mkdir('output')
             self.outpath = 'output'
         self.download_day(day,self.outpath)
 
@@ -218,6 +209,8 @@ class fdsysExtract(object):
             outpath = 'output'
         else:
             outpath = kwargs['outpath']
+        if not os.path.isdir(outpath):
+            os.makedirs(outpath)
         abspath = os.path.join(outpath,year,'CREC-' + day + '.zip')
         extract_to = 'CREC-' + day
         if year not in os.listdir(outpath):

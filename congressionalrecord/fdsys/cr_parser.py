@@ -32,7 +32,7 @@ class ParseCRFile(object):
     re_chamber =  r'\[(?P<chamber>[A-Za-z\s]+)\]'
     re_pages =  r'\[Page[s]? (?P<pages>[\w\-]+)\]'
     re_trail = r'From the Congressional Record Online'\
-      + r' through the Government Publishing Office \[www.gpo.gov\]$'
+      + r' through the Government (Publishing|Printing) Office \[www.gpo.gov\]$'
     re_rollcall =       r'\[Roll(call)?( Vote)? No. \d+.*\]'
     re_recorderstart =  (r'^\s+(?P<start>'
                         + r'(The (assistant )?legislative clerk read as follows)'
