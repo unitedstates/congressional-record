@@ -3,6 +3,9 @@ from congressionalrecord.fdsys import cr_parser as cr
 from congressionalrecord.fdsys import downloader as dl
 import random
 import os
+from datetime import datetime,timedelta
+import json
+import re
 
 class testCRDir(unittest.TestCase):
     def test(self):
@@ -43,4 +46,42 @@ class testDownloader(unittest.TestCase):
         download = dl.Downloader('2005-07-20')
         self.assertEqual(download.status,'existingFiles')
         
+class testJson(unittest.TestCase):
+
+    def setUp(self):
+        startd = datetime(2005,1,1)
+        lastd = datetime(2015,7,31)
+        duration = lastd - startd
+        ndays = random.randint(0,duration)
+        testd = startd + timedelta(ndays)
+        self.download_day = datetime.strftime(testd,'%Y-%m-%d')
+        self.download_year = datetime.strftime(testd,'%Y-%m-%d').year
+
+    def noTextInLineBreaks(self):
+        d = dl.Downloader(self.download_day,do_mode='json')
+        rootdir = os.path.join('output',self.download_year)
+        n_checked = 0
+        for root,dirs,files in os.path.walk(rootdir):
+            if root == 'json':
+                for afile in files:
+                    testf = json.load(afile)
+                    for item in testf['content']:
+                        if item['kind'] == 'linebreak':
+                            for line in item['text'].split('\n'):
+                                self.assertFalse(
+                                    re.match(r".*[\w]+",line))
+                                
+    def noTextInLineBreaksAtAll(self):
+        for root,dirs,files in os.path.walk('output'):
+            if root == 'json':
+                for afile in files:
+                    testf = json.load(afile)
+                    for item in testf['content']:
+                        for line in item['text'].split('\n'):
+                            self.assertFalse(
+                                re.match(r".*[\w]+",line))
     
+
+    
+
+        
