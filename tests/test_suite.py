@@ -6,6 +6,9 @@ import os
 from datetime import datetime,timedelta
 import json
 import re
+import logging
+
+logging.basicConfig(filename='unittests.log',level=logging.DEBUG)
 
 class testCRDir(unittest.TestCase):
     def test(self):
@@ -38,11 +41,11 @@ class testCRFile(unittest.TestCase):
 
 class testDownloader(unittest.TestCase):
 
-    def handle_404(self):
+    def test_handle_404(self):
         download = dl.Downloader('2015-07-19',do_mode='json')
-        self.assertEqual(download.status,404)
+        self.assertEqual(download.status,downloadFailure)
 
-    def handle_existing(self):
+    def test_handle_existing(self):
         download = dl.Downloader('2005-07-20')
         self.assertEqual(download.status,'existingFiles')
         
@@ -52,48 +55,23 @@ class testJson(unittest.TestCase):
         startd = datetime(2005,1,1)
         lastd = datetime(2015,7,31)
         duration = lastd - startd
-        ndays = random.randint(0,duration)
+        ndays = random.randint(0,duration.days)
         testd = startd + timedelta(ndays)
         self.download_day = datetime.strftime(testd,'%Y-%m-%d')
-        self.download_year = datetime.strftime(testd,'%Y-%m-%d').year
+        self.download_year = str(testd.year)
 
-    def noTextInLineBreaks(self):
+    def test_no_text_in_line_breaks(self):
         d = dl.Downloader(self.download_day,do_mode='json')
         rootdir = os.path.join('output',self.download_year)
-        n_checked = 0
-        for root,dirs,files in os.path.walk(rootdir):
-            if root == 'json':
-                for afile in files:
-                    testf = json.load(afile)
+        for root,dirs,files in os.walk('output'):
+            if 'json' in dirs:
+                for afile in os.listdir(os.path.join(root,'json')):
+                    fp = os.path.join(root,'json',afile)
+                    logging.info('Into file:\n\t{0}'.format(fp))
+                    with open(fp,'r') as raw:
+                        testf = json.load(raw)                    
                     for item in testf['content']:
                         if item['kind'] == 'linebreak':
                             for line in item['text'].split('\n'):
                                 self.assertFalse(
-                                    re.match(r".*[\w]+",line))
-
-class testAllJson(unittest.TestCase):
-    def setUp(self):
-        startd = datetime(2005,1,1)
-        lastd = datetime(2015,7,31)
-        duration = lastd - startd
-        ndays = random.randint(0,duration)
-        testd = startd + timedelta(ndays)
-        self.download_day = datetime.strftime(testd,'%Y-%m-%d')
-        self.download_year = datetime.strftime(testd,'%Y-%m-%d').year
-
-    def noTextInLineBreaksAtAll(self):
-        for root,dirs,files in os.path.walk('output'):
-            for adir in dirs:
-                if adir  == 'json':
-                    apath = os.path.join('output',root,adir)
-                    for afile in os.listdir(apath):
-                        testf = json.load(afile)
-                        for item in testf['content']:
-                            for line in item['text'].split('\n'):
-                                self.assertFalse(
-                                    re.match(r".*[\w]+",line))
-    
-
-    
-
-        
+                                    re.match(r".*[a-zA-Z]+",line))
