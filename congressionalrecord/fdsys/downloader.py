@@ -101,6 +101,10 @@ class Downloader(object):
         self.status = 'idle'
         logging.debug('Downloader object ready with params:')
         logging.debug(','.join(['='.join([key,value]) for key,value in kwargs.items()]))
+        if 'outpath' in kwargs.keys():
+            outpath = kwargs['outpath']
+        else:
+            outpath = 'output'
         if kwargs['do_mode'] == 'es':
             es = ElasticSearch(kwargs['es_url'])
             for chunk in bulk_chunks((es.index_op(crfile.crdoc,id=crfile.crdoc.pop('id')) for crfile

@@ -48,6 +48,8 @@ def main():
     logging.info('Logging begins')
     if args.do_mode == 'pg':
         cr(args.start,end=args.end,do_mode='yield')
+    elif args.do_mode == 'json':
+        dl(args.start,end=args.end,do_mode='json')
     else:
         print "Haven't written the hooks for other functionality yet."
 
