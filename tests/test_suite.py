@@ -70,16 +70,28 @@ class testJson(unittest.TestCase):
                             for line in item['text'].split('\n'):
                                 self.assertFalse(
                                     re.match(r".*[\w]+",line))
-                                
+
+class testAllJson(unittest.TestCase):
+    def setUp(self):
+        startd = datetime(2005,1,1)
+        lastd = datetime(2015,7,31)
+        duration = lastd - startd
+        ndays = random.randint(0,duration)
+        testd = startd + timedelta(ndays)
+        self.download_day = datetime.strftime(testd,'%Y-%m-%d')
+        self.download_year = datetime.strftime(testd,'%Y-%m-%d').year
+
     def noTextInLineBreaksAtAll(self):
         for root,dirs,files in os.path.walk('output'):
-            if root == 'json':
-                for afile in files:
-                    testf = json.load(afile)
-                    for item in testf['content']:
-                        for line in item['text'].split('\n'):
-                            self.assertFalse(
-                                re.match(r".*[\w]+",line))
+            for adir in dirs:
+                if adir  == 'json':
+                    apath = os.path.join('output',root,adir)
+                    for afile in os.listdir(apath):
+                        testf = json.load(afile)
+                        for item in testf['content']:
+                            for line in item['text'].split('\n'):
+                                self.assertFalse(
+                                    re.match(r".*[\w]+",line))
     
 
     
