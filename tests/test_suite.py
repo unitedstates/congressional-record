@@ -53,7 +53,7 @@ class testLineBreak(unittest.TestCase):
 
     def setUp(self):
         d = dl.Downloader('2014-11-19',do_mode='json')
-        self.sp = re.compile(r'^(<bullet> |  )(?P<name>(%s|(((Mr)|(Ms)|(Mrs))\. [-A-Z\'a-z\']+( of [A-Z][a-z]+)?|((Miss) [-A-Z\'a-z\']+)( of [A-Z][a-z]+)?))|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.')
+        self.sp = re.compile(r'^(\s{1,2}|<bullet>)(?P<name>((((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z\'])(\s)?)+( of [A-Z][a-z]+)?)|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?))\.')
 
     def test_fixedLineBreak(self):
         rootdir = 'output/2014/CREC-2014-11-19/json'
@@ -79,7 +79,7 @@ class testJson(unittest.TestCase):
         testd = startd + timedelta(ndays)
         self.download_day = datetime.strftime(testd,'%Y-%m-%d')
         self.download_year = str(testd.year)
-        self.sp = re.compile(r'^(<bullet> |  )(?P<name>(%s|(((Mr)|(Ms)|(Mrs))\. [-A-Z\'a-z\']+( of [A-Z][a-z]+)?|((Miss) [-A-Z\'a-z\']+)( of [A-Z][a-z]+)?))|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.')
+        self.sp = re.compile(r'^(\s{1,2}|<bullet>)(?P<name>((((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z\'])(\s)?)+( of [A-Z][a-z]+)?)|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?))\.')
         d = dl.Downloader(self.download_day,do_mode='json')
         while d.status == 'downloadFailure':
             ndays = random.randint(0,duration.days)
