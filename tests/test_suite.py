@@ -6,6 +6,9 @@ import os
 from datetime import datetime,timedelta
 import json
 import re
+import logging
+
+logging.basicConfig(filename='tests.log',level=logging.DEBUG)
 
 class testCRDir(unittest.TestCase):
     def test(self):
@@ -52,46 +55,46 @@ class testJson(unittest.TestCase):
         startd = datetime(2005,1,1)
         lastd = datetime(2015,7,31)
         duration = lastd - startd
-        ndays = random.randint(0,duration)
+        ndays = random.randint(0,duration.days)
         testd = startd + timedelta(ndays)
         self.download_day = datetime.strftime(testd,'%Y-%m-%d')
-        self.download_year = datetime.strftime(testd,'%Y-%m-%d').year
+        self.download_year = str(testd.year)
+        self.sp = re.compile(r'^(<bullet> |  )(?P<name>(%s|(((Mr)|(Ms)|(Mrs))\. [-A-Z\'a-z\']+( of [A-Z][a-z]+)?|((Miss) [-A-Z\'a-z\']+)( of [A-Z][a-z]+)?))|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)\.')
 
-    def noTextInLineBreaks(self):
+    def test_noTextInLineBreaks(self):
         d = dl.Downloader(self.download_day,do_mode='json')
         rootdir = os.path.join('output',self.download_year)
         n_checked = 0
-        for root,dirs,files in os.path.walk(rootdir):
-            if root == 'json':
+        for root,dirs,files in os.walk(rootdir):
+            if 'json' in root:
                 for afile in files:
-                    testf = json.load(afile)
+                    apath = os.path.join(root,afile)
+                    logging.info('loading {0}'.format(apath))
+                    with open(apath, 'r') as inson:
+                        testf = json.load(inson)
                     for item in testf['content']:
                         if item['kind'] == 'linebreak':
                             for line in item['text'].split('\n'):
                                 self.assertFalse(
-                                    re.match(r".*[\w]+",line))
+                                    self.sp.match(line),
+                                    'Check {0}'.format(apath))
 
-class testAllJson(unittest.TestCase):
-    def setUp(self):
-        startd = datetime(2005,1,1)
-        lastd = datetime(2015,7,31)
-        duration = lastd - startd
-        ndays = random.randint(0,duration)
-        testd = startd + timedelta(ndays)
-        self.download_day = datetime.strftime(testd,'%Y-%m-%d')
-        self.download_year = datetime.strftime(testd,'%Y-%m-%d').year
-
-    def noTextInLineBreaksAtAll(self):
-        for root,dirs,files in os.path.walk('output'):
-            for adir in dirs:
-                if adir  == 'json':
-                    apath = os.path.join('output',root,adir)
-                    for afile in os.listdir(apath):
-                        testf = json.load(afile)
-                        for item in testf['content']:
+    def test_noSpeakersOutsideSpeech(self):
+        n_checked = 0
+        for root,dirs,files in os.walk('output'):
+            if 'json' in root:
+                for afile in files:
+                    apath = os.path.join(root,afile)
+                    logging.info('loading {0}'.format(apath))
+                    with open(apath, 'r') as inson:
+                        testf = json.load(inson)
+                    for item in testf['content']:
+                        if item['kind'] != 'speech':
                             for line in item['text'].split('\n'):
                                 self.assertFalse(
-                                    re.match(r".*[\w]+",line))
+                                    self.sp.match(line),
+                                    'Check {0}'.format(apath))
+
     
 
     
