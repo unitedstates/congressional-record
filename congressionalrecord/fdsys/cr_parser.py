@@ -92,7 +92,7 @@ class ParseCRFile(object):
                        )
     re_clerk = r'^\s+(?P<start>The Clerk (read|designated))'
     re_allcaps = r'^ \s*(?!([_=]+|-{3,}))(?P<title>([A-Z]+[^a-z]+))$'
-    re_linebreak = r'\s+([_=]+|-{3,})\s*'
+    re_linebreak = r'\s+([_=]+|-{3,})(NOTE|END NOTE)?([_=]+|-{3,})*\s*'
     re_newpage =   r'\s*\[\[Page \w+\]\]'
     re_timestamp = r'\s+\{time\}\s+\d{4}'
 
