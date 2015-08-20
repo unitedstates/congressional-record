@@ -11,6 +11,10 @@ import logging
 logging.basicConfig(filename='tests.log',level=logging.DEBUG)
 
 class testCRDir(unittest.TestCase):
+
+    def setUp(self):
+        download = dl.Downloader('2015-07-20',do_mode='json')
+
     def test(self):
         """
         CRDir pointed at correct path
@@ -21,6 +25,7 @@ class testCRDir(unittest.TestCase):
 
 class testCRFile(unittest.TestCase):
     def setUp(self):
+        download = dl.Downloader('2015-07-20',do_mode='json')
         input_string = 'output/2005/CREC-2005-07-20'
         self.crdir = cr.ParseCRDir(input_string)
         input_dir = os.path.join(input_string,'html')
@@ -47,7 +52,7 @@ class testDownloader(unittest.TestCase):
 
     def test_handle_existing(self):
         download = dl.Downloader('2005-07-20',do_mode='json')
-        self.assertEqual(download.status,'existingFiles')
+        self.assertIn(download.status,'existingFiles')
 
 class testLineBreak(unittest.TestCase):
 
@@ -130,12 +135,3 @@ class testJson(unittest.TestCase):
                             self.assertFalse(
                                 re.match(r"\s*[a-zA-Z]+",line),
                                 'Check {0}'.format(apath))
-
-        
-        
-
-    
-
-    
-
-        
