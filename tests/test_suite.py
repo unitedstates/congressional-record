@@ -8,9 +8,13 @@ import json
 import re
 import logging
 
-logging.basicConfig(filename='unittests.log',level=logging.DEBUG)
+logging.basicConfig(filename='tests.log',level=logging.DEBUG)
 
 class testCRDir(unittest.TestCase):
+
+    def setUp(self):
+        download = dl.Downloader('2015-07-20',do_mode='json')
+
     def test(self):
         """
         CRDir pointed at correct path
@@ -21,6 +25,7 @@ class testCRDir(unittest.TestCase):
 
 class testCRFile(unittest.TestCase):
     def setUp(self):
+        download = dl.Downloader('2015-07-20',do_mode='json')
         input_string = 'output/2005/CREC-2005-07-20'
         self.crdir = cr.ParseCRDir(input_string)
         input_dir = os.path.join(input_string,'html')
@@ -43,12 +48,32 @@ class testDownloader(unittest.TestCase):
 
     def test_handle_404(self):
         download = dl.Downloader('2015-07-19',do_mode='json')
-        self.assertEqual(download.status,downloadFailure)
+        self.assertEqual(download.status,'downloadFailure')
 
     def test_handle_existing(self):
-        download = dl.Downloader('2005-07-20')
-        self.assertEqual(download.status,'existingFiles')
-        
+        download = dl.Downloader('2005-07-20',do_mode='json')
+        self.assertIn(download.status,'existingFiles')
+
+class testLineBreak(unittest.TestCase):
+
+    def setUp(self):
+        d = dl.Downloader('2014-11-19',do_mode='json')
+        self.sp = re.compile(r'^(\s{1,2}|<bullet>)(?P<name>((((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z\'])(\s)?)+( of [A-Z][a-z]+)?)|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?))\.')
+
+    def test_fixedLineBreak(self):
+        rootdir = 'output/2014/CREC-2014-11-19/json'
+        for apath in os.listdir(rootdir):
+            thepath = os.path.join(rootdir,apath)
+            with open(thepath,'r') as thefile:
+                thejson = json.load(thefile)
+            for item in thejson['content']:
+                if item['kind'] != 'speech':
+                    for line in item['text'].split('\n'):
+                        self.assertFalse(
+                            self.sp.match(line),
+                            'Check {0}'.format(apath))
+
+            
 class testJson(unittest.TestCase):
 
     def setUp(self):
@@ -59,19 +84,41 @@ class testJson(unittest.TestCase):
         testd = startd + timedelta(ndays)
         self.download_day = datetime.strftime(testd,'%Y-%m-%d')
         self.download_year = str(testd.year)
-
-    def test_no_text_in_line_breaks(self):
+        self.sp = re.compile(r'^(\s{1,2}|<bullet>)(?P<name>((((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z\'])(\s)?)+( of [A-Z][a-z]+)?)|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?))\.')
         d = dl.Downloader(self.download_day,do_mode='json')
-        rootdir = os.path.join('output',self.download_year)
+        while d.status == 'downloadFailure':
+            ndays = random.randint(0,duration.days)
+            testd = startd + timedelta(ndays)
+            self.download_day = datetime.strftime(testd,'%Y-%m-%d')
+            self.download_year = str(testd.year)
+            d = dl.Downloader(self.download_day,do_mode='json')
+
+    def test_noSpeakersOutsideSpeech_Fresh(self):
+        rootdir = os.path.join('output',self.download_year,'CREC-'+self.download_day,'json')
+        for afile in os.listdir(rootdir):
+            apath = os.path.join(rootdir,afile)
+            logging.info('loading {0}'.format(apath))
+            with open(apath, 'r') as inson:
+                testf = json.load(inson)
+                for item in testf['content']:
+                    if item['kind'] != 'speech':
+                        for line in item['text'].split('\n'):
+                            self.assertFalse(
+                                self.sp.match(line),
+                                'Check {0}'.format(apath))
+
+    def test_noSpeakersOutsideSpeech_All(self):
         for root,dirs,files in os.walk('output'):
-            if 'json' in dirs:
-                for afile in os.listdir(os.path.join(root,'json')):
-                    fp = os.path.join(root,'json',afile)
-                    logging.info('Into file:\n\t{0}'.format(fp))
-                    with open(fp,'r') as raw:
-                        testf = json.load(raw)                    
+            if 'json' in root:
+                for afile in files:
+                    apath = os.path.join(root,afile)
+                    logging.info('loading {0}'.format(apath))
+                    with open(apath, 'r') as inson:
+                        testf = json.load(inson)
                     for item in testf['content']:
-                        if item['kind'] == 'linebreak':
+                        if item['kind'] != 'speech':
                             for line in item['text'].split('\n'):
                                 self.assertFalse(
-                                    re.match(r".*[a-zA-Z]+",line))
+                                    self.sp.match(line),
+                                    'Check {0}'.format(apath))
+
