@@ -42,9 +42,15 @@ def main():
         help='If using elasticsearch, this is the URL of the\
         elasticsearch cluster.')
 
+    parser.add_argument(
+        '--logfile',
+        type=str,
+        help='Use a particular logfile.',
+        default='cr2.log')
+
         
     args = parser.parse_args()
-    logging.basicConfig(filename='cr2.log',level=logging.DEBUG)
+    logging.basicConfig(filename=args.logfile,level=logging.DEBUG)
     logging.info('Logging begins')
     if args.do_mode == 'pg':
         cr(args.start,end=args.end,do_mode='yield')
