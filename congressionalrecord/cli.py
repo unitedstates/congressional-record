@@ -43,6 +43,11 @@ def main():
         elasticsearch cluster.')
 
     parser.add_argument(
+        '--csvpath',
+        type=str,
+        help='Optional path for csv files if using pg do_mode.')
+
+    parser.add_argument(
         '--logfile',
         type=str,
         help='Use a particular logfile.',
@@ -52,7 +57,9 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(filename=args.logfile,level=logging.DEBUG)
     logging.info('Logging begins')
-    if args.do_mode == 'pg':
+    if args.csvpath and args.do_mode == 'pg':
+        cr(args.start, end=args.end, do_mode='yield', csvpath=args.csvpath)
+    elif args.do_mode == 'pg':
         cr(args.start,end=args.end,do_mode='yield')
     elif args.do_mode == 'json':
         dl(args.start,end=args.end,do_mode='json')
