@@ -150,12 +150,15 @@ class ParseCRFile(object):
         if self.doc_ref.time:
             from_hr,from_min,from_sec = self.doc_ref.time['from'].split(':')
             to_hr,to_min,to_sec = self.doc_ref.time['to'].split(':')
-            self.doc_date = datetime(int(year),int(month),int(day))
-            self.doc_start_time = datetime(int(year),int(month),int(day),\
-            int(from_hr),int(from_min),int(from_sec))
-            self.doc_stop_time = datetime(int(year),int(month),int(day),\
-            int(to_hr),int(to_min),int(to_sec))
-            self.doc_duration = self.doc_stop_time - self.doc_start_time
+            try:
+                self.doc_date = datetime(int(year),int(month),int(day))
+                self.doc_start_time = datetime(int(year),int(month),int(day),\
+                int(from_hr),int(from_min),int(from_sec))
+                self.doc_stop_time = datetime(int(year),int(month),int(day),\
+                int(to_hr),int(to_min),int(to_sec))
+                self.doc_duration = self.doc_stop_time - self.doc_start_time
+            except:
+                logging.info('Could not extract a document timestamp.')
     
     # Flow control for metadata generation
     def gen_file_metadata(self):
