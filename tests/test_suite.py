@@ -13,7 +13,7 @@ logging.basicConfig(filename='tests.log',level=logging.DEBUG)
 class testCRDir(unittest.TestCase):
 
     def setUp(self):
-        download = dl.Downloader('2015-07-20',do_mode='json')
+        download = dl.Downloader('2005-07-20',do_mode='json')
 
     def test(self):
         """
@@ -25,7 +25,7 @@ class testCRDir(unittest.TestCase):
 
 class testCRFile(unittest.TestCase):
     def setUp(self):
-        download = dl.Downloader('2015-07-20',do_mode='json')
+        download = dl.Downloader('2005-07-20',do_mode='json')
         input_string = 'output/2005/CREC-2005-07-20'
         self.crdir = cr.ParseCRDir(input_string)
         input_dir = os.path.join(input_string,'html')
@@ -52,7 +52,7 @@ class testDownloader(unittest.TestCase):
 
     def test_handle_existing(self):
         download = dl.Downloader('2005-07-20',do_mode='json')
-        self.assertIn(download.status,'existingFiles')
+        self.assertIn(download.status,['extractedFilesdeletedZip','existingFiles'])
 
 class testLineBreak(unittest.TestCase):
 
@@ -77,7 +77,7 @@ class testLineBreak(unittest.TestCase):
 class testJson(unittest.TestCase):
 
     def setUp(self):
-        startd = datetime(2005,1,1)
+        startd = datetime(2013,1,1)
         lastd = datetime(2015,7,31)
         duration = lastd - startd
         ndays = random.randint(0,duration.days)
@@ -122,3 +122,16 @@ class testJson(unittest.TestCase):
                                     self.sp.match(line),
                                     'Check {0}'.format(apath))
 
+    def test_noTextInLineBreaks_Fresh(self):
+        rootdir = os.path.join('output',self.download_year,'CREC-'+self.download_day,'json')
+        for afile in os.listdir(rootdir):
+            apath = os.path.join(rootdir,afile)
+            logging.info('loading {0}'.format(apath))
+            with open(apath, 'r') as inson:
+                testf = json.load(inson)
+                for item in testf['content']:
+                    if item['kind'] == 'linebreak':
+                        for line in item['text'].split('\n'):
+                            self.assertFalse(
+                                re.match(r"\s*[a-zA-Z]+",line),
+                                'Check {0}'.format(apath))

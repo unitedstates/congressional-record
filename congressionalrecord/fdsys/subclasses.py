@@ -27,10 +27,9 @@ class crItem(object):
                 if amatch:
                     self.item['kind'] = kind
                     #if params['special_case']:
-                    #    self.item['edge'] = True
-                    #    self.item['do'] = params['condition']
+                    #    self.item['flag'] = params['condition']
                     #else:
-                    #    self.item['edge'] = False
+                    #    self.item['flag'] = False
                     if params['speaker_re']:
                         them = amatch.group(params['speaker_group'])
                         self.item['speaker'] = them
@@ -42,21 +41,25 @@ class crItem(object):
                     else:
                         self.item['speaker'] = params['speaker']
                         self.item['speaker_bioguide'] = None
+                    break
+            if amatch:
+                break
         # OK so now put everything else in with it
         # that doesn't interrupt an item
-        #if self.item['edge']:
-        #    content += self.item['do']()
-        else:
-            for line in parent.the_text:
-                if self.is_break(line):
-                    break
-                elif self.is_skip(line):
-                    pass
-                else:
-                    content.append(line)
-            # The original text was split on newline, so ...
-            item_text = '\n'.join(content)
-            self.item['text'] = item_text
+        # conditional logic for edge cases goes here.
+        #if self.item['flag'] == 'emptystr':
+        #    pass
+        #else:
+        for line in parent.the_text:
+            if self.is_break(line):
+                break
+            elif self.is_skip(line):
+                pass
+            else:
+                content.append(line)
+        # The original text was split on newline, so ...
+        item_text = '\n'.join(content)
+        self.item['text'] = item_text
         
                     
             

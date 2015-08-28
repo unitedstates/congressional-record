@@ -93,7 +93,8 @@ class ParseCRFile(object):
                        )
     re_clerk = r'^\s+(?P<start>The Clerk (read|designated))'
     re_allcaps = r'^ \s*(?!([_=]+|-{3,}))(?P<title>([A-Z]+[^a-z]+))$'
-    re_linebreak = r'\s+([_=]+|-{3,})(NOTE|END NOTE)?([_=]+|-{3,})*\s*'
+    re_linebreak = r'\s+([_=]+|-{5,})(NOTE|END NOTE)?([_=]+|-{5,})*\s*'
+    re_excerpt = r'\s+(_{3,4})'
     re_newpage =   r'\s*\[\[Page \w+\]\]'
     re_timestamp = r'\s+\{time\}\s+\d{4}'
 
@@ -180,12 +181,15 @@ class ParseCRFile(object):
         if self.doc_ref.time:
             from_hr,from_min,from_sec = self.doc_ref.time['from'].split(':')
             to_hr,to_min,to_sec = self.doc_ref.time['to'].split(':')
-            self.doc_date = datetime(int(year),int(month),int(day))
-            self.doc_start_time = datetime(int(year),int(month),int(day),\
-            int(from_hr),int(from_min),int(from_sec))
-            self.doc_stop_time = datetime(int(year),int(month),int(day),\
-            int(to_hr),int(to_min),int(to_sec))
-            self.doc_duration = self.doc_stop_time - self.doc_start_time
+            try:
+                self.doc_date = datetime(int(year),int(month),int(day))
+                self.doc_start_time = datetime(int(year),int(month),int(day),\
+                int(from_hr),int(from_min),int(from_sec))
+                self.doc_stop_time = datetime(int(year),int(month),int(day),\
+                int(to_hr),int(to_min),int(to_sec))
+                self.doc_duration = self.doc_stop_time - self.doc_start_time
+            except:
+                logging.info('Could not extract a document timestamp.')
     
     # Flow control for metadata generation
     def gen_file_metadata(self):
@@ -316,6 +320,7 @@ class ParseCRFile(object):
 
     def write_page(self):
         turn = 0
+        itemno = 0
         title = self.get_title()
         the_content = []
         if title:
@@ -329,6 +334,8 @@ class ParseCRFile(object):
                 if item['kind'] == 'speech':
                     item['turn'] = turn
                     turn += 1
+                item['itemno'] = itemno
+                itemno += 1
                 the_content.append(item)
             except Exception, e:
                 logging.warn('{0}'.format(e))
@@ -346,13 +353,6 @@ class ParseCRFile(object):
         self.write_header()
         self.write_page()
 
-    def emptystr(self):
-        """
-        Returns an empty line for certain
-        edge cases, like line breaks
-        """
-        return ''
-
     """
     This is a dict of line cases.
     In previous versions, these relations were called
@@ -366,7 +366,7 @@ class ParseCRFile(object):
                                      <pattern from patterns>).
                                      .group(<speaker_group>)
     else: speaker = <speaker>
-
+    (ALSO -- see line 176 for how speech patterns is populated)
     It has to come after some of the functions because of
     how I want to handle special cases.
     """
@@ -399,8 +399,16 @@ class ParseCRFile(object):
                       'speaker':'None',
                       'break_flow':True,
                       'special_case':True,
-                      'condition':emptystr
+                      'condition':'emptystr'
                       },
+                      'excerpt':
+                      {'patterns':[re_excerpt],
+                       'speaker_re':False,
+                       'speaker':'None',
+                       'break_flow':True,
+                       'special_case':True,
+                       'condition':'lastspeaker'
+                       },
                       'rollcall':
                       {'patterns':[re_rollcall],
                       'speaker_re':False,
@@ -428,8 +436,8 @@ class ParseCRFile(object):
                         'speaker_re':False,
                         'speaker':'None',
                         'break_flow':True,
-                        'special_case':True,
-                        'condition':get_title}
+                        'special_case':False,
+                        }
                     }
 
     def __init__(self, abspath, cr_dir, **kwargs):

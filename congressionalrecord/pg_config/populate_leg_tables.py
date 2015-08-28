@@ -93,10 +93,15 @@ def parse_legislators(afile,append=False,idstart=0):
 
     for afile in [leg_bio,leg_terms,leg_fec]:
         afile.close()
+
             
 if __name__ == '__main__':
     import os
     assert 'congressionalrecord' in os.listdir(os.getcwd()),'running from wrong path.'
     parse_legislators('auxdata/leg/legislators-current.yaml')
-    parse_legislators('auxdata/leg/legislators-historical.yaml')
-    
+    tid = 0
+    with open('auxdata/leg_terms.csv','r') as inf:
+        for l in inf:
+            tid += 1
+
+    past = parse_legislators('auxdata/leg/legislators-historical.yaml',append=True,idstart=tid)

@@ -55,7 +55,7 @@ class LegBio(Base):
     wikipedia = Column(String(100))
     name_first = Column(String(50),nullable=False)
     name_last = Column(String(50),nullable=False)
-    official_full = Column(String(100),nullable=False)
+    official_full = Column(String(100))
 
 class LegTerms(Base):
     __tablename__ = 'leg_terms'

@@ -4,7 +4,7 @@ from ..fdsys.downloader import Downloader as dl
 from collections import OrderedDict
 import logging
 import unicodecsv as csv
-
+import os
 
 def if_exists(key,store):
     if key in store.keys():
@@ -111,6 +111,13 @@ class crToPG(object):
         of transactions to the database, which we want.
         """
         kwargs['do_mode'] = 'yield'
+        if 'csvpath' in kwargs:
+            pass
+        else:
+            kwargs['csvpath'] = 'dbfiles'
+        pagepath, billpath, speechpath = [
+            os.path.join(kwargs['csvpath'], filename)
+            for filename in ['pages.csv','bills.csv','speeches.csv']]
         self.downloader = dl(start,**kwargs)
         self.page_fields = ['pageid','title','chamber','extension',
                            'cr_day','cr_month','cr_year','num','vol',
@@ -119,9 +126,9 @@ class crToPG(object):
                             'bill_type','bill_no','pageid']
         self.speech_fields = ['speechid','speaker','speaker_bioguide',
                               'pageid','text','turn']
-        pagestack = crPages('dbfiles/pages.csv',self.page_fields)
-        billstack = crBills('dbfiles/bills.csv',self.bill_fields)
-        speechstack = crSpeeches('dbfiles/speeches.csv',self.speech_fields)
+        pagestack = crPages(pagepath,self.page_fields)
+        billstack = crBills(billpath,self.bill_fields)
+        speechstack = crSpeeches(speechpath,self.speech_fields)
         for crfile in self.downloader.yielded:
             doc = crfile.crdoc
             self.ingest(doc,pagestack,billstack,speechstack)
