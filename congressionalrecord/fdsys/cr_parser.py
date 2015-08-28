@@ -6,6 +6,7 @@ import re
 import xml.etree.cElementTree as ET
 from subclasses import crItem
 import logging
+import itertools
 
 class ParseCRDir(object):
     
@@ -143,6 +144,36 @@ class ParseCRFile(object):
         if len(related_bills) > 0:
             self.crdoc['related_bills'] = \
               [bill.attrs for bill in related_bills]
+
+    def find_related_laws(self):
+        related_laws = self.doc_ref.find_all('law')
+        if len(related_laws) > 0:
+            self.crdoc['related_laws'] = \
+              [law.attrs for law in related_laws]
+
+    def find_related_usc(self):
+        related_usc = self.doc_ref.find_all('uscode')
+        if len(related_usc) > 0:
+            self.crdoc['related_usc'] = list(
+                itertools.chain.from_iterable(
+                    [[dict([('title',usc['title'])] +
+                        sec.attrs.items()) for sec
+                        in usc.find_all('section')]
+                        for usc in related_usc]
+                    )
+                )
+
+    def find_related_statute(self):
+        related_statute = self.doc_ref.find_all('statuteatlarge')
+        if len(related_statute) > 0:
+            self.crdoc['related_statute'] = list(
+                itertools.chain.from_iterable(
+                    [[dict([('volume',st['volume'])] +
+                        pg.attrs.items()) for pg
+                        in st.find_all('pages')]
+                        for st in related_statute]
+                    )
+                )
         
     def date_from_entry(self):
         year, month, day = re.match(self.re_time,self.access_path).group('year','month','day')
@@ -170,6 +201,9 @@ class ParseCRFile(object):
               'None','Unknown','Unknown'
         self.find_people()
         self.find_related_bills()
+        self.find_related_laws()
+        self.find_related_usc()
+        self.find_related_statute()
         self.date_from_entry()
         self.chamber = self.doc_ref.granuleclass.string
         self.re_newspeaker = self.make_re_newspeaker()
