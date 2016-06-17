@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='congressionalrecord2'
-    version='0.9'
+    name='congressionalrecord2',
+    version='0.9',
     description='Parse the U.S. Congressional Record from FDsys.',
     url='https://github.com/nclarkjudd/congressionalrecord2',
-    author='Nick Judd'
-    author_email='nick@nclarkjudd.com'
-    license='BSD3'
-    packages=find_packages()
+    author='Nick Judd',
+    author_email='nick@nclarkjudd.com',
+    license='BSD3',
+    packages=find_packages(),
     install_requires=[
         'beautifulsoup4 >= 4.4.0',
         'lxml >= 3.3.5',
