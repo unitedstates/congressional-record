@@ -63,6 +63,8 @@ def main():
         cr(args.start,end=args.end,do_mode='yield')
     elif args.do_mode == 'json':
         dl(args.start,end=args.end,do_mode='json')
+    elif args.do_mode == 'es':
+        dl(args.start,end=args.end,do_mode='es',es_url=args.es_url,index=args.index)
     else:
         print "Haven't written the hooks for other functionality yet."
 
