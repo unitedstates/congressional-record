@@ -8,7 +8,6 @@ import logging
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="start_date end_date mode [**kwargs]",
         description="Download and parse the text of the \
         Congressional Record.")
 
