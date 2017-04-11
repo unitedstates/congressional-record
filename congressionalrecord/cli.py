@@ -8,19 +8,20 @@ import logging
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="cr2 test",
-        description="Test the argparser")
+        prog="start_date end_date mode [**kwargs]",
+        description="Download and parse the text of the \
+        Congressional Record.")
 
     parser.add_argument(
         'start', type=str,
         help='The day or first day of Record text \
-        user wants to download.')
+        user wants to download. (Format: YYYY-MM-DD)')
 
     parser.add_argument(
         'end', type=str,
         help='The last day in a contiguous series of days \
         user wants to download. Note the parser skips \
-        days with no activity.')
+        days with no activity. (Format: YYYY-MM-DD)')
 
     parser.add_argument(
         'do_mode',
@@ -53,7 +54,7 @@ def main():
         help='Use a particular logfile.',
         default='cr2.log')
 
-        
+
     args = parser.parse_args()
     logging.basicConfig(filename=args.logfile,level=logging.DEBUG)
     logging.info('Logging begins')
@@ -70,6 +71,6 @@ def main():
 
     logging.info('Logging ends')
 
-    
+
 if __name__ == '__main__':
     main()
