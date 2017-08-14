@@ -19,4 +19,4 @@ This software is released as-is under the BSD3 License, with no warranty of any 
 
 # Recommended citation:
 
-Judd, Nicholas. *Congressionalrecord2: A Parser for the Congressional Record.* Chicago, IL: 2015.
+Judd, Nicholas, Dan Drinkard, Jeremy Carbaugh, and Lindsay Young. *congressional-record: A parser for the Congressional Record.* Chicago, IL: 2017.
