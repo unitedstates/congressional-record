@@ -1,4 +1,8 @@
+output/2005/CREC-2005-07-20
 *.pyc
-source 
-.DS_Store
-output
+*.py~
+*.out
+*.log
+auxdata/
+*.sql~
+dbfiles/
