@@ -5,7 +5,7 @@ python:
 # command to install dependencies
 install: pip install -r requirements.txt
 
-# command to run tests
+# command to run tests: A very limited test suite
 script: python run_tests.py
 
 notifications:

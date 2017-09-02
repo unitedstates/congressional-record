@@ -147,7 +147,7 @@ class downloadRequest(object):
     http = PoolManager(timeout=timeout,retries=retry,
                        cert_reqs='CERT_REQUIRED',
                        ca_certs=certifi.where(),
-                       headers=user-agent)
+                       headers=user_agent)
     
     def __init__(self,url,filename):
         self.status = False
