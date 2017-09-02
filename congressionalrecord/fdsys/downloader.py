@@ -139,13 +139,15 @@ class Downloader(object):
 
 class downloadRequest(object):
 
+    user_agent = {'user-agent': 'congressional-record 0.0.1 (https://github.com/unitedstates/congressional-record)'}
     its_today = datetime.strftime(datetime.today(),'%Y-%m-%d %H:%M')
     timeout = Timeout(connect=2.0,read=10.0)
     retry = Retry(total=3,backoff_factor=300)
     retry.BACKOFF_MAX = 602
     http = PoolManager(timeout=timeout,retries=retry,
                        cert_reqs='CERT_REQUIRED',
-                       ca_certs=certifi.where())
+                       ca_certs=certifi.where(),
+                       headers=user-agent)
     
     def __init__(self,url,filename):
         self.status = False
