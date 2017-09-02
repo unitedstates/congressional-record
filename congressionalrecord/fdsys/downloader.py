@@ -1,6 +1,7 @@
 import requests
 import urllib3
 from urllib3 import PoolManager, Retry, Timeout
+import certifi
 import os
 from datetime import datetime,date,timedelta
 from time import sleep
@@ -141,7 +142,9 @@ class downloadRequest(object):
     timeout = Timeout(connect=2.0,read=10.0)
     retry = Retry(total=3,backoff_factor=300)
     retry.BACKOFF_MAX = 602
-    http = PoolManager(timeout=timeout,retries=retry)
+    http = PoolManager(timeout=timeout,retries=retry,
+                       cert_reqs='CERT_REQUIRED',
+                       certs=certifi.where())
     
     def __init__(self,url,filename):
         self.status = False
