@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/nclarkjudd/congressionalrecord2.png)](https://travis-ci.org/nclarkjudd/congressionalrecord2)
-# congressionalrecord2
+[![Build Status](https://travis-ci.org/unitedstates/congressional-record.png)](https://travis-ci.org/unitedstates/congressional-record)
+
+# congressional-record
 
 This tool converts HTML files containing the text of the Congressional Record into structured text data. It is particularly useful for identifying speeches by members of Congress.
 
