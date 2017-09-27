@@ -21,7 +21,7 @@ class crItem(object):
         item_types = parent.item_types
         content = [parent.cur_line]
         # What is this line
-        for kind,params in item_types.items():
+        for kind,params in list(item_types.items()):
             for pat in params['patterns']:
                 amatch = re.match(pat,parent.cur_line)
                 if amatch:
@@ -33,7 +33,7 @@ class crItem(object):
                     if params['speaker_re']:
                         them = amatch.group(params['speaker_group'])
                         self.item['speaker'] = them
-                        if them in self.parent.speakers.keys():
+                        if them in list(self.parent.speakers.keys()):
                             self.item['speaker_bioguide'] = \
                               self.parent.speakers[them]['bioguideid']
                         else:

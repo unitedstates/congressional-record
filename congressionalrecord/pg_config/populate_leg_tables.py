@@ -46,19 +46,19 @@ def parse_legislators(afile,append=False,idstart=0):
                              ('votesmart','votesmart'),\
                              ('washington_post','washington_post'),\
                              ('wikipedia','wikipedia')]:
-             if inkey in leg['id'].keys():
+             if inkey in list(leg['id'].keys()):
                  bio_row[outkey] = leg['id'][inkey]
 
         for inkey,outkey in [('birthday','dob'),\
                              ('gender','gender'),\
                              ('religion','religion')]:
-            if inkey in leg['bio'].keys():
+            if inkey in list(leg['bio'].keys()):
                 bio_row[outkey] = leg['bio'][inkey]
 
         for inkey,outkey in [('first','name_first'),\
                              ('last','name_last'),\
                              ('official_full','official_full')]:
-            if inkey in leg['name'].keys():
+            if inkey in list(leg['name'].keys()):
                 bio_row[outkey] = leg['name'][inkey]
 
         bio_writer.writerow(bio_row)
@@ -78,11 +78,11 @@ def parse_legislators(afile,append=False,idstart=0):
                                  ('state','state'),\
                                  ('type','ttype'),\
                                  ('url','url')]:
-                if inkey in term.keys():
+                if inkey in list(term.keys()):
                     term_row[outkey] = term[inkey]
             term_writer.writerow(term_row)
 
-        if 'fec' not in leg['id'].keys():
+        if 'fec' not in list(leg['id'].keys()):
             pass
         else:
             for fec in leg['id']['fec']:

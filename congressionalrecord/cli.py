@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import os
 import sys
-from pg_run.pg_cr_bulkwrite import crToPG as cr
-from fdsys.downloader import Downloader as dl
+from .pg_run.pg_cr_bulkwrite import crToPG as cr
+from .fdsys.downloader import Downloader as dl
 import argparse
 import logging
 
@@ -66,7 +66,7 @@ def main():
     elif args.do_mode == 'es':
         dl(args.start,end=args.end,do_mode='es',es_url=args.es_url,index=args.index)
     else:
-        print "Haven't written the hooks for other functionality yet."
+        print("Haven't written the hooks for other functionality yet.")
 
     logging.info('Logging ends')
 

@@ -45,11 +45,11 @@ class testCRFile(unittest.TestCase):
         """
         crfile = cr.ParseCRFile(self.input_path,self.crdir)
         for x in ['doc_title','header','content','id']:
-            self.assertIn(x,crfile.crdoc.keys(),msg='{0} not in crdoc!'.format(x))
+            self.assertIn(x,list(crfile.crdoc.keys()),msg='{0} not in crdoc!'.format(x))
 
     def test_content_length(self):
         crfile = cr.ParseCRFile(self.input_path,self.crdir)
-        self.assertGreater(crfile.crdoc['content'],0,msg='No items in content!')
+        self.assertGreater(len(crfile.crdoc['content']),0,msg='No items in content!')
 
 class testLineBreak(unittest.TestCase):
 

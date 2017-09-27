@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 import re
 import xml.etree.cElementTree as ET
-from subclasses import crItem
+from .subclasses import crItem
 import logging
 import itertools
 
@@ -105,7 +105,7 @@ class ParseCRFile(object):
         return id_num
         
     def make_re_newspeaker(self):
-        speaker_list = '|'.join([mbr for mbr in self.speakers.keys() \
+        speaker_list = '|'.join([mbr for mbr in list(self.speakers.keys()) \
         if self.speakers[mbr]['role'] == 'SPEAKING'])
         if len(speaker_list) > 0:
             re_speakers = r'^(\s{1,2}|<bullet>)(?P<name>((' + speaker_list + ')|(((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z\'])(\s)?)+( of [A-Z][a-z]+)?)|(((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)))\.'
@@ -158,7 +158,7 @@ class ParseCRFile(object):
             self.crdoc['related_usc'] = list(
                 itertools.chain.from_iterable(
                     [[dict([('title',usc['title'])] +
-                        sec.attrs.items()) for sec
+                        list(sec.attrs.items())) for sec
                         in usc.find_all('section')]
                         for usc in related_usc]
                     )
@@ -170,7 +170,7 @@ class ParseCRFile(object):
             self.crdoc['related_statute'] = list(
                 itertools.chain.from_iterable(
                     [[dict([('volume',st['volume'])] +
-                        pg.attrs.items()) for pg
+                        list(pg.attrs.items())) for pg
                         in st.find_all('pages')]
                         for st in related_statute]
                     )
@@ -247,16 +247,16 @@ class ParseCRFile(object):
 
         This code works, though.
         """
-        header_in = self.the_text.next()
-        if header_in == u'':
-            header_in = self.the_text.next()
+        header_in = next(self.the_text)
+        if header_in == '':
+            header_in = next(self.the_text)
         match = re.match(self.re_vol_file, header_in)
         if match:
             vol, num, wkday, month, day, year = match.group( \
             'vol','num','wkday','month','day','year')
         else:
             return False
-        header_in = self.the_text.next()
+        header_in = next(self.the_text)
         match = re.match(self.re_chamber, header_in)
         if match:
             if match.group('chamber') == 'Extensions of Remarks':
@@ -267,13 +267,13 @@ class ParseCRFile(object):
                 extensions = False
         else:
             return False
-        header_in = self.the_text.next()
+        header_in = next(self.the_text)
         match = re.match(self.re_pages, header_in)
         if match:
             pages = match.group('pages')
         else:
             return False
-        header_in = self.the_text.next()
+        header_in = next(self.the_text)
         match = re.match(self.re_trail, header_in)
         if match:
             pass
@@ -304,7 +304,7 @@ class ParseCRFile(object):
 
         title_str = ''
         for line in self.the_text:
-            if line == u'':
+            if line == '':
                 pass
             else:
                 a_match = re.match(self.re_allcaps, line)
@@ -337,7 +337,7 @@ class ParseCRFile(object):
                 item['itemno'] = itemno
                 itemno += 1
                 the_content.append(item)
-            except Exception, e:
+            except Exception as e:
                 logging.warn('{0}'.format(e))
                 break
 
@@ -467,7 +467,7 @@ class ParseCRFile(object):
         # Must come after speaker list generation
         self.item_breakers = []
         self.skip_items = []
-        for x in self.item_types.values():
+        for x in list(self.item_types.values()):
             if x['break_flow'] == True:
                 self.item_breakers.extend(x['patterns'])
             else:

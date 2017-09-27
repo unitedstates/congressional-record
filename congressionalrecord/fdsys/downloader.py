@@ -7,7 +7,7 @@ import os
 from datetime import datetime,date,timedelta
 from time import sleep
 from zipfile import ZipFile
-from cr_parser import ParseCRDir, ParseCRFile
+from .cr_parser import ParseCRDir, ParseCRFile
 import json
 from pyelasticsearch import ElasticSearch, bulk_chunks
 import logging
@@ -19,7 +19,7 @@ class Downloader(object):
     """
     def bulkdownload(self,start,parse=True,**kwargs):
         day = datetime.strptime(start,'%Y-%m-%d')
-        if 'end' in kwargs.keys():
+        if 'end' in list(kwargs.keys()):
             end = kwargs['end']
         else:
             end = start
@@ -33,7 +33,7 @@ class Downloader(object):
             elif parse:
                 dir_str = 'CREC-' + day_str
                 year_str = str(day.year)
-                if 'outpath' not in kwargs.keys():
+                if 'outpath' not in list(kwargs.keys()):
                     outpath = 'output'
                 else:
                     outpath = kwargs['outpath']
@@ -47,7 +47,7 @@ class Downloader(object):
                         else:
                             crfile = ParseCRFile(parse_path,crdir)
                             yield crfile
-                except IOError, e:
+                except IOError as e:
                     logging.warning('{0}, skipping.'.format(e))
             else:
                 logging.warning('Unexpected condition in bulkdownloader')
@@ -102,8 +102,8 @@ class Downloader(object):
         """
         self.status = 'idle'
         logging.debug('Downloader object ready with params:')
-        logging.debug(','.join(['='.join([key,value]) for key,value in kwargs.items()]))
-        if 'outpath' in kwargs.keys():
+        logging.debug(','.join(['='.join([key,value]) for key,value in list(kwargs.items())]))
+        if 'outpath' in list(kwargs.keys()):
             outpath = kwargs['outpath']
         else:
             outpath = 'output'
@@ -202,7 +202,7 @@ class fdsysDL(object):
 
     def __init__(self,day,**kwargs):
         self.status = 'idle'
-        if 'outpath' in kwargs.keys():
+        if 'outpath' in list(kwargs.keys()):
             self.outpath = kwargs['outpath']
         else:
             self.outpath = 'output'
@@ -215,7 +215,7 @@ class fdsysExtract(object):
         assert datetime.strptime(day,"%Y-%m-%d"), "Malformed date field. Must be 'YYYY-MM-DD'"
         dl_time = datetime.strptime(day,"%Y-%m-%d")
         year = str(dl_time.year)
-        if 'outpath' not in kwargs.keys():
+        if 'outpath' not in list(kwargs.keys()):
             outpath = 'output'
         else:
             outpath = kwargs['outpath']
