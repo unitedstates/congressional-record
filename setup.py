@@ -16,8 +16,9 @@ setup(
         'psycopg2 >= 2.6.1',
         'pyelasticsearch >= 1.4',
         'SQLAlchemy >= 1.0.8',
-        'requests >= 2.7.0',
+        'requests[security]',
         'PyYAML >= 3.11',
+        'future'
         ],
         zip_safe=False
     )
