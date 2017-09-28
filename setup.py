@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='congressionalrecord2',
+    name='congressionalrecord',
     version='0.9.1',
     description='Parse the U.S. Congressional Record from FDsys.',
-    url='https://github.com/nclarkjudd/congressionalrecord2',
+    url='https://github.com/unitedstates/congressional-record',
     author='Nick Judd',
     author_email='nick@nclarkjudd.com',
     license='BSD3',
@@ -18,6 +18,7 @@ setup(
         'SQLAlchemy >= 1.0.8',
         'requests[security]',
         'PyYAML >= 3.11',
+        'unicodecsv',
         'future'
         ],
         zip_safe=False
