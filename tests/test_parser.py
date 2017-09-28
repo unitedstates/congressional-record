@@ -49,7 +49,7 @@ class testCRFile(unittest.TestCase):
 
     def test_content_length(self):
         crfile = cr.ParseCRFile(self.input_path,self.crdir)
-        self.assertGreater(crfile.crdoc['content'],0,msg='No items in content!')
+        self.assertGreater(len(crfile.crdoc['content']),0,msg='No items in content!')
 
 class testLineBreak(unittest.TestCase):
 

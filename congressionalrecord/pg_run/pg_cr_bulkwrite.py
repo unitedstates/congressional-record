@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 import psycopg2 as pc
 from psycopg2.extras import RealDictCursor as rdc
 from ..fdsys.downloader import Downloader as dl
@@ -7,7 +9,7 @@ import unicodecsv as csv
 import os
 
 def if_exists(key,store):
-    if key in store.keys():
+    if key in list(store.keys()):
         return store[key]
     else:
         logging.warning('{0} not in {1}, returning default value'.format(key,store))
@@ -64,7 +66,7 @@ class crToPG(object):
         pagestack.add(page_row)
 
         bills = []
-        if 'related_bills' in crfile.keys():
+        if 'related_bills' in list(crfile.keys()):
             for bill in crfile['related_bills']:
                 bill_row = OrderedDict([('congress',bill['congress']),
                             ('context',bill['context']),
