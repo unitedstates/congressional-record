@@ -45,7 +45,7 @@ class Downloader(object):
                     crdir = ParseCRDir(dir_path)
                     for the_file in os.listdir(os.path.join(dir_path,'html')):
                         parse_path = os.path.join(dir_path,'html',the_file)
-                        if '-PgD' in parse_path or 'FrontMatter' in parse_path:
+                        if '-PgD' in parse_path or 'FrontMatter' in parse_path or '-Pgnull' in parse_path:
                             logging.info('Skipping {0}'.format(parse_path))
                         else:
                             crfile = ParseCRFile(parse_path,crdir)
