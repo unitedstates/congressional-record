@@ -1,6 +1,6 @@
 import unittest
-from congressionalrecord.fdsys import cr_parser as cr
-from congressionalrecord.fdsys import downloader as dl
+from congressionalrecord.govinfo import cr_parser as cr
+from congressionalrecord.govinfo import downloader as dl
 import random
 import os
 from datetime import datetime,timedelta
