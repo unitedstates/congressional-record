@@ -29,7 +29,7 @@ class Downloader(object):
         end_day = datetime.strptime(end,'%Y-%m-%d')
         while day <= end_day:
             day_str = datetime.strftime(day,'%Y-%m-%d')
-            extractor = fdsysExtract(day_str,**kwargs)
+            extractor = GovInfoExtract(day_str,**kwargs)
             self.status = extractor.status
             if self.status == 404:
                 logging.info('bulkdownloader skipping a missing day.')
@@ -183,12 +183,12 @@ class downloadRequest(object):
             
 
     
-class fdsysDL(object):
-    fdsys_base = 'http://www.gpo.gov/fdsys/pkg/CREC-'
+class GovInfoDL(object):
+    govinfo_cr_download_base = 'https://www.govinfo.gov/content/pkg/CREC-'
     
     def download_day(self,day,outpath):
         assert datetime.strptime(day,"%Y-%m-%d"), "Malformed date field. Must be 'YYYY-MM-DD'"
-        the_url = self.fdsys_base + day + '.zip'
+        the_url = self.govinfo_cr_download_base + day + '.zip'
         dl_time = datetime.strptime(day,"%Y-%m-%d")
         year = str(dl_time.year)
         if year not in os.listdir(outpath):
@@ -211,7 +211,7 @@ class fdsysDL(object):
             self.outpath = 'output'
         self.download_day(day,self.outpath)
 
-class fdsysExtract(object):
+class GovInfoExtract(object):
 
     def __init__(self,day,**kwargs):
         self.status = 'idle'
@@ -233,7 +233,7 @@ class fdsysExtract(object):
             self.status = 'existingFiles'
             return None
         if extract_to + '.zip' not in os.listdir(os.path.join(outpath,year)):
-            the_dl = fdsysDL(day,outpath=outpath)
+            the_dl = GovInfoDL(day,outpath=outpath)
             self.status = the_dl.status
             if self.status != True:
                 logging.info('No record on this day, not trying to extract')

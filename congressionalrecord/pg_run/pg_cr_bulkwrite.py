@@ -2,7 +2,7 @@ from builtins import str
 from builtins import object
 import psycopg2 as pc
 from psycopg2.extras import RealDictCursor as rdc
-from ..fdsys.downloader import Downloader as dl
+from ..govinfo.downloader import Downloader as dl
 from collections import OrderedDict
 import logging
 import unicodecsv as csv
