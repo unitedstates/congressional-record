@@ -27,7 +27,7 @@ def main():
     parser.add_argument(
         'do_mode',
         type=str,
-        choices=['json','es','pg','noparse'],
+        choices=['json', 'es', 'pg', 'noparse'],
         help='json: Store json\n \
         es: Push to ElasticSearch.\n \
         pg: Generate flatfiles for Postgres.\n \
@@ -57,16 +57,16 @@ def main():
 
 
     args = parser.parse_args()
-    logging.basicConfig(filename=args.logfile,level=logging.DEBUG)
+    logging.basicConfig(filename=args.logfile, level=logging.DEBUG)
     logging.info('Logging begins')
     if args.csvpath and args.do_mode == 'pg':
         cr(args.start, end=args.end, do_mode='yield', csvpath=args.csvpath)
     elif args.do_mode == 'pg':
-        cr(args.start,end=args.end,do_mode='yield')
+        cr(args.start, end=args.end, do_mode='yield')
     elif args.do_mode == 'json':
-        dl(args.start,end=args.end,do_mode='json')
+        dl(args.start, end=args.end, do_mode='json')
     elif args.do_mode == 'es':
-        dl(args.start,end=args.end,do_mode='es',es_url=args.es_url,index=args.index)
+        dl(args.start, end=args.end, do_mode='es', es_url=args.es_url, index=args.index)
     else:
         print("Haven't written the hooks for other functionality yet.")
 
