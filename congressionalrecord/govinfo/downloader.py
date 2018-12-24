@@ -243,7 +243,7 @@ class GovInfoExtract(object):
                 self.status = 'downloadFailure'
                 return None
         try:    
-            with ZipFile(abspath, 'r') as the_zip: # errors here
+            with ZipFile(abspath, 'r') as the_zip:
                 the_zip.extractall(os.path.join(outpath, year))
                 logging.info('Extracted to {}'.format(os.path.join(outpath,
                                                                     year)))
