@@ -242,11 +242,14 @@ class GovInfoExtract(object):
                 logging.info('No record on this day, not trying to extract')
                 self.status = 'downloadFailure'
                 return None
-        with ZipFile(abspath, 'r') as the_zip: # errors here
-            the_zip.extractall(os.path.join(outpath, year))
-            logging.info('Extracted to {}'.format(os.path.join(outpath,
-                                                                year)))
-            self.status = 'extractedFiles'
+        try:    
+            with ZipFile(abspath, 'r') as the_zip: # errors here
+                the_zip.extractall(os.path.join(outpath, year))
+                logging.info('Extracted to {}'.format(os.path.join(outpath,
+                                                                    year)))
+                self.status = 'extractedFiles'
+        except FileNotFoundError as e:
+            return None
         os.remove(abspath)
         self.status += 'deletedZip'
         logging.info('Extractor completed with status {}'.format(self.status))
