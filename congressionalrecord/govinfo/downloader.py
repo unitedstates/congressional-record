@@ -104,7 +104,7 @@ class Downloader(object):
 
                   yield : For each day of the Record the user specifies,
                           the downloader acts like a generator, yielding that day's
-                          "crfile" dictionary. 
+                          "crfile" dictionary.
         """
         self.status = 'idle'
         logging.debug('Downloader object ready with params:')
@@ -138,10 +138,10 @@ class Downloader(object):
 
         else:
             return None
-    
-                                                                       
-                            
-        
+
+
+
+
 
 class downloadRequest(object):
 
@@ -164,7 +164,7 @@ class downloadRequest(object):
             if r.status == 404:
                 logging.warn('Received 404, not retrying request.')
                 self.status = 404
-            elif r.status == 200:
+            elif r.status == 200 and r.data:
                 logging.info('Considering request successful.')
                 self.binary_content = r.data
                 self.status = True
@@ -181,13 +181,13 @@ class downloadRequest(object):
             with open(filename, 'wb') as outfile:
                 outfile.write(self.binary_content)
             logging.info('Wrote {}'.format(filename))
-        else:            
+        else:
             logging.info('No download for {} and terminating with unexpected condition.\n'.format(url))
 
-    
+
 class GovInfoDL(object):
     govinfo_cr_download_base = 'https://www.govinfo.gov/content/pkg/CREC-'
-    
+
     def download_day(self, day, outpath):
         assert datetime.strptime(day, "%Y-%m-%d"), "Malformed date field. Must be 'YYYY-MM-DD'"
         the_url = self.govinfo_cr_download_base + day + '.zip'
@@ -250,9 +250,3 @@ class GovInfoExtract(object):
         os.remove(abspath)
         self.status += 'deletedZip'
         logging.info('Extractor completed with status {}'.format(self.status))
-
-
-
-        
-
-        
