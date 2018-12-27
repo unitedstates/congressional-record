@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='congressionalrecord',
     version='2.0.1',
-    description='Parse the U.S. Congressional Record from FDsys.',
+    description='Parse the U.S. Congressional Record from GovInfo.',
     url='https://github.com/unitedstates/congressional-record',
     author='Nick Judd',
     author_email='nick@nclarkjudd.com',
