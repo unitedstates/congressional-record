@@ -10,8 +10,9 @@ from builtins import str
 from builtins import object
 from urllib3 import PoolManager, Retry, Timeout
 from datetime import datetime, date, timedelta
+from io import BytesIO
 from time import sleep
-from zipfile import ZipFile
+from zipfile import ZipFile, BadZipFile
 from .cr_parser import ParseCRDir, ParseCRFile
 from pyelasticsearch import ElasticSearch, bulk_chunks
 
@@ -165,9 +166,16 @@ class downloadRequest(object):
                 logging.warning('Received 404, not retrying request.')
                 self.status = 404
             elif r.status == 200 and r.data:
-                logging.info('Considering request successful.')
-                self.binary_content = r.data
-                self.status = True
+                logging.info('Considering download request successful.')
+                logging.info('Sniff sniff: Does this smell like a ZIP file?')
+                with BytesIO(r.data) as thepackage:
+                    try:
+                        isazip = ZipFile(thepackage)
+                        self.binary_content = r.data
+                        self.status = True
+                    except BadZipFile:
+                        logging.warning('File {} is not a valid ZIP file (BadZipFile)'.format(url))
+                        self.status = False
             else:
                 logging.warning('Unexpected condition, not continuing:\
                 {}'.format(r.status))
