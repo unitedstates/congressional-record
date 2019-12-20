@@ -10,6 +10,7 @@ from .subclasses import crItem
 import logging
 import itertools
 
+
 class ParseCRDir(object):
     
     def gen_dir_metadata(self):
@@ -25,7 +26,8 @@ class ParseCRDir(object):
         self.mods_path = os.path.join(self.cr_dir,'mods.xml')
         self.html_path = os.path.join(self.cr_dir,'html')
         self.gen_dir_metadata()
-    
+
+
 class ParseCRFile(object):
     # Some regex
     re_time = r'^CREC-(?P<year>[0-9]{4})-(?P<month>[0-9]{2})-(?P<day>[0-9]{2})-.*'
@@ -204,7 +206,7 @@ class ParseCRFile(object):
         if matchobj:
             self.doc_title, self.cr_vol, self.cr_num = matchobj.group('title','vol','num')
         else:
-            logging.warn('{0} yields no title, vol, num'.format(
+            logging.warning('{0} yields no title, vol, num'.format(
                 self.access_path))
             self.doc_title, self.cr_vol, self.cr_num = \
               'None','Unknown','Unknown'
@@ -343,7 +345,7 @@ class ParseCRFile(object):
                 itemno += 1
                 the_content.append(item)
             except Exception as e:
-                logging.warn('{0}'.format(e))
+                logging.warning('{0}'.format(e))
                 break
 
         self.crdoc['content'] = the_content

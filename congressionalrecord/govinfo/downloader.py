@@ -1,19 +1,23 @@
 from __future__ import absolute_import
+import os
+import json
+import logging
+import pkg_resources  # part of setuptools
+import certifi
+import urllib3.contrib.pyopenssl
 #import requests
 from builtins import str
 from builtins import object
-import certifi
-import urllib3.contrib.pyopenssl
-urllib3.contrib.pyopenssl.inject_into_urllib3()
 from urllib3 import PoolManager, Retry, Timeout
-import os
 from datetime import datetime, date, timedelta
+from io import BytesIO
 from time import sleep
-from zipfile import ZipFile
+from zipfile import ZipFile, BadZipfile
 from .cr_parser import ParseCRDir, ParseCRFile
-import json
 from pyelasticsearch import ElasticSearch, bulk_chunks
-import logging
+
+urllib3.contrib.pyopenssl.inject_into_urllib3()
+VERSION = pkg_resources.require("congressionalrecord")[0].version
 
 
 class Downloader(object):
@@ -58,7 +62,6 @@ class Downloader(object):
             else:
                 logging.warning('Unexpected condition in bulkdownloader')
             day += timedelta(days=1)
-
 
     def __init__(self, start, **kwargs):
         """
@@ -140,12 +143,10 @@ class Downloader(object):
             return None
 
 
-
-
-
 class downloadRequest(object):
 
-    user_agent = {'user-agent': 'congressional-record 0.0.1 (https://github.com/unitedstates/congressional-record)'}
+    user_agent = {'user-agent':
+                  'congressional-record {} (https://github.com/unitedstates/congressional-record)'.format(VERSION)}
     its_today = datetime.strftime(datetime.today(), '%Y-%m-%d %H:%M')
     timeout = Timeout(connect=2.0, read=10.0)
     retry = Retry(total=3, backoff_factor=300)
@@ -162,19 +163,26 @@ class downloadRequest(object):
             r = self.http.request('GET', url)
             logging.debug('Request headers received with code {}'.format(r.status))
             if r.status == 404:
-                logging.warn('Received 404, not retrying request.')
+                logging.warning('Received 404, not retrying request.')
                 self.status = 404
             elif r.status == 200 and r.data:
-                logging.info('Considering request successful.')
-                self.binary_content = r.data
-                self.status = True
+                logging.info('Considering download request successful.')
+                logging.info('Sniff sniff: Does this smell like a ZIP file?')
+                with BytesIO(r.data) as thepackage:
+                    try:
+                        isazip = ZipFile(thepackage)
+                        self.binary_content = r.data
+                        self.status = True
+                    except BadZipfile:
+                        logging.warning('File {} is not a valid ZIP file (BadZipFile)'.format(url))
+                        self.status = False
             else:
-                logging.warn('Unexpected condition, not continuing:\
+                logging.warning('Unexpected condition, not continuing:\
                 {}'.format(r.status))
         except urllib3.exceptions.MaxRetryError as ce:
-            logging.warn('Error: %s - Aborting download' % ce)
+            logging.warning('Error: %s - Aborting download' % ce)
         if self.status == False:
-            logging.warn('Failed to download file {}'.format(url))
+            logging.warning('Failed to download file {}'.format(url))
         elif self.status == 404:
             logging.info('downloadRequester skipping file that returned 404.')
         elif self.binary_content:
@@ -199,7 +207,7 @@ class GovInfoDL(object):
         the_download = downloadRequest(the_url, the_filename)
         self.status = the_download.status
         if self.status == False:
-            logging.warn("fdsysDL received report that download for {} did not complete.".format(day))
+            logging.warning("fdsysDL received report that download for {} did not complete.".format(day))
         elif self.status == 404:
             logging.warning('fdsysDL received 404 report for {}.'.format(day))
         else:
@@ -212,6 +220,7 @@ class GovInfoDL(object):
         else:
             self.outpath = 'output'
         self.download_day(day, self.outpath)
+
 
 class GovInfoExtract(object):
 
