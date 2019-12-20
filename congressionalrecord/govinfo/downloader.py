@@ -146,7 +146,7 @@ class Downloader(object):
 class downloadRequest(object):
 
     user_agent = {'user-agent':
-                  f'congressional-record {VERSION} (https://github.com/unitedstates/congressional-record)'}
+                  'congressional-record {} (https://github.com/unitedstates/congressional-record)'.format(VERSION)}
     its_today = datetime.strftime(datetime.today(), '%Y-%m-%d %H:%M')
     timeout = Timeout(connect=2.0, read=10.0)
     retry = Retry(total=3, backoff_factor=300)
