@@ -162,19 +162,19 @@ class downloadRequest(object):
             r = self.http.request('GET', url)
             logging.debug('Request headers received with code {}'.format(r.status))
             if r.status == 404:
-                logging.warn('Received 404, not retrying request.')
+                logging.warning('Received 404, not retrying request.')
                 self.status = 404
             elif r.status == 200 and r.data:
                 logging.info('Considering request successful.')
                 self.binary_content = r.data
                 self.status = True
             else:
-                logging.warn('Unexpected condition, not continuing:\
+                logging.warning('Unexpected condition, not continuing:\
                 {}'.format(r.status))
         except urllib3.exceptions.MaxRetryError as ce:
-            logging.warn('Error: %s - Aborting download' % ce)
+            logging.warning('Error: %s - Aborting download' % ce)
         if self.status == False:
-            logging.warn('Failed to download file {}'.format(url))
+            logging.warning('Failed to download file {}'.format(url))
         elif self.status == 404:
             logging.info('downloadRequester skipping file that returned 404.')
         elif self.binary_content:
@@ -199,7 +199,7 @@ class GovInfoDL(object):
         the_download = downloadRequest(the_url, the_filename)
         self.status = the_download.status
         if self.status == False:
-            logging.warn("fdsysDL received report that download for {} did not complete.".format(day))
+            logging.warning("fdsysDL received report that download for {} did not complete.".format(day))
         elif self.status == 404:
             logging.warning('fdsysDL received 404 report for {}.'.format(day))
         else:

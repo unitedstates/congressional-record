@@ -204,7 +204,7 @@ class ParseCRFile(object):
         if matchobj:
             self.doc_title, self.cr_vol, self.cr_num = matchobj.group('title','vol','num')
         else:
-            logging.warn('{0} yields no title, vol, num'.format(
+            logging.warning('{0} yields no title, vol, num'.format(
                 self.access_path))
             self.doc_title, self.cr_vol, self.cr_num = \
               'None','Unknown','Unknown'
@@ -343,7 +343,7 @@ class ParseCRFile(object):
                 itemno += 1
                 the_content.append(item)
             except Exception as e:
-                logging.warn('{0}'.format(e))
+                logging.warning('{0}'.format(e))
                 break
 
         self.crdoc['content'] = the_content
