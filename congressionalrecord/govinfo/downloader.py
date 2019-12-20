@@ -12,7 +12,7 @@ from urllib3 import PoolManager, Retry, Timeout
 from datetime import datetime, date, timedelta
 from io import BytesIO
 from time import sleep
-from zipfile import ZipFile, BadZipFile
+from zipfile import ZipFile, BadZipfile
 from .cr_parser import ParseCRDir, ParseCRFile
 from pyelasticsearch import ElasticSearch, bulk_chunks
 
@@ -146,7 +146,7 @@ class Downloader(object):
 class downloadRequest(object):
 
     user_agent = {'user-agent':
-                  f'congressional-record {VERSION} (https://github.com/unitedstates/congressional-record)'}
+                  'congressional-record {} (https://github.com/unitedstates/congressional-record)'.format(VERSION)}
     its_today = datetime.strftime(datetime.today(), '%Y-%m-%d %H:%M')
     timeout = Timeout(connect=2.0, read=10.0)
     retry = Retry(total=3, backoff_factor=300)
@@ -173,7 +173,7 @@ class downloadRequest(object):
                         isazip = ZipFile(thepackage)
                         self.binary_content = r.data
                         self.status = True
-                    except BadZipFile:
+                    except BadZipfile:
                         logging.warning('File {} is not a valid ZIP file (BadZipFile)'.format(url))
                         self.status = False
             else:
