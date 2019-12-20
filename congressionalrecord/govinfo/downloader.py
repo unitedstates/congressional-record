@@ -1,19 +1,22 @@
 from __future__ import absolute_import
+import os
+import json
+import logging
+import pkg_resources  # part of setuptools
+import certifi
+import urllib3.contrib.pyopenssl
 #import requests
 from builtins import str
 from builtins import object
-import certifi
-import urllib3.contrib.pyopenssl
-urllib3.contrib.pyopenssl.inject_into_urllib3()
 from urllib3 import PoolManager, Retry, Timeout
-import os
 from datetime import datetime, date, timedelta
 from time import sleep
 from zipfile import ZipFile
 from .cr_parser import ParseCRDir, ParseCRFile
-import json
 from pyelasticsearch import ElasticSearch, bulk_chunks
-import logging
+
+urllib3.contrib.pyopenssl.inject_into_urllib3()
+VERSION = pkg_resources.require("congressionalrecord")[0].version
 
 
 class Downloader(object):
@@ -58,7 +61,6 @@ class Downloader(object):
             else:
                 logging.warning('Unexpected condition in bulkdownloader')
             day += timedelta(days=1)
-
 
     def __init__(self, start, **kwargs):
         """
@@ -140,12 +142,10 @@ class Downloader(object):
             return None
 
 
-
-
-
 class downloadRequest(object):
 
-    user_agent = {'user-agent': 'congressional-record 0.0.1 (https://github.com/unitedstates/congressional-record)'}
+    user_agent = {'user-agent':
+                  f'congressional-record {VERSION} (https://github.com/unitedstates/congressional-record)'}
     its_today = datetime.strftime(datetime.today(), '%Y-%m-%d %H:%M')
     timeout = Timeout(connect=2.0, read=10.0)
     retry = Retry(total=3, backoff_factor=300)
@@ -212,6 +212,7 @@ class GovInfoDL(object):
         else:
             self.outpath = 'output'
         self.download_day(day, self.outpath)
+
 
 class GovInfoExtract(object):
 

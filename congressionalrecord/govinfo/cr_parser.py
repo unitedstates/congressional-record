@@ -10,6 +10,7 @@ from .subclasses import crItem
 import logging
 import itertools
 
+
 class ParseCRDir(object):
     
     def gen_dir_metadata(self):
@@ -25,7 +26,8 @@ class ParseCRDir(object):
         self.mods_path = os.path.join(self.cr_dir,'mods.xml')
         self.html_path = os.path.join(self.cr_dir,'html')
         self.gen_dir_metadata()
-    
+
+
 class ParseCRFile(object):
     # Some regex
     re_time = r'^CREC-(?P<year>[0-9]{4})-(?P<month>[0-9]{2})-(?P<day>[0-9]{2})-.*'
