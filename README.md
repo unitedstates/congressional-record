@@ -12,6 +12,19 @@ From the repository root, type ``python -m congressionalrecord.cli -h`` for inst
 
 This software is released as-is under the BSD3 License, with no warranty of any kind.
 
+# installation
+
+In Python 3 using `venv` for e.g.:
+
+```
+git clone https://github.com/unitedstates/congressional-record.git
+cd congressional-record
+python3 -m venv .venv
+.venv/bin/python -m pip install -e .
+```
+
+then `.venv/bin/python -m congressionalrecord.cli -h` to see usage instructions.
+
 # Recommended citation:
 
 Judd, Nicholas, Dan Drinkard, Jeremy Carbaugh, and Lindsay Young. *congressional-record: A parser for the Congressional Record.* Chicago, IL: 2017.
