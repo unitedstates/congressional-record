@@ -55,6 +55,9 @@ class LegBio(Base):
     wikipedia = Column(String(100))
     name_first = Column(String(50),nullable=False)
     name_last = Column(String(50),nullable=False)
+    name_middle = Column(String(50),nullable=True)
+    name_suffix = Column(String(50),nullable=True)
+    name_nickname = Column(String(50),nullable=True)
     official_full = Column(String(100))
 
 class LegTerms(Base):
@@ -79,6 +82,11 @@ class LegFEC(Base):
     fec_id = Column(String(9), primary_key=True)
     bioguideid = Column(String(7), ForeignKey('leg_bio.bioguideid'))
     leg = relationship(LegBio)
+    
+    
+def table_builder(session, user, dbname):
+    build_all_tables(session,'ncj','congress')
+
 
 if __name__ == '__main__':
     session = sessionmaker()
