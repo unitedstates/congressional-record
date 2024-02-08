@@ -11,9 +11,11 @@ setup(
     packages=find_packages(),
     install_requires=[
         'beautifulsoup4 >= 4.4.0',
+        'soupsieve',
         'lxml >= 3.3.5',
         'numpy >= 1.9.0',
-        'psycopg2 >= 2.6.1',
+        'psycopg2-binary >= 2.6.1',
+        'urllib3=2.0'
         'pyelasticsearch >= 1.4',
         'SQLAlchemy >= 1.0.8',
         'requests[security]',

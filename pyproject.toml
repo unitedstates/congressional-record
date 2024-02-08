@@ -1,0 +1,37 @@
+
+[project]
+name = 'congressionalrecord'
+version = '2.0.2'
+description = 'Parse the U.S. Congressional Record from GovInfo.',
+authors = [
+    { name="Nick Judd", email="nick@nclarkjudd.com" },
+]
+readme = "README.md"
+requires-python = ">=3.1"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: BSD3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    'beautifulsoup4 >= 4.4.0',
+    'soupsieve',
+    'lxml >= 3.3.5',
+    'numpy >= 1.9.0',
+    'psycopg2-binary >= 2.6.1',
+    'urllib3=2.0'
+    'pyelasticsearch >= 1.4',
+    'SQLAlchemy >= 1.0.8',
+    'requests[security]',
+    'PyYAML >= 3.11',
+    'unicodecsv',
+    'future'
+    ]
+
+[project.urls]
+Homepage='https://github.com/unitedstates/congressional-record'
+Issues='https://github.com/unitestates/congressional-record/issues'
+
+[build-system]
+requires = ["setuptools"]
+build-packend = "setuptools.build_meta"

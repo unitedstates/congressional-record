@@ -4,7 +4,6 @@ import json
 import logging
 import pkg_resources  # part of setuptools
 import certifi
-import urllib3.contrib.pyopenssl
 #import requests
 from builtins import str
 from builtins import object
@@ -16,7 +15,6 @@ from zipfile import ZipFile, BadZipfile
 from .cr_parser import ParseCRDir, ParseCRFile
 from pyelasticsearch import ElasticSearch, bulk_chunks
 
-urllib3.contrib.pyopenssl.inject_into_urllib3()
 VERSION = pkg_resources.require("congressionalrecord")[0].version
 
 
