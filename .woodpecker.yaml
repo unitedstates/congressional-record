@@ -1,6 +1,17 @@
 steps:
   build:
     image: python:3.11-bullseye
+    when:
+      - event: push
+        branch: main
     commands:
       - python -m pip install --upgrade pip build
       - python -m build
+
+  test:
+    image: python:3.11-bullseye
+    when:
+      - event: push
+        branch: main
+    commands:
+      - python -m run_tests
