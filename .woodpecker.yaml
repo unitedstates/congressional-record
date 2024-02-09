@@ -1,5 +1,5 @@
 steps:
-  build:
+  - name: build
     image: python:3.11-bullseye
     when:
       - event: push
@@ -7,8 +7,7 @@ steps:
     commands:
       - python -m pip install --upgrade pip build
       - python -m build
-
-  test:
+  - name: test
     image: python:3.11-bullseye
     when:
       - event: push
