@@ -13,4 +13,5 @@ steps:
       - event: push
         branch: main
     commands:
+      - python -m pip install -e .
       - python -m run_tests
