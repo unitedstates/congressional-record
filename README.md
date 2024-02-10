@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/unitedstates/congressional-record.png)](https://travis-ci.org/unitedstates/congressional-record)
+[![Build Status](http://cicd.roscoe.local:8000/api/badges/1/status.svg)](http://cicd.roscoe.local:8000/repos/1)
 
 # congressional-record
 
