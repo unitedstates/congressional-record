@@ -1,8 +1,8 @@
 language: python
 python:
-    - "2.7"
-    - "3.5"
-    - "3.6"
+  - "2.7"
+  - "3.5"
+  - "3.6"
 
 # command to install dependencies
 install: pip install -r requirements.txt
@@ -11,9 +11,9 @@ install: pip install -r requirements.txt
 script: python run_tests.py
 
 notifications:
-    email:
-        recipients:
-            - nick@nclarkjudd.com
-            - eric@konklone.com
-        on_success: change
-        on_failure: change
+  email:
+    recipients:
+      - nick@nclarkjudd.com
+      - eric@konklone.com
+    on_success: change
+    on_failure: change

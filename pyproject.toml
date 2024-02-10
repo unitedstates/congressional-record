@@ -7,11 +7,12 @@ authors = [
     { name="Nick Judd", email="nick@nclarkjudd.com" },
 ]
 readme = "README.md"
-requires-python = ">=3.1"
+requires-python = ">= 3.1"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: BSD3",
+    "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
 ]
 dependencies = [
     'beautifulsoup4',
@@ -27,6 +28,7 @@ dependencies = [
     'unicodecsv',
     'future'
     ]
+keywords = ["unitedstates", "open government data", "congress", "legislative data"]
 
 [project.urls]
 Homepage='https://github.com/unitedstates/congressional-record'
