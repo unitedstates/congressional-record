@@ -1,0 +1,14 @@
+steps:
+  - name: build
+    image: python:3.11-bullseye
+    when:
+      - event: push
+        branch: main
+    commands:
+      - python -m pip install --upgrade pip
+      - python -m pip install pyflakes black bandit[toml] vulture pyroma
+      - python -m pyflakes
+      - python -m black congressionalrecord
+      - python -m bandit congressionalrecord
+      - python -m vulture --min-confidence 80 congressionalrecord
+      - python -m pyroma .
