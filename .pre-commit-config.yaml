@@ -57,7 +57,7 @@ repos:
       - id: commitizen
       - id: commitizen-branch
         stages: [push]
-        args: ["--rev-range", "8115941..HEAD"]
+        args: ["--rev-range", "HEAD"]
 
   - repo: https://github.com/regebro/pyroma
     rev: "4.2"
