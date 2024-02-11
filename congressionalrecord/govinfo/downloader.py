@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import json
 import logging
 import os
-from builtins import object, str
 from datetime import datetime, timedelta
 from io import BytesIO
 from zipfile import BadZipfile, ZipFile

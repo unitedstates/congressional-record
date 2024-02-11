@@ -86,9 +86,9 @@ class LegFEC(Base):
 
 
 def table_builder(session, user, dbname):
-    build_all_tables(session, "ncj", "congress")
+    build_all_tables(session, user, dbname)
 
 
 if __name__ == "__main__":
     session = sessionmaker()
-    build_all_tables(session, "ncj", "congress")
+    build_all_tables(session, user, dbname)

@@ -1,6 +1,5 @@
 import logging
 import os
-from builtins import object, str
 from collections import OrderedDict
 
 import unicodecsv as csv

@@ -1,6 +1,5 @@
 import logging
 import re
-from builtins import object
 
 
 class crItem(object):

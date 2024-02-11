@@ -4,7 +4,6 @@ import itertools
 import logging
 import os
 import re
-from builtins import object
 from datetime import datetime
 
 from bs4 import BeautifulSoup
@@ -159,9 +158,9 @@ class ParseCRFile(object):
         mbrs = self.doc_ref.find_all("congmember")
         if mbrs:
             for mbr in mbrs:
-                self.speakers[
-                    mbr.find("name", {"type": "parsed"}).string
-                ] = self.people_helper(mbr)
+                self.speakers[mbr.find("name", {"type": "parsed"}).string] = (
+                    self.people_helper(mbr)
+                )
 
     def find_related_bills(self):
         related_bills = self.doc_ref.find_all("bill")
