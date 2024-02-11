@@ -9,6 +9,7 @@ from zipfile import BadZipfile, ZipFile
 
 import certifi
 import pkg_resources  # part of setuptools
+import urllib3
 from pyelasticsearch import ElasticSearch, bulk_chunks
 from urllib3 import PoolManager, Retry, Timeout
 

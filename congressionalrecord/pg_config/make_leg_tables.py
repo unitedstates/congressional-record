@@ -16,7 +16,7 @@ def make_psql_engine(user, db):
     return engine
 
 
-def build_all_tables(session, user, db):
+def build_all_tables(session, user="congress", db="congress"):
     """
     Build all the tables bound to Base
     Give it a session first, it lives
@@ -85,10 +85,10 @@ class LegFEC(Base):
     leg = relationship(LegBio)
 
 
-def table_builder(session, user, dbname):
+def table_builder(session, user="congress", dbname="congress"):
     build_all_tables(session, user, dbname)
 
 
 if __name__ == "__main__":
     session = sessionmaker()
-    build_all_tables(session, user, dbname)
+    build_all_tables(session)

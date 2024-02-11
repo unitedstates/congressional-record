@@ -148,7 +148,6 @@ def parse_legislators(afile, append=False, idstart=0):
 
 
 if __name__ == "__main__":
-    import os
 
     parse_legislators(os.path.join(YAML_DIR, "legislators-current.yaml"))
     tid = 0
