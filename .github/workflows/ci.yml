@@ -1,0 +1,33 @@
+name: Run Python Tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Python 3
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .
+      - name: Install linters
+        run: python -m pip install pyflakes black bandit[toml] vulture pyroma
+      - name: Run linters
+        run: |
+          python -m pyflakes
+          python -m black congressionalrecord
+          python -m bandit congressionalrecord
+          python -m vulture --min-confidence 80 congressionalrecord
+          python -m pyroma .
+      - name: Run test suite
+        run: python -m run_tests
