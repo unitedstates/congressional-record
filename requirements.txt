@@ -49,5 +49,6 @@ unicodecsv==0.14.1
 urllib3==1.26.18
     # via
     #   congressionalrecord (pyproject.toml)
+    #   elasticsearch
     #   pyelasticsearch
     #   requests
