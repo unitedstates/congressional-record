@@ -45,11 +45,11 @@ repos:
       - id: pip-compile
         args: ["--no-emit-index-url"]
 
-  #  - repo: https://github.com/jendrikseipp/vulture
-  #    rev: "v2.7"
-  #    hooks:
-  #      - id: vulture
-  #        args: ["--min-confidence", "80", "congressionalrecord"]
+  - repo: https://github.com/jendrikseipp/vulture
+    rev: "v2.7"
+    hooks:
+      - id: vulture
+        args: ["--min-confidence", "80", "congressionalrecord"]
 
   #- repo: https://github.com/regebro/pyroma
   #  rev: "4.2"
