@@ -7,9 +7,13 @@ authors = [
     { name="Nick Judd", email="nick@nclarkjudd.com" },
 ]
 readme = "README.md"
-requires-python = ">= 3.1"
+requires-python = ">= 3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.1",
+    "Programming Language :: Python :: 3.11",
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Development Status :: 4 - Beta",
