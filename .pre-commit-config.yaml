@@ -51,12 +51,12 @@ repos:
       - id: vulture
         args: ["--min-confidence", "80", "congressionalrecord"]
 
-  - repo: https://github.com/commitizen-tools/commitizen
-    rev: v3.14.1
-    hooks:
-      - id: commitizen
-      - id: commitizen-branch
-        stages: [push]
+  #- repo: https://github.com/commitizen-tools/commitizen
+  #  rev: v3.14.1
+  #  hooks:
+  #    - id: commitizen
+  #    - id: commitizen-branch
+  #      stages: [push]
 
   - repo: https://github.com/regebro/pyroma
     rev: "4.2"
