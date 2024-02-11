@@ -10,7 +10,9 @@ python:
   - "3.11"
 
 # command to install dependencies
-install: python -m build
+install:
+  - python -m build
+  - python -m pip install .
 
 # command to run tests: A very limited test suite
 script: python run_tests.py
