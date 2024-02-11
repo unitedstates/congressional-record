@@ -1,4 +1,4 @@
-name: Run Python Tests
+name: Lint, Test, and Build Pipeline
 on:
   push:
     branches:
@@ -31,3 +31,5 @@ jobs:
           python -m pyroma .
       - name: Run test suite
         run: python -m run_tests
+      - name: Build package
+        run: python -m build
