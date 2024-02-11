@@ -1,0 +1,53 @@
+
+[project]
+name = 'congressionalrecord'
+version = "2.0.8"
+description = 'Parse the U.S. Congressional Record from GovInfo.'
+authors = [
+    { name="Nick Judd", email="nick@nclarkjudd.com" },
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.1",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+]
+dependencies = [
+    'beautifulsoup4',
+    'soupsieve',
+    'lxml',
+    'numpy',
+    'psycopg2-binary',
+    'urllib3',
+    'pyelasticsearch',
+    'SQLAlchemy ',
+    'requests[security]',
+    'PyYAML',
+    'unicodecsv',
+    'future'
+    ]
+keywords = ["unitedstates", "open government data", "congress", "legislative data"]
+
+[project.urls]
+Homepage='https://github.com/unitedstates/congressional-record'
+Issues='https://github.com/unitestates/congressional-record/issues'
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["congressionalrecord"]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "semver"
+version_provider = "pep621"
+update_changelog_on_bump = true

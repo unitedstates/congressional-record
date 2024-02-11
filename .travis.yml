@@ -1,19 +1,26 @@
 language: python
 python:
-    - "2.7"
-    - "3.5"
-    - "3.6"
+  - "2.7"
+  - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8"
+  - "3.9"
+  - "3.10"
+  - "3.11"
 
 # command to install dependencies
-install: pip install -r requirements.txt
+install:
+  - python -m build
+  - python -m pip install .
 
 # command to run tests: A very limited test suite
 script: python run_tests.py
 
 notifications:
-    email:
-        recipients:
-            - nick@nclarkjudd.com
-            - eric@konklone.com
-        on_success: change
-        on_failure: change
+  email:
+    recipients:
+      - nick@nclarkjudd.com
+      - eric@konklone.com
+    on_success: change
+    on_failure: change

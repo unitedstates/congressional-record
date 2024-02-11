@@ -8,3 +8,8 @@ auxdata/
 dbfiles/
 .cache
 *.egg-info
+.venv
+__pycache__
+build
+dist
+*.ipynb

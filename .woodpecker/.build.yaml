@@ -1,0 +1,9 @@
+steps:
+  - name: build
+    image: python:3.11-bullseye
+    when:
+      - event: push
+        branch: main
+    commands:
+      - python -m pip install --upgrade pip build
+      - python -m build

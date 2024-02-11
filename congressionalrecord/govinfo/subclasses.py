@@ -1,17 +1,16 @@
-from builtins import object
-import re
 import logging
+import re
+
 
 class crItem(object):
-    
-    def is_break(self,line):
+    def is_break(self, line):
         for pat in self.parent.item_breakers:
-            if re.match(pat,line):
+            if re.match(pat, line):
                 return True
 
-    def is_skip(self,line):
+    def is_skip(self, line):
         for pat in self.parent.skip_items:
-            if re.match(pat,line):
+            if re.match(pat, line):
                 return True
 
     def item_builder(self):
@@ -22,35 +21,36 @@ class crItem(object):
         item_types = parent.item_types
         content = [parent.cur_line]
         # What is this line
-        for kind,params in list(item_types.items()):
-            for pat in params['patterns']:
-                amatch = re.match(pat,parent.cur_line)
+        for kind, params in list(item_types.items()):
+            for pat in params["patterns"]:
+                amatch = re.match(pat, parent.cur_line)
                 if amatch:
-                    self.item['kind'] = kind
-                    #if params['special_case']:
+                    self.item["kind"] = kind
+                    # if params['special_case']:
                     #    self.item['flag'] = params['condition']
-                    #else:
+                    # else:
                     #    self.item['flag'] = False
-                    if params['speaker_re']:
-                        them = amatch.group(params['speaker_group'])
-                        self.item['speaker'] = them
+                    if params["speaker_re"]:
+                        them = amatch.group(params["speaker_group"])
+                        self.item["speaker"] = them
                         if them in list(self.parent.speakers.keys()):
-                            self.item['speaker_bioguide'] = \
-                              self.parent.speakers[them]['bioguideid']
+                            self.item["speaker_bioguide"] = self.parent.speakers[them][
+                                "bioguideid"
+                            ]
                         else:
-                            self.item['speaker_bioguide'] = None
+                            self.item["speaker_bioguide"] = None
                     else:
-                        self.item['speaker'] = params['speaker']
-                        self.item['speaker_bioguide'] = None
+                        self.item["speaker"] = params["speaker"]
+                        self.item["speaker_bioguide"] = None
                     break
             if amatch:
                 break
         # OK so now put everything else in with it
         # that doesn't interrupt an item
         # conditional logic for edge cases goes here.
-        #if self.item['flag'] == 'emptystr':
+        # if self.item['flag'] == 'emptystr':
         #    pass
-        #else:
+        # else:
         for line in parent.the_text:
             if self.is_break(line):
                 break
@@ -59,17 +59,11 @@ class crItem(object):
             else:
                 content.append(line)
         # The original text was split on newline, so ...
-        item_text = '\n'.join(content)
-        self.item['text'] = item_text
-        
-                    
-            
-    def __init__(self,parent):
-        self.item = { 'kind':'Unknown',
-             'speaker':'Unknown',
-             'text':None,
-             'turn':-1
-           }
+        item_text = "\n".join(content)
+        self.item["text"] = item_text
+
+    def __init__(self, parent):
+        self.item = {"kind": "Unknown", "speaker": "Unknown", "text": None, "turn": -1}
 
         self.parent = parent
         self.item_builder()
