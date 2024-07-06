@@ -6,7 +6,7 @@
 #
 beautifulsoup4==4.12.3
     # via congressionalrecord (pyproject.toml)
-certifi==2024.2.2
+certifi==2024.7.4
     # via
     #   pyelasticsearch
     #   requests
