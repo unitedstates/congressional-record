@@ -8,14 +8,14 @@ from io import BytesIO
 from zipfile import BadZipfile, ZipFile
 
 import certifi
-import pkg_resources  # part of setuptools
 import urllib3
+from importlib.metadata import version
 from pyelasticsearch import ElasticSearch, bulk_chunks
 from urllib3 import PoolManager, Retry, Timeout
 
 from .cr_parser import ParseCRDir, ParseCRFile
 
-VERSION = pkg_resources.require("congressionalrecord")[0].version
+VERSION = version("congressionalrecord")
 
 
 class Downloader(object):
