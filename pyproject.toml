@@ -7,7 +7,7 @@ authors = [
     { name="Nick Judd", email="nick@nclarkjudd.com" },
 ]
 readme = "README.md"
-requires-python = ">= 3.8"
+requires-python = ">= 3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
@@ -30,7 +30,7 @@ dependencies = [
     'requests[security]',
     'PyYAML',
     'unicodecsv',
-    'future'
+    'future',
     ]
 keywords = ["unitedstates", "open government data", "congress", "legislative data"]
 
