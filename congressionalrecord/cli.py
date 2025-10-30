@@ -32,22 +32,10 @@ def main():
     parser.add_argument(
         "do_mode",
         type=str,
-        choices=["json", "es", "pg", "noparse"],
+        choices=["json", "pg", "noparse"],
         help="json: Store json\n \
-        es: Push to ElasticSearch.\n \
         pg: Generate flatfiles for Postgres.\n \
         noparse: Just download the files.",
-    )
-
-    parser.add_argument(
-        "--index", type=str, help="If using elasticsearch, this is the index to use."
-    )
-
-    parser.add_argument(
-        "--es_url",
-        type=str,
-        help="If using elasticsearch, this is the URL of the\
-        elasticsearch cluster.",
     )
 
     parser.add_argument(
@@ -67,8 +55,6 @@ def main():
         cr(args.start, end=args.end, do_mode="yield")
     elif args.do_mode == "json":
         dl(args.start, end=args.end, do_mode="json")
-    elif args.do_mode == "es":
-        dl(args.start, end=args.end, do_mode="es", es_url=args.es_url, index=args.index)
     else:
         print("Haven't written the hooks for other functionality yet.")
 
