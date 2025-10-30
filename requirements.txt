@@ -24,7 +24,7 @@ lxml==5.1.0
     # via congressionalrecord (pyproject.toml)
 numpy==1.26.4
     # via congressionalrecord (pyproject.toml)
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.11
     # via congressionalrecord (pyproject.toml)
 pyelasticsearch==1.4.1
     # via congressionalrecord (pyproject.toml)
