@@ -10,7 +10,6 @@ from zipfile import BadZipfile, ZipFile
 import certifi
 import urllib3
 from importlib.metadata import version
-from pyelasticsearch import ElasticSearch, bulk_chunks
 from urllib3 import PoolManager, Retry, Timeout
 
 from .cr_parser import ParseCRDir, ParseCRFile
@@ -121,17 +120,7 @@ class Downloader(object):
             outpath = kwargs["outpath"]
         else:
             outpath = "output"
-        if kwargs["do_mode"] == "es":
-            es = ElasticSearch(kwargs["es_url"])
-            for chunk in bulk_chunks(
-                (
-                    es.index_op(crfile.crdoc, id=crfile.crdoc.pop("id"))
-                    for crfile in self.bulkdownload(start, **kwargs)
-                ),
-                docs_per_chunk=100,
-            ):
-                es.bulk(chunk, index=kwargs["index"], doc_type="crdoc")
-        elif kwargs["do_mode"] == "json":
+        if kwargs["do_mode"] == "json":
             # outpath called so often to make it easy to follow
             # the idea that we're traversing a directory tree
             for crfile in self.bulkdownload(start, **kwargs):
