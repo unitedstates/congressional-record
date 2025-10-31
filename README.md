@@ -40,7 +40,7 @@ If using Python 3 with uv, use:
 uv sync
 ```
 
-then `uv run -m congressionalrecord.cli -h` to see usage instructions.
+then `uv run python -m congressionalrecord.cli -h` to see usage instructions.
 
 
 # Recommended citation:
