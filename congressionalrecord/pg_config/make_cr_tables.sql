@@ -28,4 +28,3 @@ CREATE TABLE cr_speech (
        pageid varchar(35) REFERENCES cr_pages(pageid),
        text text,
        turn smallint NOT NULL);
-       

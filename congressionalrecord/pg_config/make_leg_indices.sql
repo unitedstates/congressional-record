@@ -1,4 +1,4 @@
-ALTER TABLE leg_bio ADD COLUMN dob_date date; 
+ALTER TABLE leg_bio ADD COLUMN dob_date date;
 UPDATE leg_bio SET dob_date = to_date(dob,'YYYY-MM-DD');
 ALTER TABLE leg_terms ADD COLUMN start_date date;
 UPDATE leg_terms SET start_date = to_date(start,'YYYY-MM-DD');

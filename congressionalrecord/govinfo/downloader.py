@@ -4,12 +4,12 @@ import json
 import logging
 import os
 from datetime import datetime, timedelta
+from importlib.metadata import version
 from io import BytesIO
 from zipfile import BadZipfile, ZipFile
 
 import certifi
 import urllib3
-from importlib.metadata import version
 from urllib3 import PoolManager, Retry, Timeout
 
 from .cr_parser import ParseCRDir, ParseCRFile

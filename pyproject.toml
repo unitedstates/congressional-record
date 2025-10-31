@@ -22,14 +22,16 @@ dependencies = [
     'numpy',
     'psycopg2-binary',
     'urllib3',
-    'pyelasticsearch',
     'SQLAlchemy ',
     'requests[security]',
     'PyYAML',
     'unicodecsv',
     'future',
+    'pre-commit',
+    'pip-tools'
     ]
 keywords = ["unitedstates", "open government data", "congress", "legislative data"]
+license = "BSD-3-Clause"
 
 [project.urls]
 Homepage='https://github.com/unitedstates/congressional-record'

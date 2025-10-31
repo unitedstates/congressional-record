@@ -18,48 +18,57 @@ repos:
           - "--remove-duplicate-keys"
           - "--remove-unused-variables"
           - "--remove-all-unused-imports"
+        exclude: (docs|tests/test_files)
 
   - repo: https://github.com/psf/black
     rev: 24.1.1
     hooks:
       - id: black
+        exclude: (docs|tests/test_files)
 
   - repo: https://github.com/PyCQA/isort
     rev: "5.13.2"
     hooks:
       - id: isort
+        exclude: (docs|tests/test_files)
 
   - repo: https://github.com/PyCQA/bandit
     rev: "1.7.7"
     hooks:
       - id: bandit
+        exclude: (docs|tests/test_files)
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: "v4.0.0-alpha.8"
     hooks:
       - id: prettier
+        exclude: (docs|tests/test_files)
 
-  - repo: https://github.com/jazzband/pip-tools
-    rev: "7.3.0"
-    hooks:
-      - id: pip-compile
-        args: ["--no-emit-index-url"]
+  #  - repo: https://github.com/jazzband/pip-tools
+  #    rev: "v7.5.1"
+  #    hooks:
+  #      - id: pip-compile
+  #        args: ["--no-emit-index-url"]
+  #        exclude: (docs|tests/test_files)
 
   - repo: https://github.com/jendrikseipp/vulture
     rev: "v2.10"
     hooks:
       - id: vulture
         args: ["--min-confidence", "80", "congressionalrecord"]
+        exclude: (docs|tests/test_files)
 
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v3.14.1
     hooks:
       - id: commitizen
+        exclude: (docs|tests/test_files)
       - id: commitizen-branch
-        stages: [push]
+        stages: [pre-push]
         args: ["--rev-range", "74cd4a6..HEAD"]
+        exclude: (docs|tests/test_files)
 
-  - repo: https://github.com/regebro/pyroma
-    rev: "4.2"
-    hooks:
-      - id: pyroma
+  # - repo: https://github.com/regebro/pyroma
+  #   rev: "4.2"
+  #   hooks:
+  #     - id: pyroma
