@@ -49,9 +49,9 @@ def main():
 
     args = parser.parse_args()
     if args.logfile == "stdout":
-        logging.basicConfig(filename=args.logfile, level=logging.DEBUG)
-    else:
         logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+    else:
+        logging.basicConfig(filename=args.logfile, level=logging.DEBUG)
     logging.info("Logging begins")
     if args.csvpath and args.do_mode == "pg":
         cr(args.start, end=args.end, do_mode="yield", csvpath=args.csvpath)
