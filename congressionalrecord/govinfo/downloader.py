@@ -12,6 +12,8 @@ import urllib3
 from importlib.metadata import version
 from urllib3 import PoolManager, Retry, Timeout
 
+from pathlib import Path
+
 from .cr_parser import ParseCRDir, ParseCRFile
 
 VERSION = version("congressionalrecord")
@@ -34,7 +36,7 @@ class Downloader(object):
             day_str = datetime.strftime(day, "%Y-%m-%d")
             extractor = GovInfoExtract(day_str, **kwargs)
             self.status = extractor.status
-            if self.status == 404:
+            if self.status == "downloadFailure" or self.status == 404:
                 logging.info("bulkdownloader skipping a missing day.")
             elif parse:
                 dir_str = "CREC-" + day_str
@@ -85,6 +87,10 @@ class Downloader(object):
 
         end : Same form as start. This is the end date.
 
+        keep_pdfs : Set to False to delete PDF files contained in the downloaded
+                    ZIP archives. This can reduce data usage if you only need
+                    the parsed data.
+
         outpath : Output path RELATIVE TO the present working directory. Defaults
                   to 'output' and works fine when you run it from the repo's root
                   directory.
@@ -111,15 +117,16 @@ class Downloader(object):
                           the downloader acts like a generator, yielding that day's
                           "crfile" dictionary.
         """
+        args = list(kwargs.keys())
+
         self.status = "idle"
         logging.debug("Downloader object ready with params:")
         logging.debug(
-            ", ".join(["=".join([key, value]) for key, value in list(kwargs.items())])
+            ", ".join(["=".join([key, str(value)]) for key, value in list(kwargs.items())])
         )
-        if "outpath" in list(kwargs.keys()):
-            outpath = kwargs["outpath"]
-        else:
-            outpath = "output"
+
+        outpath = kwargs["outpath"] if "outpath" in args else "output"
+
         if kwargs["do_mode"] == "json":
             # outpath called so often to make it easy to follow
             # the idea that we're traversing a directory tree
@@ -275,6 +282,11 @@ class GovInfoExtract(object):
         with ZipFile(abspath, "r") as the_zip:  # errors here
             the_zip.extractall(os.path.join(outpath, year))
             logging.info("Extracted to {}".format(os.path.join(outpath, year)))
+            if kwargs["keep_pdfs"] is False:
+                logging.info("Purging PDF files...")
+                for path in Path(os.path.join(outpath, year)).glob("**/*.pdf"):
+                    os.remove(path)
+                    logging.debug("Removed PDF file {}".format(path))
             self.status = "extractedFiles"
         os.remove(abspath)
         self.status += "deletedZip"

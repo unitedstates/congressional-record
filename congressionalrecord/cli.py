@@ -47,18 +47,39 @@ def main():
         "--logfile", type=str, help="Use a particular logfile. Specify `stdout` to dump logs to the console.", default="cr2.log"
     )
 
+    parser.add_argument(
+        "--loglevel",
+        type=str,
+        choices = [ "debug", "info", "warning", "error" ],
+        help="Specifies the loglevel. Default: warning.", default="warning"
+    )
+
+    parser.add_argument(
+        "--lean", action=argparse.BooleanOptionalAction, help="The archives from govinfo include PDF files by default. Specify this flag to remove the PDF files, and reduce the storage requirements.", default=False
+    )
+
     args = parser.parse_args()
+
+    loglevel = logging.WARNING
+    if args.loglevel == "debug":
+        loglevel = logging.DEBUG
+    elif args.loglevel == "info":
+        loglevel = logging.INFO
+    elif args.loglevel == "error":
+        loglevel = logging.ERROR
+
     if args.logfile == "stdout":
-        logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+        logging.basicConfig(stream=sys.stdout, level=loglevel)
     else:
-        logging.basicConfig(filename=args.logfile, level=logging.DEBUG)
+        logging.basicConfig(filename=args.logfile, level=loglevel)
+
     logging.info("Logging begins")
     if args.csvpath and args.do_mode == "pg":
         cr(args.start, end=args.end, do_mode="yield", csvpath=args.csvpath)
     elif args.do_mode == "pg":
         cr(args.start, end=args.end, do_mode="yield")
     elif args.do_mode == "json":
-        dl(args.start, end=args.end, do_mode="json")
+        dl(args.start, end=args.end, do_mode="json", keep_pdfs=False if args.lean is True else True)
     else:
         print("Haven't written the hooks for other functionality yet.")
 
