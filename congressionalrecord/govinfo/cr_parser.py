@@ -127,7 +127,7 @@ class ParseCRFile(object):
             re_speakers = (
                 r"^(\s{1,2}|<bullet>)(?P<name>(("
                 + speaker_list
-                + ")|(((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z'])(\s)?)+( of [A-Z][a-z]+)?)|(((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)))\."
+                + r")|(((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z'])(\s)?)+( of [A-Z][a-z]+)?)|(((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)))\."
             )
         else:
             re_speakers = r"^(\s{1,2}|<bullet>)(?P<name>((((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z\'])(\s)?)+( of [A-Z][a-z]+)?)|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?))\."
