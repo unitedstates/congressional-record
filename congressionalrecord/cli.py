@@ -3,6 +3,7 @@ from __future__ import absolute_import, print_function
 
 import argparse
 import logging
+import sys
 
 from .govinfo.downloader import Downloader as dl
 from .pg_run.pg_cr_bulkwrite import crToPG as cr
@@ -43,11 +44,14 @@ def main():
     )
 
     parser.add_argument(
-        "--logfile", type=str, help="Use a particular logfile.", default="cr2.log"
+        "--logfile", type=str, help="Use a particular logfile. Specify `stdout` to dump logs to the console.", default="cr2.log"
     )
 
     args = parser.parse_args()
-    logging.basicConfig(filename=args.logfile, level=logging.DEBUG)
+    if args.logfile == "stdout":
+        logging.basicConfig(filename=args.logfile, level=logging.DEBUG)
+    else:
+        logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
     logging.info("Logging begins")
     if args.csvpath and args.do_mode == "pg":
         cr(args.start, end=args.end, do_mode="yield", csvpath=args.csvpath)
