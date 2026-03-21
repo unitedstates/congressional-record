@@ -12,41 +12,33 @@ certifi==2024.7.4
     #   requests
 charset-normalizer==3.3.2
     # via requests
-elasticsearch==1.9.0
-    # via pyelasticsearch
 future==0.18.3
     # via congressionalrecord (pyproject.toml)
-greenlet==3.0.3
+greenlet>=3.0.3
     # via sqlalchemy
 idna==3.7
     # via requests
-lxml==5.1.0
+lxml>=5.1.0
     # via congressionalrecord (pyproject.toml)
-numpy==1.26.4
+numpy>=1.26.4
     # via congressionalrecord (pyproject.toml)
-psycopg2-binary==2.9.11
+psycopg2-binary>=2.9.11
     # via congressionalrecord (pyproject.toml)
-pyelasticsearch==1.4.1
-    # via congressionalrecord (pyproject.toml)
-pyyaml==6.0.1
+pyyaml>=6.0.1
     # via congressionalrecord (pyproject.toml)
 requests[security]==2.31.0
     # via congressionalrecord (pyproject.toml)
-simplejson==3.19.2
-    # via pyelasticsearch
-six==1.16.0
-    # via pyelasticsearch
 soupsieve==2.5
     # via
     #   beautifulsoup4
     #   congressionalrecord (pyproject.toml)
-sqlalchemy==2.0.25
+sqlalchemy>=2.0.25
     # via congressionalrecord (pyproject.toml)
 typing-extensions==4.9.0
     # via sqlalchemy
 unicodecsv==0.14.1
     # via congressionalrecord (pyproject.toml)
-urllib3==2.5.0
+urllib3>=2.5.0
     # via
     #   congressionalrecord (pyproject.toml)
     #   elasticsearch
