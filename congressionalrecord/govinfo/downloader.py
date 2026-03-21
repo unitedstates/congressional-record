@@ -87,7 +87,7 @@ class Downloader(object):
 
         end : Same form as start. This is the end date.
 
-        remove_pdfs : Set to False to delete PDF files contained in the downloaded
+        remove_pdfs : Set to True to delete PDF files contained in the downloaded
                       ZIP archives. This can reduce data usage if you only need
                       the parsed data.
 
