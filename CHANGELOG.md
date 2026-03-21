@@ -1,3 +1,19 @@
+## 2.1.0 (2026-03-21)
+
+### Feat
+
+- Add logging CLI arguments, minor refactoring
+- Allow logging to stdout
+
+### Fix
+
+- Correct docstring for new option
+- Rename `lean` to `remove_pdfs`
+- Logical error in stdout logging
+- Bug in parser regex
+
+## 2.0.9 (2026-03-21)
+
 ## 2.0.8 (2024-02-11)
 
 ### Fix
