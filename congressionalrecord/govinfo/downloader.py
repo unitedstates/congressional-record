@@ -87,9 +87,9 @@ class Downloader(object):
 
         end : Same form as start. This is the end date.
 
-        keep_pdfs : Set to False to delete PDF files contained in the downloaded
-                    ZIP archives. This can reduce data usage if you only need
-                    the parsed data.
+        remove_pdfs : Set to False to delete PDF files contained in the downloaded
+                      ZIP archives. This can reduce data usage if you only need
+                      the parsed data.
 
         outpath : Output path RELATIVE TO the present working directory. Defaults
                   to 'output' and works fine when you run it from the repo's root
@@ -282,7 +282,7 @@ class GovInfoExtract(object):
         with ZipFile(abspath, "r") as the_zip:  # errors here
             the_zip.extractall(os.path.join(outpath, year))
             logging.info("Extracted to {}".format(os.path.join(outpath, year)))
-            if kwargs["keep_pdfs"] is False:
+            if kwargs["remove_pdfs"] is True:
                 logging.info("Purging PDF files...")
                 for path in Path(os.path.join(outpath, year)).glob("**/*.pdf"):
                     os.remove(path)

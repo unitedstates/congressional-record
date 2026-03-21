@@ -55,7 +55,7 @@ def main():
     )
 
     parser.add_argument(
-        "--lean", action=argparse.BooleanOptionalAction, help="The archives from govinfo include PDF files by default. Specify this flag to remove the PDF files, and reduce the storage requirements.", default=False
+        "--remove-pdfs", action=argparse.BooleanOptionalAction, help="The archives from govinfo include PDF files by default. Specify this flag to remove the PDF files after download", default=False
     )
 
     args = parser.parse_args()
@@ -79,7 +79,7 @@ def main():
     elif args.do_mode == "pg":
         cr(args.start, end=args.end, do_mode="yield")
     elif args.do_mode == "json":
-        dl(args.start, end=args.end, do_mode="json", keep_pdfs=False if args.lean is True else True)
+        dl(args.start, end=args.end, do_mode="json", remove_pdfs=args.remove_pdfs)
     else:
         print("Haven't written the hooks for other functionality yet.")
 
