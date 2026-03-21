@@ -17,16 +17,31 @@ This software is released as-is under the BSD3 License, with no warranty of any 
 
 # installation
 
-In Python 3 using `venv` for e.g.:
+Clone and download the repository:
 
-```
+```bash
 git clone https://github.com/unitedstates/congressional-record.git
 cd congressional-record
+```
+
+In Python 3 using `venv` for e.g.:
+
+```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -e .
 ```
 
 then `.venv/bin/python -m congressionalrecord.cli -h` to see usage instructions.
+
+
+If using Python 3 with uv, use:
+
+```bash
+uv sync
+```
+
+then `uv run python -m congressionalrecord.cli -h` to see usage instructions.
+
 
 # Recommended citation:
 
