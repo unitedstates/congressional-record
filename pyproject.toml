@@ -27,11 +27,12 @@ dependencies = [
     'PyYAML',
     'unicodecsv',
     'future',
-    'pre-commit',
-    'pip-tools'
     ]
 keywords = ["unitedstates", "open government data", "congress", "legislative data"]
 license = "BSD-3-Clause"
+
+[project.optional-dependencies]
+dev = ["pre-commit", "pip-tools"]
 
 [project.urls]
 Homepage='https://github.com/unitedstates/congressional-record'
