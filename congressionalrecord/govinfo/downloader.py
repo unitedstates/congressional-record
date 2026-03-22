@@ -283,11 +283,12 @@ class GovInfoExtract(object):
         with ZipFile(abspath, "r") as the_zip:  # errors here
             the_zip.extractall(os.path.join(outpath, year))
             logging.info("Extracted to {}".format(os.path.join(outpath, year)))
-            if kwargs["remove_pdfs"] is True:
-                logging.info("Purging PDF files...")
-                for path in Path(os.path.join(outpath, year)).glob("**/*.pdf"):
-                    os.remove(path)
-                    logging.debug("Removed PDF file {}".format(path))
+            if "remove_pdfs" in kwargs.keys():
+                if kwargs["remove_pdfs"] is True:
+                    logging.info("Purging PDF files...")
+                    for path in Path(os.path.join(outpath, year)).glob("**/*.pdf"):
+                        os.remove(path)
+                        logging.debug("Removed PDF file {}".format(path))
             self.status = "extractedFiles"
         os.remove(abspath)
         self.status += "deletedZip"
