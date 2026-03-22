@@ -1,3 +1,9 @@
+## 2.1.1 (2026-03-22)
+
+### Fix
+
+- can't depend on presence of optional kwarg
+
 ## 2.1.0 (2026-03-21)
 
 ### Feat
