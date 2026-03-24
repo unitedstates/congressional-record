@@ -170,9 +170,12 @@ class downloadRequest(object):
     def __init__(self, url, filename):
         self.status = False
         try:
-            logging.info("Sending request on {}".format(self.its_today))
+            logging.info("Sending request to {} on {}".format(url, self.its_today))
             r = self.http.request("GET", url)
             logging.debug("Request headers received with code {}".format(r.status))
+            if r.status >= 500:
+                logging.error("Received status code {}: This indicates an issue with the server.".format(r.status))
+                self.status = r.status
             if r.status == 404:
                 logging.warning("Received 404, not retrying request.")
                 self.status = 404
@@ -197,7 +200,10 @@ class downloadRequest(object):
                     )
                 )
         except urllib3.exceptions.MaxRetryError as ce:
-            logging.warning("Error: %s - Aborting download" % ce)
+            logging.error("Error: %s - Aborting download" % ce)
+        except urllib3.exceptions.InvalidHeader as e:
+            logging.error("The govinfo server sent an invalid header. This can happen if the server needs to generate a ZIP file first, and if it is misconfigured.")
+
         if self.status == False:
             logging.warning("Failed to download file {}".format(url))
         elif self.status == 404:
@@ -239,7 +245,7 @@ class GovInfoDL(object):
         else:
             logging.info(
                 "fdsysDL received expected condition {} for downloader".format(
-                    the_download.status
+                    self.status
                 )
             )
 
@@ -283,12 +289,11 @@ class GovInfoExtract(object):
         with ZipFile(abspath, "r") as the_zip:  # errors here
             the_zip.extractall(os.path.join(outpath, year))
             logging.info("Extracted to {}".format(os.path.join(outpath, year)))
-            if "remove_pdfs" in kwargs.keys():
-                if kwargs["remove_pdfs"] is True:
-                    logging.info("Purging PDF files...")
-                    for path in Path(os.path.join(outpath, year)).glob("**/*.pdf"):
-                        os.remove(path)
-                        logging.debug("Removed PDF file {}".format(path))
+            if "remove_pdfs" in kwargs.keys() and kwargs["remove_pdfs"] is True:
+                logging.info("Purging PDF files...")
+                for path in Path(os.path.join(outpath, year)).glob("**/*.pdf"):
+                    os.remove(path)
+                    logging.debug("Removed PDF file {}".format(path))
             self.status = "extractedFiles"
         os.remove(abspath)
         self.status += "deletedZip"
