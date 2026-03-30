@@ -24,7 +24,7 @@ psycopg2-binary==2.9.11
     # via congressionalrecord (pyproject.toml)
 pyyaml==6.0.1
     # via congressionalrecord (pyproject.toml)
-requests[security]==2.31.0
+requests[security]==2.33.0
     # via congressionalrecord (pyproject.toml)
 soupsieve==2.5
     # via
