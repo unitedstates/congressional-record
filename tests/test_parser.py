@@ -67,3 +67,19 @@ class testLineBreak(unittest.TestCase):
                 if item["kind"] != "speech":
                     for line in item["text"].split("\n"):
                         self.assertFalse(self.sp.match(line), "Check {0}".format(apath))
+
+
+class testTagSpeechAsTitle(unittest.TestCase):
+    def setUp(self):
+        input_string = "tests/test_files/CREC-1997-01-28"
+        self.crdir = cr.ParseCRDir(input_string)
+        input_dir = os.path.join(input_string, "html")
+        input_file = "CREC-1997-01-28-pt1-PgS771-3.htm"
+        self.input_path = os.path.join(input_dir, input_file)
+
+    def test_speech_should_not_be_title(self):
+        crfile = cr.ParseCRFile(self.input_path, self.crdir)
+        titles = [i for i in crfile.crdoc["content"] if i["kind"] == "title"]
+        pat = re.compile(r"[a-z]{5,}")
+        for i in titles:
+            self.assertNotRegex(i["text"], pat)
