@@ -1,3 +1,9 @@
+## 2.1.3 (2026-03-30)
+
+### Fix
+
+- correct reason for error in test suite
+
 ## 2.1.2 (2026-03-30)
 
 ### Fix
