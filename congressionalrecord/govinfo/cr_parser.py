@@ -158,9 +158,11 @@ class ParseCRFile(object):
         mbrs = self.doc_ref.find_all("congmember")
         if mbrs:
             for mbr in mbrs:
-                self.speakers[mbr.find("name", {"type": "parsed"}).string] = (
-                    self.people_helper(mbr)
-                )
+                parsed = mbr.find("name", {"type": "parsed"})
+                if parsed is not None:
+                    self.speakers[mbr.find("name", {"type": "parsed"}).string] = (
+                        self.people_helper(mbr)
+                    )
 
     def find_related_bills(self):
         related_bills = self.doc_ref.find_all("bill")
