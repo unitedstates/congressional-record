@@ -1,3 +1,10 @@
+## 2.1.2 (2026-03-30)
+
+### Fix
+
+- Account for server errors
+- Assumption that wasn't met
+
 ## 2.1.1 (2026-03-22)
 
 ### Fix
