@@ -5,6 +5,7 @@ This script discovers and runs all unit tests in the tests/ directory.
 Individual test files should be named test_*.py and contain unittest.TestCase classes.
 """
 
+import sys
 import unittest
 
 if __name__ == "__main__":
