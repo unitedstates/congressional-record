@@ -8,7 +8,7 @@ from datetime import datetime
 
 from bs4 import BeautifulSoup
 
-from .subclasses import crItem
+from congressionalrecord.govinfo.subclasses import crItem
 
 
 class ParseCRDir(object):

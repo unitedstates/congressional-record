@@ -13,7 +13,7 @@ import certifi
 import urllib3
 from urllib3 import PoolManager, Retry, Timeout
 
-from .cr_parser import ParseCRDir, ParseCRFile
+from congressionalrecord.govinfo.cr_parser import ParseCRDir, ParseCRFile
 
 VERSION = version("congressionalrecord")
 
@@ -174,7 +174,11 @@ class downloadRequest(object):
             r = self.http.request("GET", url)
             logging.debug("Request headers received with code {}".format(r.status))
             if r.status >= 500:
-                logging.error("Received status code {}: This indicates an issue with the server.".format(r.status))
+                logging.error(
+                    "Received status code {}: This indicates an issue with the server.".format(
+                        r.status
+                    )
+                )
                 self.status = r.status
             if r.status == 404:
                 logging.warning("Received 404, not retrying request.")
@@ -202,7 +206,9 @@ class downloadRequest(object):
         except urllib3.exceptions.MaxRetryError as ce:
             logging.error("Error: %s - Aborting download" % ce)
         except urllib3.exceptions.InvalidHeader as e:
-            logging.error("The govinfo server sent an invalid header. This can happen if the server needs to generate a ZIP file first, and if it is misconfigured.")
+            logging.error(
+                "The govinfo server sent an invalid header. This can happen if the server needs to generate a ZIP file first, and if it is misconfigured."
+            )
 
         if self.status == False:
             logging.warning("Failed to download file {}".format(url))
