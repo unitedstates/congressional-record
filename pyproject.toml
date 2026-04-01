@@ -38,6 +38,9 @@ dev = ["pre-commit", "pip-tools"]
 Homepage='https://github.com/unitedstates/congressional-record'
 Issues='https://github.com/unitestates/congressional-record/issues'
 
+[project.scripts]
+congressionalrecord = "congressionalrecord.cli:main"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
