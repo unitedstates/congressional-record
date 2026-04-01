@@ -1,3 +1,15 @@
+## 2.2.1 (2026-03-31)
+
+### Fix
+
+- no more relative imports
+
+## 2.2.0 (2026-03-31)
+
+### Feat
+
+- add entrypoint
+
 ## 2.1.3 (2026-03-30)
 
 ### Fix

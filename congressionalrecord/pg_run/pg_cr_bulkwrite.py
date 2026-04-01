@@ -4,7 +4,7 @@ from collections import OrderedDict
 
 import unicodecsv as csv
 
-from ..govinfo.downloader import Downloader as dl
+from congressionalrecord.govinfo.downloader import Downloader as dl
 
 
 def if_exists(key, store):
