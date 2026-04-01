@@ -1,3 +1,9 @@
+## 2.2.2 (2026-03-31)
+
+### Fix
+
+- create directory for csv output (with do_mode `pg`) if the directory does not exist
+
 ## 2.2.1 (2026-03-31)
 
 ### Fix

@@ -36,6 +36,7 @@ class outStack(object):
             outpath : File path string
             fieldnames : list of field names in order
         """
+        os.makedirs(os.path.dirname(outpath), exist_ok=True)
         self.outfile = open(outpath, "ab")
         self.stack = []
         self.writer = csv.DictWriter(
