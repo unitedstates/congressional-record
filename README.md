@@ -7,7 +7,9 @@
 
 This tool converts HTML files containing the text of the Congressional Record into structured text data. It is particularly useful for identifying speeches by members of Congress.
 
-From the repository root, type `python -m congressionalrecord.cli -h` for instructions.
+**Old mode**: From the repository root, type `python -m congressionalrecord.cli -h` for instructions.
+
+**New mode**: Build, install and use the entrypoint: `congressionalrecord --help`.
 
 - It outputs JSON
 - Instances of speech are tagged with the speaker's bioguideid wherever possible
@@ -31,8 +33,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e .
 ```
 
-then `.venv/bin/python -m congressionalrecord.cli -h` to see usage instructions.
-
+then `.venv/bin/python -m congressionalrecord.cli -h` or just `.venv/bin/congressionalrecord -h` to see usage instructions.
 
 If using Python 3 with uv, use:
 
@@ -41,7 +42,6 @@ uv sync
 ```
 
 then `uv run python -m congressionalrecord.cli -h` to see usage instructions.
-
 
 # Recommended citation:
 
