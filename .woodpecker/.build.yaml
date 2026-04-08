@@ -4,6 +4,8 @@ steps:
     when:
       - event: push
         branch: main
+    dns: 192.168.10.1
+    dns_search: "homelab.nicelycomputed.com"
     commands:
       - python -m pip install --upgrade pip build
       - python -m build
