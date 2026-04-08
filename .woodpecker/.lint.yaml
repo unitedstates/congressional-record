@@ -5,6 +5,7 @@ steps:
       - event: push
         branch: main
     commands:
+      - echo "192.168.10.196 forge.homelab.nicelycomputed.com" >> /etc/hosts
       - python -m pip install --upgrade pip
       - python -m pip install pyflakes black bandit[toml] vulture pyroma
       - python -m pyflakes
