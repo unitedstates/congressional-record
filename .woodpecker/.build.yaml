@@ -6,6 +6,8 @@ steps:
         branch: main
     dns: 192.168.10.1
     dns_search: "homelab.nicelycomputed.com"
+    extra_hosts:
+      - "forge.homelab.nicelycomputed.com:192.168.10.196"
     commands:
       - python -m pip install --upgrade pip build
       - python -m build
