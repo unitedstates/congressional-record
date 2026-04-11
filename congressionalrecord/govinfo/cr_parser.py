@@ -4,6 +4,7 @@ import itertools
 import logging
 import os
 import re
+import string
 from datetime import datetime
 
 from bs4 import BeautifulSoup
@@ -97,13 +98,16 @@ class ParseCRFile(object):
         # + r'|()'
         + r").*"
     )
+    punct = re.escape(string.punctuation)
     # NCJ's broader version below, tested on one day of the record.
     # works, honest
     re_recorder_ncj = (
         r"^\s+(?P<start>" + r"(Pending:)" + r"|(By M(r|rs|s|iss)[\.]? [a-zA-Z]+))"
     )
     re_clerk = r"^\s+(?P<start>The Clerk (read|designated))"
-    re_allcaps = r"^\s*(?!([_=]+|-{3,}))(?P<title>([A-Z]+[^a-z]+))$"
+    re_allcaps = (
+        r"^\s*(?!([_=]+|-{3,}))(?P<title>(" + rf"[A-Z{punct}]+)*)\s*(?=\n[ \t]*$)"
+    )
     re_linebreak = r"\s+([_=]+|-{5,})(NOTE|END NOTE)?([_=]+|-{5,})*\s*"
     re_excerpt = r"\s+(_{3,4})"
     re_newpage = r"\s*\[\[Page \w+\]\]"
