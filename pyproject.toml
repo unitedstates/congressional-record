@@ -1,7 +1,7 @@
 
 [project]
 name = 'congressionalrecord'
-version = "2.2.2"
+version = "2.3.0+issue.36.provisional.fix"
 description = 'Parse the U.S. Congressional Record from GovInfo.'
 authors = [
     { name="Nick Judd", email="nick@nclarkjudd.com" },

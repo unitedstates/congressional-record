@@ -1,3 +1,9 @@
+## 2.3.0+issue.36.provisional.fix (2026-04-10)
+
+### Feat
+
+- add entrypoint (#72)
+
 ## 2.2.2 (2026-03-31)
 
 ### Fix
