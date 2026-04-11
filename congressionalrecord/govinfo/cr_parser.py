@@ -103,7 +103,7 @@ class ParseCRFile(object):
         r"^\s+(?P<start>" + r"(Pending:)" + r"|(By M(r|rs|s|iss)[\.]? [a-zA-Z]+))"
     )
     re_clerk = r"^\s+(?P<start>The Clerk (read|designated))"
-    re_allcaps = r"^ \s*(?!([_=]+|-{3,}))(?P<title>([A-Z]+[^a-z]+))$"
+    re_allcaps = r"^\s*(?!([_=]+|-{3,}))(?P<title>([A-Z]+[^a-z]+))$"
     re_linebreak = r"\s+([_=]+|-{5,})(NOTE|END NOTE)?([_=]+|-{5,})*\s*"
     re_excerpt = r"\s+(_{3,4})"
     re_newpage = r"\s*\[\[Page \w+\]\]"
