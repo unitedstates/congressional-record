@@ -275,12 +275,9 @@ class GovInfoExtract(object):
             outpath = "output"
         else:
             outpath = kwargs["outpath"]
-        if not os.path.isdir(outpath):
-            os.makedirs(outpath)
         abspath = os.path.join(outpath, year, "CREC-" + day + ".zip")
         extract_to = "CREC-" + day
-        if year not in os.listdir(outpath):
-            os.mkdir(os.path.join(outpath, year))
+        os.makedirs(os.path.join(outpath, year), exist_ok=True)
         if extract_to in os.listdir(os.path.join(outpath, year)):
             logging.info("{} already exists in extraction tree.".format(extract_to))
             self.status = "existingFiles"
