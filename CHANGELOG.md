@@ -1,3 +1,9 @@
+## 2.3.1+issue.36.provisional.fix (2026-04-14)
+
+### Refactor
+
+- simplify downloader path management
+
 ## 2.3.0+issue.36.provisional.fix (2026-04-10)
 
 ### Feat
