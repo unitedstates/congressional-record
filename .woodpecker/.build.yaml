@@ -1,4 +1,14 @@
+skip_clone: true
+
 steps:
+  - name: manual-clone
+    image: alpine/git
+    environment:
+      GIT_SSL_CAINFO:
+        from_secret: ipa-ca
+    commands:
+      - echo "192.168.10.196 forge.homelab.nicelycomputed.com" >> /etc/hosts
+      - git clone https://forge.homelab.nicelycomputed.com/daddy/congressional-record.git
   - name: build
     image: python:3.11-bullseye
     when:
