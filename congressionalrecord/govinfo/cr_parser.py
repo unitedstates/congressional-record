@@ -11,6 +11,68 @@ from bs4 import BeautifulSoup
 from congressionalrecord.govinfo.subclasses import crItem
 
 
+_H = r"[^\S\n]+"
+
+# Surname prefixes that contain lowercase
+_NAME_PREFIX = r"(?:De\ La\ |De\ Los\ |De\ Las\ |De|Del|Des|Dio|La|Le|Lo|Mac|Mc|Van|D'|O')?"
+
+_HONORIFIC_ALTS = r"Mr\.|Mrs\.|Ms\.|Miss|MR\.|MRS\.|MS\.|MISS"
+
+# An initial is consumed with its period, so "LINDA T. SANCHEZ" is one name.
+_INITIAL = r"(?:[A-Z]\.(?:[A-Z]\.)?" + _H + r")?"
+
+# Surname token must carry >=2 uppercase letters
+_TOKEN = _INITIAL + _NAME_PREFIX + r"[A-Z]{2,}(?:-" + _NAME_PREFIX + r"[A-Z]{2,})*"
+
+# At most three name tokens
+_NAME_BODY = _TOKEN + r"(?:" + _H + _TOKEN + r"){0,2}"
+
+_OF_STATE = r"(?:" + _H + r"of" + _H + r"([A-Z][a-z]+(?:" + _H + r"[A-Z][a-z]+)*))?"
+
+_HON_NAME_FRAG = (
+    r"(" + _HONORIFIC_ALTS + r")" + _H + r"(" + _NAME_BODY + r")" + _OF_STATE
+)
+
+_MANAGER_COUNSEL = (
+    r"(?:" + _HONORIFIC_ALTS + r")" + _H + r"(?:Manager|Counsel)" + _H
+    + _NAME_BODY + _OF_STATE
+)
+
+_GUEST_FRAG = (
+    r"(?:Prime\ Minister|President|Chancellor|Secretary\ General|King)"
+    + _H + _NAME_BODY
+)
+
+
+_OPT_PAREN = r"(?:\ \([A-Za-z.\-\ ]+\))?"
+
+_OPT_ACTING = r"(?:\ (?:VICE|ACTING|Acting|Vice))?"
+
+_FIXED_TITLE = (
+    r"(?:PRESIDING\ OFFICER|VICE\ PRESIDENT|CHIEF\ JUSTICE|CHAIRMAN|PRESIDENT"
+    r"|SPEAKER|CHAIR|CLERK|CHAPLAIN)"
+)
+
+# The House appears to typeset during-vote announcements in mixed case ("The Acting Chair
+# (during the vote).")
+_TITLE_MIXED = (
+    r"(?:Presiding\ Officer|Vice\ President|Chief\ Justice|Chairman|Chairwoman"
+    r"|President|Speaker|Chair|Clerk)"
+)
+
+
+_PRO_TEMPORE = r"(?:\ (?:pro|Pro|PRO)\ (?:tempore|Tempore|TEMPORE))?"
+
+_OFFICER = (
+    r"(?:The" + _OPT_ACTING + r"\ " + _FIXED_TITLE + _PRO_TEMPORE + _OPT_PAREN
+    + r"|The" + _OPT_ACTING + r"\ " + _TITLE_MIXED + _PRO_TEMPORE + _OPT_PAREN
+    + r")"
+)
+
+# `<bullet>` is not a real HTML tag so lxml drops it... this fixes that
+_RE_BULLET_NORM = re.compile(r"(?m)^[ \t]*<bullet>[ \t]*")
+
+
 class ParseCRDir(object):
     def gen_dir_metadata(self):
         """Load up all metadata for this directory
@@ -123,15 +185,12 @@ class ParseCRFile(object):
                 if self.speakers[mbr]["role"] == "SPEAKING"
             ]
         )
+        alts = []
         if len(speaker_list) > 0:
-            re_speakers = (
-                r"^(\s{1,2}|<bullet>)(?P<name>(("
-                + speaker_list
-                + r")|(((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z'])(\s)?)+( of [A-Z][a-z]+)?)|(((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)))\."
-            )
-        else:
-            re_speakers = r"^(\s{1,2}|<bullet>)(?P<name>((((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z\'])(\s)?)+( of [A-Z][a-z]+)?)|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?))\."
-        return re_speakers
+            alts.append(r"(?:" + speaker_list + r")")
+        alts.extend([_HON_NAME_FRAG, _MANAGER_COUNSEL, _GUEST_FRAG, _OFFICER])
+        name_group = r"(?P<name>" + r"|".join(alts) + r")"
+        return r"^(\s{1,2}|<bullet>)" + name_group + _OPT_PAREN + r"\."
 
     def people_helper(self, tagobject):
         output_dict = {}
@@ -275,7 +334,7 @@ class ParseCRFile(object):
         """
         self.lines_remaining = True
         with open(self.filepath, "r") as htm_file:
-            htm_lines = htm_file.read()
+            htm_lines = _RE_BULLET_NORM.sub(" ", htm_file.read())
             htm_text = BeautifulSoup(htm_lines, "lxml")
         text = htm_text.pre.text.split("\n")
         for line in text:
