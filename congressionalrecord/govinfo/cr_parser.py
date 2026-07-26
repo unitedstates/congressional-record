@@ -18,13 +18,13 @@ _NAME_PREFIX = r"(?:De\ La\ |De\ Los\ |De\ Las\ |De|Del|Des|Dio|La|Le|Lo|Mac|Mc|
 
 _HONORIFIC_ALTS = r"Mr\.|Mrs\.|Ms\.|Miss|MR\.|MRS\.|MS\.|MISS"
 
-# An initial is consumed with its period, so "LINDA T. SANCHEZ" is one name.
+# An initial is consumed with its period, so for e.g. "LINDA T. SANCHEZ" is one name.
 _INITIAL = r"(?:[A-Z]\.(?:[A-Z]\.)?" + _H + r")?"
 
 # Surname token must carry >=2 uppercase letters
 _TOKEN = _INITIAL + _NAME_PREFIX + r"[A-Z]{2,}(?:-" + _NAME_PREFIX + r"[A-Z]{2,})*"
 
-# At most three name tokens
+# At most three name tokens. This doesn't really seem to do much, but just for future false positive tolerance.
 _NAME_BODY = _TOKEN + r"(?:" + _H + _TOKEN + r"){0,2}"
 
 _OF_STATE = r"(?:" + _H + r"of" + _H + r"([A-Z][a-z]+(?:" + _H + r"[A-Z][a-z]+)*))?"
@@ -60,11 +60,11 @@ _TITLE_MIXED = (
     r"|President|Speaker|Chair|Clerk)"
 )
 
-
 _PRO_TEMPORE = r"(?:\ (?:pro|Pro|PRO)\ (?:tempore|Tempore|TEMPORE))?"
 
 _OFFICER = (
-    r"(?:The" + _OPT_ACTING + r"\ " + _FIXED_TITLE + _PRO_TEMPORE + _OPT_PAREN
+    r"(?:(?:The|THE)" + _OPT_ACTING + r"\ " + _FIXED_TITLE + _PRO_TEMPORE
+    + _OPT_PAREN
     + r"|The" + _OPT_ACTING + r"\ " + _TITLE_MIXED + _PRO_TEMPORE + _OPT_PAREN
     + r")"
 )
@@ -188,6 +188,7 @@ class ParseCRFile(object):
         alts = []
         if len(speaker_list) > 0:
             alts.append(r"(?:" + speaker_list + r")")
+        # New Speech regex by Joshua Dutton (Duke University)
         alts.extend([_HON_NAME_FRAG, _MANAGER_COUNSEL, _GUEST_FRAG, _OFFICER])
         name_group = r"(?P<name>" + r"|".join(alts) + r")"
         return r"^(\s{1,2}|<bullet>)" + name_group + _OPT_PAREN + r"\."
