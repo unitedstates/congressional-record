@@ -14,7 +14,7 @@ future==0.18.3
     # via congressionalrecord (pyproject.toml)
 greenlet==3.3.2
     # via sqlalchemy
-idna==3.7
+idna==3.15
     # via requests
 lxml==6.1.0
     # via congressionalrecord (pyproject.toml)
