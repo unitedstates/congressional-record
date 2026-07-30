@@ -69,7 +69,11 @@ _OFFICER = (
     + r")"
 )
 
-# `<bullet>` is not a real HTML tag so lxml drops it... this fixes that
+# <bullet> is not a real HTML tag, so lxml drops the element but keeps the
+# whitespace on both sides of it. Occasionally, the bullet has whitespace
+# on either side that causes there to be too much whitespace (and thus not recognized
+# as a speaker header by our regex), and sometimes, there is no whitespace also causing the regex to fail. 
+# Thus we are also replacing the bullet and surrounding whitespace with exactly 1 space.
 _RE_BULLET_NORM = re.compile(r"(?m)^[ \t]*<bullet>[ \t]*")
 
 
