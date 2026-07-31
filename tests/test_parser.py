@@ -134,7 +134,7 @@ class _DocumentTest(unittest.TestCase):
                 return "a {0} published under {1!r} ({2} words)".format(
                     item["kind"], item["speaker"], len(item["text"].split())
                 )
-        return "Nothing. The text is not in this document"
+        return "nothing. The text is not in this document"
 
 
 class testNameBody(_DocumentTest):
