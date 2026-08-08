@@ -31,7 +31,8 @@ class crItem(object):
                     # else:
                     #    self.item['flag'] = False
                     if params["speaker_re"]:
-                        them = amatch.group(params["speaker_group"])
+                        # Collapse internal whitespace runs, improving MODS matching
+                        them = re.sub(r"\s+", " ", amatch.group(params["speaker_group"]))
                         self.item["speaker"] = them
                         if them in list(self.parent.speakers.keys()):
                             self.item["speaker_bioguide"] = self.parent.speakers[them][
