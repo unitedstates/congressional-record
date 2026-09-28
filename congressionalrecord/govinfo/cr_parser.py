@@ -125,12 +125,12 @@ class ParseCRFile(object):
         )
         if len(speaker_list) > 0:
             re_speakers = (
-                r"^(\s{1,2}|<bullet>)(?P<name>(("
+                r"^(\s{1,3}|<bullet>)(?P<name>(("
                 + speaker_list
                 + r")|(((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z'])(\s)?)+( of [A-Z][a-z]+)?)|(((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?)))\."
             )
         else:
-            re_speakers = r"^(\s{1,2}|<bullet>)(?P<name>((((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z\'])(\s)?)+( of [A-Z][a-z]+)?)|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?))\."
+            re_speakers = r"^(\s{1,3}|<bullet>)(?P<name>((((Mr)|(Ms)|(Mrs)|(Miss))\. (([-A-Z\'])(\s)?)+( of [A-Z][a-z]+)?)|((The ((VICE|ACTING|Acting) )?(PRESIDENT|SPEAKER|CHAIR(MAN)?)( pro tempore)?)|(The PRESIDING OFFICER)|(The CLERK)|(The CHIEF JUSTICE)|(The VICE PRESIDENT)|(Mr\. Counsel [A-Z]+))( \([A-Za-z.\- ]+\))?))\."
         return re_speakers
 
     def people_helper(self, tagobject):
@@ -376,6 +376,8 @@ class ParseCRFile(object):
         itemno = 0
         title = self.get_title()
         the_content = []
+        self.crdoc["parse_status"] = "complete"
+        self.crdoc.pop("parse_error", None)
         if title:
             self.crdoc["title"] = title
         else:
@@ -391,6 +393,12 @@ class ParseCRFile(object):
                 itemno += 1
                 the_content.append(item)
             except Exception as e:
+                self.crdoc["parse_status"] = "partial"
+                self.crdoc["parse_error"] = {
+                    "type": type(e).__name__,
+                    "message": str(e),
+                    "line": self.cur_line,
+                }
                 logging.warning("{0}".format(e))
                 break
 

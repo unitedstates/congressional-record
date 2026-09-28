@@ -45,8 +45,12 @@ congressionalrecord = "congressionalrecord.cli:main"
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-packages = ["congressionalrecord"]
+[tool.setuptools.packages.find]
+include = ["congressionalrecord*"]
+
+[tool.setuptools.package-data]
+"congressionalrecord.pg_config" = ["*.sql"]
+"congressionalrecord.pg_run" = ["*.sql"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
