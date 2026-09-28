@@ -73,8 +73,12 @@ class ContentItem(BaseModel):
             "'excerpt', 'rollcall', 'metacharacters', 'empty_line', 'title', or 'Unknown'"
         ),
     )
-    speaker: str = Field(
-        ..., description="Name of the speaker or 'Unknown' if not identified"
+    speaker: Optional[str] = Field(
+        ...,
+        description=(
+            "Name of the speaker, 'Unknown' if not identified, "
+            "or null for a kind that has no speaker"
+        ),
     )
     speaker_bioguide: Optional[str] = Field(
         None,
@@ -101,7 +105,10 @@ class CongressionalRecordDocument(BaseModel):
     header: Header = Field(
         ..., description="Metadata about the Congressional Record issue"
     )
-    doc_title: str = Field(..., description="Title of the document from metadata")
+    doc_title: Optional[str] = Field(
+        ...,
+        description="Title of the document from metadata, or null if it has none",
+    )
     title: Optional[str] = Field(
         None, description="Title parsed from the document content (all-caps heading)"
     )

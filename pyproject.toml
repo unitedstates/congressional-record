@@ -36,7 +36,7 @@ dev = ["pre-commit", "pip-tools"]
 
 [project.urls]
 Homepage='https://github.com/unitedstates/congressional-record'
-Issues='https://github.com/unitestates/congressional-record/issues'
+Issues='https://github.com/unitedstates/congressional-record/issues'
 
 [project.scripts]
 congressionalrecord = "congressionalrecord.cli:main"

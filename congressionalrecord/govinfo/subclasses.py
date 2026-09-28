@@ -8,10 +8,20 @@ class crItem(object):
             if re.match(pat, line):
                 return True
 
-    def is_skip(self, line):
+    def text_of(self, line):
+        """
+        What of a line goes into the item's text: all of it, or, after a skip
+        pattern matched at its start (a [[Page]] or {time} marker), the rest
+        of it. None when only whitespace is left, as on a line that is nothing
+        but the marker. GovInfo's 1995 text sets some page markers at the
+        start of a line of prose: "[[Page H2736]] flagrant case, the judge".
+        """
         for pat in self.parent.skip_items:
-            if re.match(pat, line):
-                return True
+            amatch = re.match(pat, line)
+            if amatch:
+                rest = line[amatch.end() :]
+                return rest if rest.strip() else None
+        return line
 
     def item_builder(self):
         parent = self.parent
@@ -54,10 +64,9 @@ class crItem(object):
         for line in parent.the_text:
             if self.is_break(line):
                 break
-            elif self.is_skip(line):
-                pass
-            else:
-                content.append(line)
+            text = self.text_of(line)
+            if text is not None:
+                content.append(text)
         # The original text was split on newline, so ...
         item_text = "\n".join(content)
         self.item["text"] = item_text

@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+import copy
 import itertools
 import logging
 import os
@@ -11,12 +12,22 @@ from bs4 import BeautifulSoup
 from congressionalrecord.govinfo.subclasses import crItem
 
 
+class CRParseError(ValueError):
+    """A granule's text is not laid out as the parser reads it."""
+
+
 class ParseCRDir(object):
     def gen_dir_metadata(self):
         """Load up all metadata for this directory
         from the mods file."""
         with open(self.mods_path, "r") as mods_file:
             self.mods = BeautifulSoup(mods_file, "lxml")
+        # Each accessId's first tag, as find("accessid", string=...) returns
+        # it, so looking up a granule reads a dict instead of walking the MODS.
+        self.access_ids = {}
+        for tag in self.mods.find_all("accessid"):
+            if tag.string is not None:
+                self.access_ids.setdefault(str(tag.string), tag)
 
     def __init__(self, abspath, **kwargs):
         # dir data
@@ -134,24 +145,14 @@ class ParseCRFile(object):
         return re_speakers
 
     def people_helper(self, tagobject):
-        output_dict = {}
-        if "bioguideid" in tagobject.attrs:
-            output_dict["bioguideid"] = tagobject["bioguideid"]
-        elif "bioGuideId" in tagobject.attrs:
-            output_dict["bioguideid"] = tagobject["bioGuideId"]
-        else:
-            output_dict["bioguideid"] = "None"
+        """A member's MODS attributes and full name; None where the MODS has none."""
+        output_dict = {
+            "bioguideid": tagobject.get("bioguideid", tagobject.get("bioGuideId"))
+        }
         for key in ["chamber", "congress", "party", "state", "role"]:
-            if key in tagobject.attrs:
-                output_dict[key] = tagobject[key]
-            else:
-                output_dict[key] = "None"
-        try:
-            output_dict["name_full"] = tagobject.find(
-                "name", {"type": "authority-fnf"}
-            ).string
-        except:
-            output_dict["name_full"] = "None"
+            output_dict[key] = tagobject.get(key)
+        name = tagobject.find("name", {"type": "authority-fnf"})
+        output_dict["name_full"] = None if name is None else name.string
         return output_dict
 
     def find_people(self):
@@ -236,7 +237,7 @@ class ParseCRFile(object):
     # Flow control for metadata generation
     def gen_file_metadata(self):
         # Sometimes the searchtitle has semicolons in it so .split(';') is a nogo
-        temp_ref = self.cr_dir.mods.find("accessid", text=self.access_path)
+        temp_ref = self.cr_dir.access_ids.get(self.access_path)
         if temp_ref is None:
             raise RuntimeError("{} doesn't have accessid tag".format(self.access_path))
         self.doc_ref = temp_ref.parent
@@ -247,7 +248,7 @@ class ParseCRFile(object):
             )
         else:
             logging.warning("{0} yields no title, vol, num".format(self.access_path))
-            self.doc_title, self.cr_vol, self.cr_num = "None", "Unknown", "Unknown"
+            self.doc_title, self.cr_vol, self.cr_num = None, None, None
         self.find_people()
         self.find_related_bills()
         self.find_related_laws()
@@ -283,65 +284,55 @@ class ParseCRFile(object):
             yield line
         self.lines_remaining = False
 
-    def get_header(self):
+    def header_line(self, pattern, part, skip_blank=False):
         """
-        Only after I wrote this did I realize
-        how bad things can go when you call
-        next() on an iterator instead of treating
-        it as a list.
-
-        This code works, though.
+        Match the text's next line, or the one after a blank line if
+        skip_blank, against a header pattern. A text that ends first, or a
+        line that does not match, raises CRParseError naming the part.
         """
-        header_in = next(self.the_text)
-        if header_in == "":
-            header_in = next(self.the_text)
-        match = re.match(self.re_vol_file, header_in)
-        if match:
-            vol, num, wkday, month, day, year = match.group(
-                "vol", "num", "wkday", "month", "day", "year"
+        line = next(self.the_text, None)
+        if skip_blank and line == "":
+            line = next(self.the_text, None)
+        if line is None:
+            raise CRParseError(
+                "{0} ends before its header's {1} line".format(self.access_path, part)
             )
-        else:
-            return False
-        header_in = next(self.the_text)
-        match = re.match(self.re_chamber, header_in)
-        if match:
-            if match.group("chamber") == "Extensions of Remarks":
-                chamber = "House"
-                extensions = True
-            else:
-                chamber = match.group("chamber")
-                extensions = False
-        else:
-            return False
-        header_in = next(self.the_text)
-        match = re.match(self.re_pages, header_in)
-        if match:
-            pages = match.group("pages")
-        else:
-            return False
-        header_in = next(self.the_text)
-        match = re.match(self.re_trail, header_in)
-        if match:
-            pass
-        else:
-            return False
+        match = re.match(pattern, line)
+        if match is None:
+            raise CRParseError(
+                "{0}: the header's {1} line does not match: {2!r}".format(
+                    self.access_path, part, line
+                )
+            )
+        return match
+
+    def get_header(self):
+        """Volume, number, date, chamber and pages from the text's header lines."""
+        vol, num, wkday, month, day, year = self.header_line(
+            self.re_vol_file, "volume", skip_blank=True
+        ).group("vol", "num", "wkday", "month", "day", "year")
+        chamber = self.header_line(self.re_chamber, "chamber").group("chamber")
+        extensions = chamber == "Extensions of Remarks"
+        if extensions:
+            chamber = "House"
+        pages = self.header_line(self.re_pages, "pages").group("pages")
+        self.header_line(self.re_trail, "source")
         return vol, num, wkday, month, day, year, chamber, pages, extensions
 
     def write_header(self):
         self.crdoc["id"] = self.access_path
         header = self.get_header()
-        if header:
-            self.crdoc["header"] = {
-                "vol": header[0],
-                "num": header[1],
-                "wkday": header[2],
-                "month": header[3],
-                "day": header[4],
-                "year": header[5],
-                "chamber": header[6],
-                "pages": header[7],
-                "extension": header[8],
-            }
+        self.crdoc["header"] = {
+            "vol": header[0],
+            "num": header[1],
+            "wkday": header[2],
+            "month": header[3],
+            "day": header[4],
+            "year": header[5],
+            "chamber": header[6],
+            "pages": header[7],
+            "extension": header[8],
+        }
         self.crdoc["doc_title"] = self.doc_title
 
     def get_title(self):
@@ -452,7 +443,7 @@ class ParseCRFile(object):
         "linebreak": {
             "patterns": [re_linebreak],
             "speaker_re": False,
-            "speaker": "None",
+            "speaker": None,
             "break_flow": True,
             "special_case": True,
             "condition": "emptystr",
@@ -460,7 +451,7 @@ class ParseCRFile(object):
         "excerpt": {
             "patterns": [re_excerpt],
             "speaker_re": False,
-            "speaker": "None",
+            "speaker": None,
             "break_flow": True,
             "special_case": True,
             "condition": "lastspeaker",
@@ -468,28 +459,28 @@ class ParseCRFile(object):
         "rollcall": {
             "patterns": [re_rollcall],
             "speaker_re": False,
-            "speaker": "None",
+            "speaker": None,
             "break_flow": True,
             "special_case": False,
         },
         "metacharacters": {
             "patterns": [re_timestamp, re_newpage],
             "speaker_re": False,
-            "speaker": "None",
+            "speaker": None,
             "break_flow": False,
             "special_case": False,
         },
         "empty_line": {
             "patterns": [r"(^[\s]+$)"],
             "speaker_re": False,
-            "speaker": "None",
+            "speaker": None,
             "break_flow": False,
             "special_case": False,
         },
         "title": {
             "patterns": [re_allcaps],
             "speaker_re": False,
-            "speaker": "None",
+            "speaker": None,
             "break_flow": True,
             "special_case": False,
         },
@@ -516,6 +507,9 @@ class ParseCRFile(object):
         self.cr_dir = cr_dir
         self.access_path = self.filename.split(".")[0]
 
+        # gen_file_metadata writes this document's speaker pattern into the
+        # table, so each document gets its own copy of the class's.
+        self.item_types = copy.deepcopy(type(self).item_types)
         # Generate all metadata including list of speakers
         self.gen_file_metadata()
         # Must come after speaker list generation
