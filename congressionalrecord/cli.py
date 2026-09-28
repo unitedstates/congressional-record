@@ -6,7 +6,6 @@ import logging
 import sys
 
 from congressionalrecord.govinfo.downloader import Downloader as dl
-from congressionalrecord.pg_run.pg_cr_bulkwrite import crToPG as cr
 
 
 def main():
@@ -35,7 +34,7 @@ def main():
         type=str,
         choices=["json", "pg", "noparse"],
         help="json: Store json\n \
-        pg: Generate flatfiles for Postgres.\n \
+        pg: Generate flatfiles for Postgres (needs the postgres extra).\n \
         noparse: Just download the files.",
     )
 
@@ -66,6 +65,15 @@ def main():
     )
 
     args = parser.parse_args()
+
+    if args.do_mode == "pg":
+        try:
+            from congressionalrecord.pg_run.pg_cr_bulkwrite import crToPG as cr
+        except ModuleNotFoundError as missing:
+            parser.error(
+                "pg mode needs {}; install it with "
+                "pip install 'congressionalrecord[postgres]'".format(missing.name)
+            )
 
     loglevel = logging.WARNING
     if args.loglevel == "debug":

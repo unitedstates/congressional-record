@@ -17,22 +17,18 @@ classifiers = [
 ]
 dependencies = [
     'beautifulsoup4',
-    'soupsieve',
-    'lxml',
-    'numpy',
-    'psycopg2-binary',
+    'lxml',  # the parser's BeautifulSoup tree builder
     'urllib3',
-    'SQLAlchemy ',
-    'requests[security]',
-    'PyYAML',
-    'unicodecsv',
-    'future',
+    'certifi',
+    'pydantic >= 2',  # congressionalrecord.schema uses the v2 API
     ]
 keywords = ["unitedstates", "open government data", "congress", "legislative data"]
 license = "BSD-3-Clause"
 
 [project.optional-dependencies]
 dev = ["pre-commit", "pip-tools"]
+# The `pg` mode's flat-file writer and the pg_config table scripts.
+postgres = ["psycopg2-binary", "SQLAlchemy", "PyYAML", "unicodecsv"]
 
 [project.urls]
 Homepage='https://github.com/unitedstates/congressional-record'

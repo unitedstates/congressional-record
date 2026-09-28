@@ -43,6 +43,9 @@ uv sync
 
 then `uv run python -m congressionalrecord.cli -h` to see usage instructions.
 
+The `pg` mode and the `pg_config` table scripts need the optional PostgreSQL
+dependencies: install with `pip install -e '.[postgres]'` or `uv sync --extra postgres`.
+
 # Recommended citation:
 
 Judd, Nicholas, Dan Drinkard, Jeremy Carbaugh, and Lindsay Young. _congressional-record: A parser for the Congressional Record._ Chicago, IL: 2017.

@@ -4,39 +4,26 @@
 #
 #    pip-compile
 #
+annotated-types==0.8.0
+    # via pydantic
 beautifulsoup4==4.12.3
     # via congressionalrecord (pyproject.toml)
 certifi==2024.7.4
-    # via requests
-charset-normalizer==3.3.2
-    # via requests
-future==0.18.3
     # via congressionalrecord (pyproject.toml)
-greenlet==3.3.2
-    # via sqlalchemy
-idna==3.15
-    # via requests
 lxml==6.1.0
     # via congressionalrecord (pyproject.toml)
-numpy==1.26.4
+pydantic==2.13.5
     # via congressionalrecord (pyproject.toml)
-psycopg2-binary==2.9.11
-    # via congressionalrecord (pyproject.toml)
-pyyaml==6.0.1
-    # via congressionalrecord (pyproject.toml)
-requests[security]==2.33.0
-    # via congressionalrecord (pyproject.toml)
+pydantic-core==2.46.5
+    # via pydantic
 soupsieve==2.8.4
+    # via beautifulsoup4
+typing-extensions==4.16.0
     # via
-    #   beautifulsoup4
-    #   congressionalrecord (pyproject.toml)
-sqlalchemy==2.0.48
-    # via congressionalrecord (pyproject.toml)
-typing-extensions==4.9.0
-    # via sqlalchemy
-unicodecsv==0.14.1
-    # via congressionalrecord (pyproject.toml)
+    #   pydantic
+    #   pydantic-core
+    #   typing-inspection
+typing-inspection==0.4.4
+    # via pydantic
 urllib3==2.7.0
-    # via
-    #   congressionalrecord (pyproject.toml)
-    #   requests
+    # via congressionalrecord (pyproject.toml)
