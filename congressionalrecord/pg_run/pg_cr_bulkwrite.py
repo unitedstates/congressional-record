@@ -16,6 +16,8 @@ def if_exists(key, store):
 
 
 def rd(astring, delimiter="|"):
+    if astring is None:
+        return None
     outstr = astring.replace(delimiter, "")
     return outstr
 

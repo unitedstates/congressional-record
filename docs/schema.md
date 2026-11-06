@@ -25,7 +25,7 @@ A `CongressionalRecordDocument` contains:
 |-------|------|----------|-------------|
 | `id` | string | Yes | Unique identifier (e.g., "CREC-2025-01-30-pt1-PgS520") |
 | `header` | Header | Yes | Metadata about the Congressional Record issue |
-| `doc_title` | string | Yes | Title from metadata |
+| `doc_title` | string or null | Yes | Title from metadata; null when the metadata has no title |
 | `title` | string | No | Title parsed from content (all-caps heading) |
 | `content` | ContentItem[] | Yes | List of content items (speeches, notes, etc.) |
 | `related_bills` | RelatedBill[] | No | Bills referenced in this document |
@@ -56,7 +56,7 @@ Represents a single piece of content (speech, procedural note, etc.):
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `kind` | string | Yes | Type of item (see below) |
-| `speaker` | string | Yes | Speaker name or "Unknown" |
+| `speaker` | string or null | Yes | Speaker name, "Unknown" if not identified, or null for a kind with no speaker |
 | `speaker_bioguide` | string | No | Bioguide ID if matched to a member |
 | `text` | string | Yes | Full text content |
 | `turn` | integer | Yes | Turn number (for speeches) or -1 |
